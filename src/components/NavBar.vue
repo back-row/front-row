@@ -1,22 +1,28 @@
 <script setup lang='ts'>
 
 import { RouterLink } from 'vue-router';
+import IconHamburger from '@/components/icons/IconHamburger.vue';
 </script>
 
 <template>
-  <header>
-    <div>
-      <h2>Back Row</h2>
+  <header class='header'>
 
-      <nav>
-        <RouterLink to='/'>Home</RouterLink>
-        <RouterLink to='/game'>Game</RouterLink>
-        <RouterLink to='/about'>About</RouterLink>
-      </nav>
-    </div>
+    <IconHamburger>
+
+    </IconHamburger>
+    <h2>Back Row</h2>
+
+    <nav>
+      <RouterLink to='/'>Home</RouterLink>
+      <RouterLink to='/game'>Game</RouterLink>
+      <RouterLink to='/about'>About</RouterLink>
+    </nav>
   </header>
 </template>
 
 <style scoped>
-
+.header {
+  display: flex;
+  align-items: center;
+}
 </style>
