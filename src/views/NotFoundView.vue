@@ -1,11 +1,10 @@
 <script setup lang='ts'>
-import NavBar from '@/components/NavBar.vue';
 
 </script>
 
 <template>
   <div>
-    <NavBar/>
+    <h1>Page not found</h1>
   </div>
 </template>
 
