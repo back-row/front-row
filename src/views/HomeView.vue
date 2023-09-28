@@ -2,7 +2,5 @@
 </script>
 
 <template>
-  <main>
-
-  </main>
+  <div>Detta är startsida</div>
 </template>
