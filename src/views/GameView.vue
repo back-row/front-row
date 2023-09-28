@@ -5,9 +5,9 @@ import AnswerContainer from '@/components/game/AnswerContainer.vue'
 </script>
 
 <template>
-  <div class="container">
+  <div class="flex">
     <GameContainer />
-    <div class="column">
+    <div>
       <MissionContainer />
       <AnswerContainer />
     </div>
@@ -15,15 +15,4 @@ import AnswerContainer from '@/components/game/AnswerContainer.vue'
 </template>
 
 <style scoped>
-
-.container{
-  display: flex;
-  flex-direction: row;
-}
-
-.column{
-  display: flex;
-  flex-direction: column;
-  
-}
 </style>

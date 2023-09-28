@@ -3,15 +3,10 @@
 </script>
 
 <template>
-  <div>
+  <div class="box-border h-72 w-72 bg-yellow-500">
 
   </div>
 </template>
 
 <style scoped>
-div{
-    border: 2px black solid;
-    height: 250px;
-    width: 500px;
-}
 </style>

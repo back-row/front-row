@@ -2,5 +2,5 @@
 </script>
 
 <template>
-  <div class="text-red-50">Detta är startsida</div>
+  <div>Detta är startsida</div>
 </template>

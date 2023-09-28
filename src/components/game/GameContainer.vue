@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="box-border h-20 w-20 bg-red-500">
+  <div class="box-border h-72 w-72 bg-red-500">
 
   </div>
 </template>

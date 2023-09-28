@@ -32,7 +32,7 @@ const toggle = (event: any) => {
 
 <template>
   <nav>
-    <div>
+    <div >
       <Button type="button" label="Toggle" @click="toggle" aria-haspopup="true" aria-controls="overlay_menu"><IconHamburger/> Menu</button>
       <Menu ref="menu" id="overlay_menu" :model="items" :popup="true">
         <template #item="{ label, item, props }">
