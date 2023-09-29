@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from '@vue/reactivity';
+import { computed } from 'vue';
 import { ref, onMounted } from 'vue';
 
 enum Direction {
@@ -9,11 +9,17 @@ enum Direction {
   Right = 'right'
 }
 const player = ref(document.querySelector('#player') as HTMLImageElement);
+const playerPosition = computed(() => {
+  return {
+    row: parseInt(player.value.style.gridRow[0]),
+    column: parseInt(player.value.style.gridColumn[0])
+  };
+});
 
 onMounted(() => {
   player.value = document.querySelector('#player') as HTMLImageElement;
-  player.value.style.gridRow = '5 / 6';
-  player.value.style.gridColumn = '5 / 6';
+  player.value.style.gridRow = '5';
+  player.value.style.gridColumn = '5';
 });
 
 function movePlayer(direction: Direction) {
@@ -34,42 +40,28 @@ function movePlayer(direction: Direction) {
       break;
   }
 }
+function updatePlayerPosition() {
+  player.value.style.gridRow = `${playerPosition.value.row}`;
+  player.value.style.gridColumn = `${playerPosition.value.column}`;
+}
 function moveUp() {
-  console.log(player.value);
-  let currentRow = player.value.style.gridRow;
-  console.log(currentRow);
-
-  let currentRowNumber = parseInt(currentRow[0]);
-  let newRowNumber = currentRowNumber - 1;
-  player.value.style.gridRow = `${newRowNumber} / ${newRowNumber + 1}`;
-  console.log(player.value.style.gridRow);
+  playerPosition.value.row--;
+  updatePlayerPosition();
 }
 
 function moveDown() {
-  let currentRow = player.value.style.gridRow;
-  console.log(currentRow);
-  let currentRowNumber = parseInt(currentRow[0]);
-  let newRowNumber = currentRowNumber + 1;
-  player.value.style.gridRow = `${newRowNumber} / ${newRowNumber + 1}`;
-  console.log(player.value.style.gridRow);
+  playerPosition.value.row++;
+  updatePlayerPosition();
 }
 
 function moveLeft() {
-  let currentColumn = player.value.style.gridColumn;
-  console.log(currentColumn);
-  let currentColumnNumber = parseInt(currentColumn[0]);
-  let newColumnNumber = currentColumnNumber - 1;
-  player.value.style.gridColumn = `${newColumnNumber} / ${newColumnNumber + 1}`;
-  console.log(player.value.style.gridColumn);
+  playerPosition.value.column--;
+  updatePlayerPosition();
 }
 
 function moveRight() {
-  let currentColumn = player.value.style.gridColumn;
-  console.log(currentColumn);
-  let currentColumnNumber = parseInt(currentColumn[0]);
-  let newColumnNumber = currentColumnNumber + 1;
-  player.value.style.gridColumn = `${newColumnNumber} / ${newColumnNumber + 1}`;
-  console.log(player.value.style.gridColumn);
+  playerPosition.value.column++;
+  updatePlayerPosition();
 }
 </script>
 <template>
