@@ -75,10 +75,18 @@ function moveRight() {
   <div class="gameGrid container h-96 m-5 border border-5 border-black">
     <img ref="player" id="player" class="w-10" src="../assets/ghost.png" alt="ghost" />
   </div>
-  <button @click="movePlayer(Direction.Up)">Up</button>
-  <button @click="movePlayer(Direction.Down)">Down</button>
-  <button @click="movePlayer(Direction.Left)">Left</button>
-  <button @click="movePlayer(Direction.Right)">Right</button>
+  <section class="flex flex-col justify-center items-center">
+    <button class="border-black border-2 m-2 w-12" @click="movePlayer(Direction.Up)">Up</button>
+    <div>
+      <button class="border-black border-2 m-2 w-12" @click="movePlayer(Direction.Left)">
+        Left
+      </button>
+      <button class="border-black border-2 m-2 w-12" @click="movePlayer(Direction.Right)">
+        Right
+      </button>
+    </div>
+    <button class="border-black border-2 m-2 w-12" @click="movePlayer(Direction.Down)">Down</button>
+  </section>
 </template>
 <style scoped>
 .gameGrid {
