@@ -2,6 +2,9 @@
 import { computed } from 'vue';
 import { ref, onMounted } from 'vue';
 
+const [BORDER_LEFT, BORDER_TOP] = [1, 1];
+const [BORDER_RIGHT, BORDER_BOTTOM] = [11, 11];
+
 enum Direction {
   Up = 'up',
   Down = 'down',
@@ -18,8 +21,7 @@ const playerPosition = computed(() => {
 
 onMounted(() => {
   player.value = document.querySelector('#player') as HTMLImageElement;
-  player.value.style.gridRow = '5';
-  player.value.style.gridColumn = '5';
+  setStartPosition();
 });
 
 function movePlayer(direction: Direction) {
@@ -42,31 +44,36 @@ function movePlayer(direction: Direction) {
   updatePlayerPosition();
 }
 
+function setStartPosition() {
+  player.value.style.gridRow = BORDER_TOP.toString();
+  player.value.style.gridColumn = BORDER_LEFT.toString();
+}
+
 function updatePlayerPosition() {
   player.value.style.gridRow = `${playerPosition.value.row}`;
   player.value.style.gridColumn = `${playerPosition.value.column}`;
 }
 
 function moveUp() {
-  if (playerPosition.value.row !== 1) {
+  if (playerPosition.value.row !== BORDER_TOP) {
     playerPosition.value.row--;
   }
 }
 
 function moveDown() {
-  if (playerPosition.value.row !== 10) {
+  if (playerPosition.value.row !== BORDER_BOTTOM) {
     playerPosition.value.row++;
   }
 }
 
 function moveLeft() {
-  if (playerPosition.value.column !== 1) {
+  if (playerPosition.value.column !== BORDER_LEFT) {
     playerPosition.value.column--;
   }
 }
 
 function moveRight() {
-  if (playerPosition.value.column !== 10) {
+  if (playerPosition.value.column !== BORDER_RIGHT) {
     playerPosition.value.column++;
   }
 }
@@ -92,7 +99,7 @@ function moveRight() {
 .gameGrid {
   display: grid;
   justify-items: center;
-  grid-template-columns: repeat(10, 1fr);
-  grid-template-rows: repeat(10, 1fr);
+  grid-template-columns: repeat(11, 1fr);
+  grid-template-rows: repeat(11, 1fr);
 }
 </style>
