@@ -6,11 +6,9 @@ import FootBar from './components/FootBar.vue';
 </script>
 
 <template>
-  <div>
-    <NavBar/>
-    <RouterView />
-    <FootBar />
-  </div>
+  <NavBar />
+  <RouterView />
+  <FootBar />
 </template>
 
 <style scoped>

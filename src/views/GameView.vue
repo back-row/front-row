@@ -4,13 +4,15 @@ import MissionContainer from '@/components/game/MissionContainer.vue'
 import AnswerContainer from '@/components/game/AnswerContainer.vue'
 </script>
 
-<template>
-  <div class="flex">
+<template >
+  <div class="flex flex-wrap m-3">
+  <section class="w-2/3 mr-3">
     <GameContainer />
-    <div>
-      <MissionContainer />
-      <AnswerContainer />
-    </div>
+  </section>
+  <section class=" w-1/3">
+    <MissionContainer />
+    <AnswerContainer />
+  </section>
   </div>
 </template>
 

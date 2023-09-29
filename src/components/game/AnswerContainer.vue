@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="relative bg-[#2C3540] h-80 w-80 m-3 p-2 pt-4 rounded-sm">
+  <div class="relative bg-[#2C3540] h-80 w-full p-2 pt-4 rounded-sm">
     <div class="bg-[#E5E5E5] h-4/5">
       <p>Svara här</p>
     </div>
