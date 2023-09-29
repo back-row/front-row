@@ -39,29 +39,36 @@ function movePlayer(direction: Direction) {
       moveRight();
       break;
   }
+  updatePlayerPosition();
 }
+
 function updatePlayerPosition() {
   player.value.style.gridRow = `${playerPosition.value.row}`;
   player.value.style.gridColumn = `${playerPosition.value.column}`;
 }
+
 function moveUp() {
-  playerPosition.value.row--;
-  updatePlayerPosition();
+  if (playerPosition.value.row !== 1) {
+    playerPosition.value.row--;
+  }
 }
 
 function moveDown() {
-  playerPosition.value.row++;
-  updatePlayerPosition();
+  if (playerPosition.value.row !== 10) {
+    playerPosition.value.row++;
+  }
 }
 
 function moveLeft() {
-  playerPosition.value.column--;
-  updatePlayerPosition();
+  if (playerPosition.value.column !== 1) {
+    playerPosition.value.column--;
+  }
 }
 
 function moveRight() {
-  playerPosition.value.column++;
-  updatePlayerPosition();
+  if (playerPosition.value.column !== 10) {
+    playerPosition.value.column++;
+  }
 }
 </script>
 <template>
@@ -76,6 +83,7 @@ function moveRight() {
 <style scoped>
 .gameGrid {
   display: grid;
+  justify-items: center;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(10, 1fr);
 }
