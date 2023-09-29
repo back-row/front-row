@@ -2,7 +2,6 @@
 
 import { RouterLink } from 'vue-router';
 import Menu from 'primevue/menu';
-import IconHamburger from './icons/IconHamburger.vue';
 import { ref } from 'vue';
 
 const menu = ref();
