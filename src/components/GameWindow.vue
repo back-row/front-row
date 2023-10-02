@@ -52,6 +52,14 @@ function setStartPosition() {
 function updatePlayerPosition() {
   player.value.style.gridRow = `${playerPosition.value.row}`;
   player.value.style.gridColumn = `${playerPosition.value.column}`;
+  fetch('http://localhost:8000/player', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(playerPosition.value)
+  });
+  console.log('playerPosition sent to backend');
 }
 
 function moveUp() {
