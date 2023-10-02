@@ -5,16 +5,31 @@ import AnswerContainer from '@/components/game/AnswerContainer.vue'
 </script>
 
 <template >
-  <div class="flex flex-wrap m-3">
-  <section class="w-2/3 mr-3">
-    <GameContainer />
+  <section class="gamePage">
+    <div class="gameArea">
+      <GameContainer />
+    </div>
+    <div class="sideArea">
+      <MissionContainer />
+      <AnswerContainer />
+    </div>
   </section>
-  <section class=" w-1/3">
-    <MissionContainer />
-    <AnswerContainer />
-  </section>
-  </div>
 </template>
 
 <style scoped>
+
+.gamePage{
+  display: flex;
+  margin: 20px;
+}
+
+.gameArea{
+  margin-right: 20px;
+  width: 100%;
+}
+
+.sideArea{
+  width: 100%;
+}
+
 </style>
