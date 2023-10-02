@@ -24,7 +24,7 @@ onMounted(() => {
   setStartPosition();
 });
 
-function movePlayer(direction: Direction) {
+async function movePlayer(direction: Direction) {
   console.log('movePlayer', direction);
 
   switch (direction) {
@@ -49,9 +49,19 @@ function setStartPosition() {
   player.value.style.gridColumn = BORDER_LEFT.toString();
 }
 
-function updatePlayerPosition() {
+async function updatePlayerPosition() {
   player.value.style.gridRow = `${playerPosition.value.row}`;
   player.value.style.gridColumn = `${playerPosition.value.column}`;
+  console.log('playerPosition sent to backend');
+  const response = await fetch('http://localhost:8000/player', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(playerPosition.value)
+  });
+  const data = await response.json();
+  console.log('Player at end location: ', data);
 }
 
 function moveUp() {
