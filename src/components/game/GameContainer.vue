@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
 import MapComponent from './MapComponent.vue';
 
 const [BORDER_LEFT, BORDER_TOP] = [1, 1];
@@ -12,17 +11,9 @@ enum Direction {
   Left = 'left',
   Right = 'right'
 }
-const player = ref(document.querySelector('#player') as HTMLImageElement);
-const playerPosition = computed(() => {
-  return {
-    row: parseInt(player.value.style.gridRow[0]),
-    column: parseInt(player.value.style.gridColumn[0])
-  };
-});
-
-onMounted(() => {
-  player.value = document.querySelector('#player') as HTMLImageElement;
-  setStartPosition();
+const playerPosition = ref({
+  row: 1,
+  column: 1
 });
 
 async function movePlayer(direction: Direction) {
@@ -45,14 +36,8 @@ async function movePlayer(direction: Direction) {
   updatePlayerPosition();
 }
 
-function setStartPosition() {
-  player.value.style.gridRow = BORDER_TOP.toString();
-  player.value.style.gridColumn = BORDER_LEFT.toString();
-}
-
 async function updatePlayerPosition() {
-  player.value.style.gridRow = `${playerPosition.value.row}`;
-  player.value.style.gridColumn = `${playerPosition.value.column}`;
+  console.log('playerPosition: ', playerPosition.value);
   console.log('playerPosition sent to backend');
   const response = await fetch('http://localhost:8000/player', {
     method: 'POST',
@@ -94,9 +79,10 @@ function moveRight() {
     <img
       ref="player"
       id="player"
-      class="w-10 transition-all ease-in-out duration-500"
+      class="w-10"
       src="../../assets/ghost.png"
       alt="ghost"
+      :style="{ gridRow: playerPosition.row, gridColumn: playerPosition.column }"
     />
 
     <MapComponent :startLocation="{ row: 6, column: 6 }" />
