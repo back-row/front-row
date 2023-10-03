@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { ref, onMounted } from 'vue';
+import MapComponent from './MapComponent.vue';
 
 const [BORDER_LEFT, BORDER_TOP] = [1, 1];
 const [BORDER_RIGHT, BORDER_BOTTOM] = [11, 11];
@@ -90,7 +91,15 @@ function moveRight() {
 </script>
 <template>
   <div class="gameGrid container h-fit border border-black bg-[#2C3540] rounded-sm">
-    <img ref="player" id="player" class="w-10" src="../../assets/ghost.png" alt="ghost" />
+    <img
+      ref="player"
+      id="player"
+      class="w-10 transition-all ease-in-out duration-500"
+      src="../../assets/ghost.png"
+      alt="ghost"
+    />
+
+    <MapComponent :startLocation="{ row: 6, column: 6 }" />
   </div>
   <section class="flex flex-col justify-center items-center">
     <button class="border-black border-2 m-2 w-12" @click="movePlayer(Direction.Up)">Up</button>
