@@ -12,8 +12,8 @@ enum Direction {
   Right = 'right'
 }
 const playerPosition = ref({
-  row: 1,
-  column: 1
+  row: BORDER_LEFT,
+  column: BORDER_TOP
 });
 
 async function movePlayer(direction: Direction) {
