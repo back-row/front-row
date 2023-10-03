@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
+import MapComponent from './MapComponent.vue';
 
 const [BORDER_LEFT, BORDER_TOP] = [1, 1];
 const [BORDER_RIGHT, BORDER_BOTTOM] = [11, 11];
@@ -11,20 +11,12 @@ enum Direction {
   Left = 'left',
   Right = 'right'
 }
-const player = ref(document.querySelector('#player') as HTMLImageElement);
-const playerPosition = computed(() => {
-  return {
-    row: parseInt(player.value.style.gridRow[0]),
-    column: parseInt(player.value.style.gridColumn[0])
-  };
+const playerPosition = ref({
+  row: BORDER_LEFT,
+  column: BORDER_TOP
 });
 
-onMounted(() => {
-  player.value = document.querySelector('#player') as HTMLImageElement;
-  setStartPosition();
-});
-
-function movePlayer(direction: Direction) {
+async function movePlayer(direction: Direction) {
   console.log('movePlayer', direction);
 
   switch (direction) {
@@ -44,14 +36,18 @@ function movePlayer(direction: Direction) {
   updatePlayerPosition();
 }
 
-function setStartPosition() {
-  player.value.style.gridRow = BORDER_TOP.toString();
-  player.value.style.gridColumn = BORDER_LEFT.toString();
-}
-
-function updatePlayerPosition() {
-  player.value.style.gridRow = `${playerPosition.value.row}`;
-  player.value.style.gridColumn = `${playerPosition.value.column}`;
+async function updatePlayerPosition() {
+  console.log('playerPosition: ', playerPosition.value);
+  console.log('playerPosition sent to backend');
+  const response = await fetch('http://localhost:8000/player', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(playerPosition.value)
+  });
+  const data = await response.json();
+  console.log('Player at end location: ', data);
 }
 
 function moveUp() {
@@ -80,7 +76,16 @@ function moveRight() {
 </script>
 <template>
   <div class="gameGrid container h-fit border border-black bg-[#2C3540] rounded-sm">
-    <img ref="player" id="player" class="w-10" src="../../assets/ghost.png" alt="ghost" />
+    <img
+      ref="player"
+      id="player"
+      class="w-10"
+      src="../../assets/ghost.png"
+      alt="ghost"
+      :style="{ gridRow: playerPosition.row, gridColumn: playerPosition.column }"
+    />
+
+    <MapComponent :endLocation="{ row: 6, column: 6 }" />
   </div>
   <section class="flex flex-col justify-center items-center">
     <button class="border-black border-2 m-2 w-12" @click="movePlayer(Direction.Up)">Up</button>
