@@ -85,7 +85,7 @@ function moveRight() {
       :style="{ gridRow: playerPosition.row, gridColumn: playerPosition.column }"
     />
 
-    <MapComponent :startLocation="{ row: 6, column: 6 }" />
+    <MapComponent :endLocation="{ row: 6, column: 6 }" />
   </div>
   <section class="flex flex-col justify-center items-center">
     <button class="border-black border-2 m-2 w-12" @click="movePlayer(Direction.Up)">Up</button>

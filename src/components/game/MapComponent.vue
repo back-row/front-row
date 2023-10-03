@@ -4,7 +4,7 @@ import { onMounted, type PropType } from 'vue';
 type Location = { row: number; column: number };
 
 const props = defineProps({
-  startLocation: {
+  endLocation: {
     type: Object as PropType<Location>,
     required: true
   }
@@ -12,11 +12,7 @@ const props = defineProps({
 
 onMounted(() => {
   console.log(
-    'EndLocation mounted: ' +
-      'row:' +
-      props.startLocation.row +
-      ' col:' +
-      props.startLocation.column
+    'EndLocation mounted: ' + 'row:' + props.endLocation.row + ' col:' + props.endLocation.column
   );
 });
 </script>
@@ -27,6 +23,6 @@ onMounted(() => {
     class="w-10"
     src="../../assets/icecream.png"
     alt="icecream"
-    :style="{ gridRow: props.startLocation.row, gridColumn: props.startLocation.column }"
+    :style="{ gridRow: props.endLocation.row, gridColumn: props.endLocation.column }"
   />
 </template>
