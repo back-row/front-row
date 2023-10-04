@@ -13,7 +13,8 @@ enum Direction {
 }
 const playerPosition = ref({
   row: BORDER_LEFT,
-  column: BORDER_TOP
+  column: BORDER_TOP,
+  mapId: 1
 });
 
 async function movePlayer(direction: Direction) {
@@ -37,6 +38,7 @@ async function movePlayer(direction: Direction) {
 }
 
 async function updatePlayerPosition() {
+  //TODO: send what map the player is on
   console.log('playerPosition: ', playerPosition.value);
   console.log('playerPosition sent to backend');
   const response = await fetch('http://localhost:8000/player', {
