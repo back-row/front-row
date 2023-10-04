@@ -88,7 +88,6 @@ function moveRight() {
     />
 
     <MapComponent :map-id="playerPosition.mapId" />
-    <!-- //TODO: set prop to mapId  -->
   </div>
   <section class="flex flex-col justify-center items-center">
     <button class="border-black border-2 m-2 w-12" @click="movePlayer(Direction.Up)">Up</button>
