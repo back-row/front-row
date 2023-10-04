@@ -1,16 +1,25 @@
 <script setup lang='ts'>
 import { ref } from 'vue';
+import type {Ref} from 'vue';
+
+type answer= {answer: string, id: string} 
 
 const selectedAnswer = ref('');
-const answers = [
-  {name: 'A', id: '1'},
-  {name: 'B', id: '2'},
-  {name: 'C', id: '3'}
-];
+const answers: Ref<answer[]> = ref([])
 
-fetch('http://localhost:8000/users')
-  .then(response => response.json)
-  .then(data => console.log(data))
+getAnswers().then(obj => [
+  answers.value.push({answer: obj.quizanswer1, id: '1'}),
+  answers.value.push({answer: obj.quizanswer2, id: '2'}),
+  answers.value.push({answer: obj.quizanswer3, id: '3'})
+])
+
+async function getAnswers() {
+  const response = await fetch('http://localhost:8000/quiz');
+  const data = await response.text();
+  const obj = JSON.parse(data);
+  console.log('Answers: ', obj);
+  return obj;
+}
 
 const onSubmit = () => {
   console.log(selectedAnswer.value)
@@ -22,8 +31,8 @@ const onSubmit = () => {
   <div class="relative bg-[#2C3540] h-80 w-full p-2 pt-4 rounded-sm">
         <div class="bg-[#E5E5E5] h-4/5">
           <div v-for="answer in answers" :key="answer.id" class="flex items-center ml-4">
-              <input type="radio" class="border-black border-2 w-4 h-4" v-model="selectedAnswer" :inputId="answer.id" :value="answer.name" />
-              <label :for="answer.id" class="ml-2">{{ answer.name }}</label>
+              <input type="radio" class="border-black border-2 w-4 h-4" v-model="selectedAnswer" :inputId="answer.id" :value="answer.answer" />
+              <label :for="answer.id" class="ml-2">{{ answer.answer }}</label>
           </div>
         </div>
       <Button type="submit" @click.prevent="onSubmit()" class="hover:animate-pulse bg-[#408080] h-10 w-20 m-2 rounded-md flex items-center justify-center absolute bottom-0 right-0 text-white">
