@@ -14,6 +14,7 @@ enum Direction {
 const playerPosition = ref({
   row: BORDER_LEFT,
   column: BORDER_TOP,
+  //TODO: get mapId from ? player status?
   mapId: 1
 });
 
@@ -38,7 +39,6 @@ async function movePlayer(direction: Direction) {
 }
 
 async function updatePlayerPosition() {
-  //TODO: send what map the player is on
   console.log('playerPosition: ', playerPosition.value);
   console.log('playerPosition sent to backend');
   const response = await fetch('http://localhost:8000/player', {
@@ -87,7 +87,8 @@ function moveRight() {
       :style="{ gridRow: playerPosition.row, gridColumn: playerPosition.column }"
     />
 
-    <MapComponent :endLocation="{ row: 6, column: 6 }" />
+    <MapComponent :map-id="playerPosition.mapId" />
+    <!-- //TODO: set prop to mapId  -->
   </div>
   <section class="flex flex-col justify-center items-center">
     <button class="border-black border-2 m-2 w-12" @click="movePlayer(Direction.Up)">Up</button>
