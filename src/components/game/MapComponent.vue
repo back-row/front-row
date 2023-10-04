@@ -1,20 +1,54 @@
 <script setup lang="ts">
-import { onMounted, type PropType } from 'vue';
+import { onMounted, ref } from 'vue';
 
-type Location = { row: number; column: number };
+type Map = {
+  mapid: number;
+  mapdifficulty: number;
+  mapisquiz: boolean;
+  mapquizid: number;
+  mapendlocationrow: number;
+  mapendlocationcolumn: number;
+  maptutorialid: number;
+};
+
+const currentMap = ref<Map>({
+  mapid: 0,
+  mapdifficulty: 0,
+  mapisquiz: false,
+  mapquizid: 0,
+  mapendlocationrow: 6,
+  mapendlocationcolumn: 6,
+  maptutorialid: 0
+});
 
 const props = defineProps({
-  endLocation: {
-    type: Object as PropType<Location>,
+  mapId: {
+    type: Number,
     required: true
   }
 });
 
-onMounted(() => {
+onMounted(async () => {
+  currentMap.value = await getMap(props.mapId);
   console.log(
-    'EndLocation mounted: ' + 'row:' + props.endLocation.row + ' col:' + props.endLocation.column
+    'EndLocation mounted: ' +
+      'row:' +
+      currentMap.value.mapendlocationrow +
+      ' col:' +
+      currentMap.value.mapendlocationcolumn
   );
 });
+
+async function getMap(id: number) {
+  try {
+    const response = await fetch('http://localhost:8000/map/' + id);
+    const map = await response.json();
+    return map;
+  } catch (error) {
+    console.log(error);
+    console.log('Could not get map setting to default location (6,6)');
+  }
+}
 </script>
 <template>
   <img
@@ -23,6 +57,6 @@ onMounted(() => {
     class="w-10"
     src="../../assets/icecream.png"
     alt="icecream"
-    :style="{ gridRow: props.endLocation.row, gridColumn: props.endLocation.column }"
+    :style="{ gridRow: currentMap.mapendlocationrow, gridColumn: currentMap.mapendlocationcolumn }"
   />
 </template>
