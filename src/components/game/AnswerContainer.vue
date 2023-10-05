@@ -2,15 +2,15 @@
 import { ref } from 'vue';
 import type {Ref} from 'vue';
 
-type answer= {answer: string, id: string} 
+type answer= {answer: string} 
 
 const selectedAnswer = ref('');
 const answers: Ref<answer[]> = ref([])
 
 getAnswers().then(obj => [
-  answers.value.push({answer: obj.quizanswer1, id: '1'}),
-  answers.value.push({answer: obj.quizanswer2, id: '2'}),
-  answers.value.push({answer: obj.quizanswer3, id: '3'})
+  answers.value.push({answer: obj.quizanswer1}),
+  answers.value.push({answer: obj.quizanswer2}),
+  answers.value.push({answer: obj.quizanswer3})
 ])
 
 async function getAnswers() {
@@ -30,9 +30,9 @@ const onSubmit = () => {
 <template>
   <div class="relative bg-[#2C3540] h-80 w-full p-2 pt-4 rounded-sm">
         <div class="bg-[#E5E5E5] h-4/5">
-          <div v-for="answer in answers" :key="answer.id" class="flex items-center ml-4">
-              <input type="radio" class="border-black border-2 w-4 h-4" v-model="selectedAnswer" :inputId="answer.id" :value="answer.answer" />
-              <label :for="answer.id" class="ml-2">{{ answer.answer }}</label>
+          <div v-for="answer in answers" :key="answer.answer" class="flex items-center ml-4">
+              <input type="radio" class="border-black border-2 w-4 h-4" v-model="selectedAnswer" :value="answer.answer" />
+              <label class="ml-2">{{ answer.answer }}</label>
           </div>
         </div>
       <Button type="submit" @click.prevent="onSubmit()" class="hover:animate-pulse bg-[#408080] h-10 w-20 m-2 rounded-md flex items-center justify-center absolute bottom-0 right-0 text-white">
