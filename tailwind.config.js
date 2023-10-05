@@ -5,7 +5,13 @@ export const content = [
   './src/views/*.{vue,js,ts,jsx,tsx'
 ];
 export const theme = {
-  extend: {}
+  extend: {
+    colors: {
+      green: '#408080',
+      'black': '#0A0F14',
+     
+    }
+  }
 };
 export const plugins = [];
 export const darkMode = 'class';
