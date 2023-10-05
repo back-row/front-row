@@ -1,6 +1,7 @@
 <script setup lang='ts'>
 import { ref } from 'vue';
-import type {Ref} from 'vue';
+import type { Ref } from 'vue';
+import { getAnswers } from '@/utility/utility'
 
 type answer= {answer: string} 
 
@@ -12,14 +13,6 @@ getAnswers().then(obj => [
   answers.value.push({answer: obj.quizanswer2}),
   answers.value.push({answer: obj.quizanswer3})
 ])
-
-async function getAnswers() {
-  const response = await fetch('http://localhost:8000/quiz/1');
-  const data = await response.text();
-  const obj = JSON.parse(data);
-  console.log('Answers: ', obj);
-  return obj;
-}
 
 const onSubmit = () => {
   console.log(selectedAnswer.value)
