@@ -3,13 +3,16 @@ import { ref } from 'vue';
 import type { Ref } from 'vue';
 import { getAnswers } from '@/utility/utility'
 
-type answer= {answer: string} 
+type answer= {choice: string, answer: string[]} 
 
 const selectedAnswer = ref('');
 const answers: Ref<answer[]> = ref([])
 
 getAnswers().then(obj => [
-  answers.value.push({answer: obj.choice1}, {answer: obj.choice2}, {answer: obj.choice3})
+  answers.value.push(
+    {choice: obj.choice1, answer: obj.answer1}, 
+    {choice: obj.choice2, answer: obj.answer2}, 
+    {choice: obj.choice3, answer: obj.answer3})
 ])
 
 const onSubmit = () => {
@@ -21,9 +24,9 @@ const onSubmit = () => {
 <template>
   <div class="relative bg-[#2C3540] h-80 w-full p-2 pt-4 rounded-sm">
         <div class="bg-[#E5E5E5] h-4/5">
-          <div v-for="answer in answers" :key="answer.answer" class="flex items-center ml-4">
+          <div v-for="answer in answers" :key="answer.choice" class="flex items-center ml-4">
               <input type="radio" class="border-black border-2 w-4 h-4" v-model="selectedAnswer" :value="answer.answer" />
-              <label class="ml-2">{{ answer.answer }}</label>
+              <label class="ml-2">{{ answer.choice }}</label>
           </div>
         </div>
       <Button type="submit" @click.prevent="onSubmit()" class="hover:animate-pulse bg-[#408080] h-10 w-20 m-2 rounded-md flex items-center justify-center absolute bottom-0 right-0 text-white">
