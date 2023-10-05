@@ -7,8 +7,9 @@ export const content = [
 export const theme = {
   extend: {
     colors: {
-      green: '#408080',
-      'black': '#0A0F14',
+      greenBackrow: '#408080',
+      'blackBackrow': '#0A0F14',
+      'whiteBackRow': '#E5E5E5',
      
     }
   }
