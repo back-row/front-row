@@ -9,7 +9,7 @@ const selectedAnswer = ref('');
 const answers: Ref<answer[]> = ref([])
 
 getAnswers().then(obj => [
-  answers.value.push({answer: obj.quizquestion})
+  answers.value.push({answer: obj.choice1}, {answer: obj.choice2}, {answer: obj.choice3})
 ])
 
 const onSubmit = () => {
