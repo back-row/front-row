@@ -82,8 +82,8 @@ function moveRight() {
       ref="player"
       id="player"
       class="w-10"
-      src="../../assets/ghost.png"
-      alt="ghost"
+      src="../../assets/greenPlayer_nobg.png"
+      alt="Green player"
       :style="{ gridRow: playerPosition.row, gridColumn: playerPosition.column }"
     />
 

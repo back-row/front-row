@@ -55,8 +55,8 @@ async function getMap(id: number) {
     ref="endLocation"
     id="endLocation"
     class="w-10"
-    src="../../assets/icecream.png"
-    alt="icecream"
+    src="../../assets/treasureChest_nobg.png"
+    alt="treasure chest"
     :style="{ gridRow: currentMap.mapendlocationrow, gridColumn: currentMap.mapendlocationcolumn }"
   />
 </template>
