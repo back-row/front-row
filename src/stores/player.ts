@@ -48,15 +48,19 @@ export const usePlayerStore = defineStore('player', () => {
     switch (direction) {
       case 'up':
         moveUp();
+        await sleepyWork();
         break;
       case 'down':
         moveDown();
+        await sleepyWork();
         break;
       case 'left':
         moveLeft();
+        await sleepyWork();
         break;
       case 'right':
         moveRight();
+        await sleepyWork();
         break;
     }
     updatePlayerPosition();
@@ -75,6 +79,11 @@ export const usePlayerStore = defineStore('player', () => {
     const data = await response.json();
     console.log('Player at end location: ', data);
   }
-
+  const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+  async function sleepyWork() {
+    console.log("I'm going to sleep for 1 second.");
+    await sleep(1000);
+    console.log('I woke up after 1 second.');
+  }
   return { playerPosition, movePlayer };
 });
