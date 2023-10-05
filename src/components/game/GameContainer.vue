@@ -10,40 +10,6 @@ enum Direction {
 }
 
 const playerStore = usePlayerStore();
-
-async function movePlayer(direction: Direction) {
-  console.log('movePlayer', direction);
-
-  switch (direction) {
-    case 'up':
-      playerStore.moveUp();
-      break;
-    case 'down':
-      playerStore.moveDown();
-      break;
-    case 'left':
-      playerStore.moveLeft();
-      break;
-    case 'right':
-      playerStore.moveRight();
-      break;
-  }
-  updatePlayerPosition();
-}
-
-async function updatePlayerPosition() {
-  console.log('playerStore: ', playerStore.playerPosition);
-  console.log('playerStore sent to backend');
-  const response = await fetch('http://localhost:8000/player', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(playerStore.playerPosition)
-  });
-  const data = await response.json();
-  console.log('Player at end location: ', data);
-}
 </script>
 <template>
   <div class="gameGrid container h-fit border border-black bg-[#2C3540] rounded-sm">
@@ -62,16 +28,26 @@ async function updatePlayerPosition() {
     <MapComponent :map-id="playerStore.playerPosition.mapId" />
   </div>
   <section class="flex flex-col justify-center items-center">
-    <button class="border-black border-2 m-2 w-12" @click="movePlayer(Direction.Up)">Up</button>
+    <button class="border-black border-2 m-2 w-12" @click="playerStore.movePlayer(Direction.Up)">
+      Up
+    </button>
     <div>
-      <button class="border-black border-2 m-2 w-12" @click="movePlayer(Direction.Left)">
+      <button
+        class="border-black border-2 m-2 w-12"
+        @click="playerStore.movePlayer(Direction.Left)"
+      >
         Left
       </button>
-      <button class="border-black border-2 m-2 w-12" @click="movePlayer(Direction.Right)">
+      <button
+        class="border-black border-2 m-2 w-12"
+        @click="playerStore.movePlayer(Direction.Right)"
+      >
         Right
       </button>
     </div>
-    <button class="border-black border-2 m-2 w-12" @click="movePlayer(Direction.Down)">Down</button>
+    <button class="border-black border-2 m-2 w-12" @click="playerStore.movePlayer(Direction.Down)">
+      Down
+    </button>
   </section>
 </template>
 <style scoped>
