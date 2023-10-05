@@ -1,9 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import MapComponent from './MapComponent.vue';
-
-const [BORDER_LEFT, BORDER_TOP] = [1, 1];
-const [BORDER_RIGHT, BORDER_BOTTOM] = [11, 11];
+import { usePlayerStore } from '@/stores/player';
 
 enum Direction {
   Up = 'up',
@@ -11,69 +8,41 @@ enum Direction {
   Left = 'left',
   Right = 'right'
 }
-const playerPosition = ref({
-  row: BORDER_LEFT,
-  column: BORDER_TOP,
-  //TODO: get mapId from ? player status?
-  mapId: 1
-});
+
+const playerStore = usePlayerStore();
 
 async function movePlayer(direction: Direction) {
   console.log('movePlayer', direction);
 
   switch (direction) {
     case 'up':
-      moveUp();
+      playerStore.moveUp();
       break;
     case 'down':
-      moveDown();
+      playerStore.moveDown();
       break;
     case 'left':
-      moveLeft();
+      playerStore.moveLeft();
       break;
     case 'right':
-      moveRight();
+      playerStore.moveRight();
       break;
   }
   updatePlayerPosition();
 }
 
 async function updatePlayerPosition() {
-  console.log('playerPosition: ', playerPosition.value);
-  console.log('playerPosition sent to backend');
+  console.log('playerStore: ', playerStore.playerPosition);
+  console.log('playerStore sent to backend');
   const response = await fetch('http://localhost:8000/player', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(playerPosition.value)
+    body: JSON.stringify(playerStore.playerPosition)
   });
   const data = await response.json();
   console.log('Player at end location: ', data);
-}
-
-function moveUp() {
-  if (playerPosition.value.row !== BORDER_TOP) {
-    playerPosition.value.row--;
-  }
-}
-
-function moveDown() {
-  if (playerPosition.value.row !== BORDER_BOTTOM) {
-    playerPosition.value.row++;
-  }
-}
-
-function moveLeft() {
-  if (playerPosition.value.column !== BORDER_LEFT) {
-    playerPosition.value.column--;
-  }
-}
-
-function moveRight() {
-  if (playerPosition.value.column !== BORDER_RIGHT) {
-    playerPosition.value.column++;
-  }
 }
 </script>
 <template>
@@ -84,10 +53,13 @@ function moveRight() {
       class="w-10"
       src="../../assets/ghost.png"
       alt="ghost"
-      :style="{ gridRow: playerPosition.row, gridColumn: playerPosition.column }"
+      :style="{
+        gridRow: playerStore.playerPosition.row,
+        gridColumn: playerStore.playerPosition.column
+      }"
     />
 
-    <MapComponent :map-id="playerPosition.mapId" />
+    <MapComponent :map-id="playerStore.playerPosition.mapId" />
   </div>
   <section class="flex flex-col justify-center items-center">
     <button class="border-black border-2 m-2 w-12" @click="movePlayer(Direction.Up)">Up</button>
