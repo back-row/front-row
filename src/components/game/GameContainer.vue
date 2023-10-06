@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang='ts'>
 import MapComponent from './MapComponent.vue';
 import { usePlayerStore } from '@/stores/player';
 
@@ -12,41 +12,41 @@ enum Direction {
 const playerStore = usePlayerStore();
 </script>
 <template>
-  <div class="gameGrid container h-fit border border-black bg-[#2C3540] rounded-sm">
+  <div class='gameGrid container h-fit border border-black bg-[#2C3540] rounded-sm'>
     <img
-      ref="player"
-      id="player"
-      class="w-10 z-10"
+      ref='player'
+      id='player'
+      class='w-10 z-10'
 
-      src="../../assets/greenPlayer_nobg.png"
-      alt="Green player"
-      :style="{ 
+      src='../../assets/greenPlayer_nobg.png'
+      alt='Green player'
+      :style='{
         gridRow: playerStore.playerPosition.row, 
         gridColumn: playerStore.playerPosition.column 
-        }"
+        }'
     />
 
-    <MapComponent :map-id="playerStore.playerPosition.mapId" />
+    <MapComponent :map-id='playerStore.playerPosition.mapId' />
   </div>
-  <section class="flex flex-col justify-center items-center">
-    <button class="border-black border-2 m-2 w-12" @click="playerStore.movePlayer(Direction.Up)">
+  <section class='flex flex-col justify-center items-center'>
+    <button class='border-black border-2 m-2 w-12' @click='playerStore.movePlayer(Direction.Up)'>
       Up
     </button>
     <div>
       <button
-        class="border-black border-2 m-2 w-12"
-        @click="playerStore.movePlayer(Direction.Left)"
+        class='border-black border-2 m-2 w-12'
+        @click='playerStore.movePlayer(Direction.Left)'
       >
         Left
       </button>
       <button
-        class="border-black border-2 m-2 w-12"
-        @click="playerStore.movePlayer(Direction.Right)"
+        class='border-black border-2 m-2 w-12'
+        @click='playerStore.movePlayer(Direction.Right)'
       >
         Right
       </button>
     </div>
-    <button class="border-black border-2 m-2 w-12" @click="playerStore.movePlayer(Direction.Down)">
+    <button class='border-black border-2 m-2 w-12' @click='playerStore.movePlayer(Direction.Down)'>
       Down
     </button>
   </section>
