@@ -17,12 +17,13 @@ const playerStore = usePlayerStore();
       ref="player"
       id="player"
       class="w-10"
-      src="../../assets/ghost.png"
-      alt="ghost"
-      :style="{
-        gridRow: playerStore.playerPosition.row,
-        gridColumn: playerStore.playerPosition.column
-      }"
+
+      src="../../assets/greenPlayer_nobg.png"
+      alt="Green player"
+      :style="{ 
+        gridRow: playerPosition.row, 
+        gridColumn: playerPosition.column 
+        }"
     />
 
     <MapComponent :map-id="playerStore.playerPosition.mapId" />
