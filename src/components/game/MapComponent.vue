@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang='ts'>
 import { onMounted, ref } from 'vue';
 
 
@@ -33,10 +33,10 @@ onMounted(async () => {
   currentMap.value = await getMap(props.mapId);
   console.log(
     'EndLocation mounted: ' +
-      'row:' +
-      currentMap.value.mapendlocationrow +
-      ' col:' +
-      currentMap.value.mapendlocationcolumn
+    'row:' +
+    currentMap.value.mapendlocationrow +
+    ' col:' +
+    currentMap.value.mapendlocationcolumn
   );
 });
 
@@ -52,11 +52,11 @@ async function getMap(id: number) {
 </script>
 <template>
   <img
-    ref="endLocation"
-    id="endLocation"
-    class="w-10 z-0"
-    src="../../assets/treasureChest_nobg.png"
-    alt="treasure chest"
-    :style="{ gridRow: currentMap.mapendlocationrow, gridColumn: currentMap.mapendlocationcolumn }"
+    ref='endLocation'
+    id='endLocation'
+    class='w-10 z-0'
+    src='../../assets/treasureChest_nobg.png'
+    alt='treasure chest'
+    :style='{ gridRow: currentMap.mapendlocationrow, gridColumn: currentMap.mapendlocationcolumn }'
   />
 </template>

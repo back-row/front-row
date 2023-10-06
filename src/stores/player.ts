@@ -10,6 +10,7 @@ enum Direction {
   Left = 'left',
   Right = 'right'
 }
+
 export const usePlayerStore = defineStore('player', () => {
   const playerPosition = ref({
     row: BORDER_LEFT,
