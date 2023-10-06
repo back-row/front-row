@@ -9,6 +9,7 @@ const playerStore = usePlayerStore();
 type answer = { choice: string; answer: string[] };
 const selectedAnswer = ref([]);
 const answers: Ref<answer[]> = ref([]);
+const question = ref('');
 
 onMounted(() => {
   getAnswers().then((obj) => [
@@ -16,7 +17,9 @@ onMounted(() => {
       { choice: obj.choice1, answer: obj.answer1 },
       { choice: obj.choice2, answer: obj.answer2 },
       { choice: obj.choice3, answer: obj.answer3 }
-    )
+    ),
+
+    question.value = obj.question
   ]);
 });
 
@@ -31,10 +34,11 @@ const onSubmit = async () => {
 <template>
   <div class="relative bg-[#2C3540] h-80 w-full p-2 pt-4 rounded-sm">
     <div class="bg-[#E5E5E5] h-4/5">
+      <div class="question">{{ question }}</div>
       <div v-for="answer in answers" :key="answer.choice" class="flex items-center ml-4">
         <input
           type="radio"
-          class="border-black border-2 w-4 h-4"
+          class="border-black border-2 w-4 h-4 accent-[#2C3540]"
           v-model="selectedAnswer"
           :value="answer.answer"
         />
