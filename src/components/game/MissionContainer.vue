@@ -33,7 +33,8 @@ const showJson = () => {
           hero.moveTo(), where X is the marker (number) of the place you want to mov.
           For Example, to move to location 1 on the map, type the command hero.moveTo(1)
         </p>
-      
+      </div>
+    </div>  
     <div class="bg-[#E5E5E5] h-4/5">
       <p>Uppdrag här</p>
     </div>
