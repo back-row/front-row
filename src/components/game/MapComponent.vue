@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 
+
 type Map = {
   mapid: number;
   mapdifficulty: number;
