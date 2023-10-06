@@ -16,7 +16,7 @@ const playerStore = usePlayerStore();
     <img
       ref="player"
       id="player"
-      class="w-10"
+      class="w-10 z-10"
 
       src="../../assets/greenPlayer_nobg.png"
       alt="Green player"
