@@ -15,7 +15,8 @@ export const usePlayerStore = defineStore('player', () => {
     row: BORDER_LEFT,
     column: BORDER_TOP,
     //TODO: get mapId from ? player status?
-    mapId: 1
+    mapId: 1,
+    atEnd: false
   });
 
   const moveUp = async () => {
@@ -73,6 +74,8 @@ export const usePlayerStore = defineStore('player', () => {
       body: JSON.stringify(playerPosition.value)
     });
     const data = await response.json();
+
+    playerPosition.value.atEnd = data;
     console.log('Player at end location: ', data);
   }
 

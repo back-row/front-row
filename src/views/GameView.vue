@@ -1,10 +1,14 @@
-<script setup lang='ts'>
-import GameContainer from '@/components/game/GameContainer.vue'
-import MissionContainer from '@/components/game/MissionContainer.vue'
-import AnswerContainer from '@/components/game/AnswerContainer.vue'
+<script setup lang="ts">
+import GameContainer from '@/components/game/GameContainer.vue';
+import MissionContainer from '@/components/game/MissionContainer.vue';
+import AnswerContainer from '@/components/game/AnswerContainer.vue';
+import WinModal from '@/components/game/WinModal.vue';
+import { usePlayerStore } from '@/stores/player';
+
+const playerStore = usePlayerStore();
 </script>
 
-<template >
+<template>
   <section class="gamePage">
     <div class="gameArea">
       <GameContainer />
@@ -13,23 +17,22 @@ import AnswerContainer from '@/components/game/AnswerContainer.vue'
       <MissionContainer />
       <AnswerContainer />
     </div>
+    <div v-show="playerStore.playerPosition.atEnd"><WinModal /></div>
   </section>
 </template>
 
 <style scoped>
-
-.gamePage{
+.gamePage {
   display: flex;
   margin: 20px;
 }
 
-.gameArea{
+.gameArea {
   margin-right: 20px;
   width: 100%;
 }
 
-.sideArea{
+.sideArea {
   width: 100%;
 }
-
 </style>

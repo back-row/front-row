@@ -6,11 +6,13 @@ export const content = [
 ];
 export const theme = {
   extend: {
+    fontFamily: {
+      sans: ['Fredoka', 'sans-serif']
+    },
     colors: {
       greenBackrow: '#408080',
-      'blackBackrow': '#0A0F14',
-      'whiteBackRow': '#E5E5E5',
-     
+      blackBackrow: '#0A0F14',
+      whiteBackRow: '#E5E5E5'
     }
   }
 };
