@@ -41,7 +41,7 @@ const onSubmit = async () => {
         <label class="ml-2">{{ answer.choice }}</label>
       </div>
     </div>
-    <Button
+    <Button_
       type="submit"
       @click.prevent="onSubmit()"
       class="hover:animate-pulse bg-[#408080] h-10 w-20 m-2 rounded-md flex items-center justify-center absolute bottom-0 right-0 text-white"
@@ -60,7 +60,7 @@ const onSubmit = async () => {
           d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z"
         />
       </svg>
-      Run</Button
+      Run</Button_
     >
   </div>
 </template>
