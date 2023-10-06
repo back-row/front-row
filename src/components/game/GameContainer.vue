@@ -21,8 +21,8 @@ const playerStore = usePlayerStore();
       src="../../assets/greenPlayer_nobg.png"
       alt="Green player"
       :style="{ 
-        gridRow: playerPosition.row, 
-        gridColumn: playerPosition.column 
+        gridRow: playerStore.playerPosition.row, 
+        gridColumn: playerStore.playerPosition.column 
         }"
     />
 
