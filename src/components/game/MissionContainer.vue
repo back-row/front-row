@@ -24,7 +24,7 @@ const currentMap = ref<tutorial>({
   tutorialid: 0,
   tutorialdescription: '',
   tutorialhint: '',
- 
+
 });
 
 const props = defineProps({
@@ -34,17 +34,10 @@ const props = defineProps({
   }
 });
 
-
-
-
+// Here is hook happen
 onMounted(async () => {
-
   currentMap.value = await getTutorial(playerStore.playerPosition.mapId);
-  console.log(
-    'CurrentMap: ' 
-      + currentMap.value.tutorialdescription
 
-  );
 });
 
 
@@ -74,10 +67,10 @@ async function getTutorial(id: number) {
     <div v-if="isShowingHint" class=" absolute z-50 opacity-90 p-6">
       <div class=" bg-black  rounded-lg flex items-center -mt-20 mr-5 -ml-7  overflow-x-hidden overflow-y-auto ">
         <p class=" text-greenBackrow p-5 text-xl">
-         {{ currentMap.tutorialdescription }} 
+          {{ currentMap.tutorialdescription }}
         </p>
       </div>
-    </div>  
+    </div>
     <div class="bg-[#E5E5E5] h-4/5">
       <p>Uppdrag här</p>
     </div>
