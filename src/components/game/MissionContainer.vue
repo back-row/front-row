@@ -2,15 +2,11 @@
 import { onMounted, ref } from 'vue';
 import { usePlayerStore } from '@/stores/player';
 
-
 const playerStore = usePlayerStore();
-
-
 const isShowingHint = ref(false);
 const showJson = () => {
   isShowingHint.value = !isShowingHint.value;
 }
-
 
 type tutorial = {
   tutorialid: number;
@@ -18,29 +14,16 @@ type tutorial = {
   tutorialhint: string;
 };
 
-
-
 const currentMap = ref<tutorial>({
   tutorialid: 0,
   tutorialdescription: '',
-  tutorialhint: '',
-
-});
-
-const props = defineProps({
-  tutorialid: {
-    type: Number,
-    required: true
-  }
+  tutorialhint: ''
 });
 
 // Here is hook happen
 onMounted(async () => {
   currentMap.value = await getTutorial(playerStore.playerPosition.mapId);
-
 });
-
-
 
 async function getTutorial(id: number) {
   try {
@@ -51,7 +34,6 @@ async function getTutorial(id: number) {
     console.log('Could not get tutorial');
   }
 }
-
 
 </script>
 
