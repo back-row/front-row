@@ -1,10 +1,64 @@
 <script setup lang='ts'>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue';
+import { usePlayerStore } from '@/stores/player';
+
+
+
+const playerStore = usePlayerStore();
 
 const isShowingHint = ref(false)
 const showJson = () => {
   isShowingHint.value = !isShowingHint.value;
 }
+
+
+type tutorial = {
+  tutorialid: number;
+  tutorialdescription: string;
+  tutorialhint: string;
+};
+
+
+
+const currentMap = ref<tutorial>({
+  tutorialid: 0,
+  tutorialdescription: '',
+  tutorialhint: '',
+ 
+});
+
+const props = defineProps({
+  tutorialid: {
+    type: Number,
+    required: true
+  }
+});
+
+
+
+
+onMounted(async () => {
+
+  currentMap.value = await getTutorial(playerStore.playerPosition.mapId);
+  console.log(
+    'CurrentMap: ' 
+      + currentMap.value.tutorialdescription
+
+  );
+});
+
+
+
+async function getTutorial(id: number) {
+  try {
+    const response = await fetch('http://localhost:8000/tutorial/' + id);
+    return await response.json();
+  } catch (error) {
+    console.log(error);
+    console.log('Could not get tutorial');
+  }
+}
+
 </script>
 
 <template>
@@ -20,18 +74,7 @@ const showJson = () => {
     <div v-if="isShowingHint" class=" absolute z-50 opacity-90 p-6">
       <div class=" bg-black  rounded-lg flex items-center -mt-20 mr-5 -ml-7  overflow-x-hidden overflow-y-auto ">
         <p class=" text-greenBackrow p-5 text-xl">
-          You need to cross the bridge on the way to town. To move you here use the command
-          hero.moveTo(), where X is the marker (number) of the place you want to mov.
-          For Example, to move to location 1 on the map, type the command hero.moveTo(1)
-          You need to cross the bridge on the way to town. To move you here use the command
-          hero.moveTo(), where X is the marker (number) of the place you want to mov.
-          For Example, to move to location 1 on the map, type the command hero.moveTo(1)
-          You need to cross the bridge on the way to town. To move you here use the command
-          hero.moveTo(), where X is the marker (number) of the place you want to mov.
-          For Example, to move to location 1 on the map, type the command hero.moveTo(1)
-          You need to cross the bridge on the way to town. To move you here use the command
-          hero.moveTo(), where X is the marker (number) of the place you want to mov.
-          For Example, to move to location 1 on the map, type the command hero.moveTo(1)
+         {{ currentMap.tutorialdescription }} 
         </p>
       </div>
     </div>  
