@@ -7,7 +7,6 @@ import { usePlayerStore } from '@/stores/player';
 const playerStore = usePlayerStore();
 
 type answer = { choice: string; answer: string[] };
-
 const selectedAnswer = ref([]);
 const answers: Ref<answer[]> = ref([]);
 
@@ -20,13 +19,12 @@ onMounted(() => {
     )
   ]);
 });
-const onSubmit = () => {
-  selectedAnswer.value.forEach((element) => {
-    // playerStore.movePlayer(element);
-    setTimeout(() => {
-      playerStore.movePlayer(element);
-    }, 1000);
-  });
+
+const onSubmit = async () => {
+  for (const element of selectedAnswer.value) {
+    await playerStore.movePlayer(element);
+    await new Promise((resolve) => setTimeout(resolve, 250));
+  }
 };
 </script>
 

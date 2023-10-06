@@ -18,25 +18,25 @@ export const usePlayerStore = defineStore('player', () => {
     mapId: 1
   });
 
-  const moveUp = () => {
+  const moveUp = async () => {
     if (playerPosition.value.row !== BORDER_TOP) {
       playerPosition.value.row--;
     }
   };
 
-  const moveDown = () => {
+  const moveDown = async () => {
     if (playerPosition.value.row !== BORDER_BOTTOM) {
       playerPosition.value.row++;
     }
   };
 
-  const moveLeft = () => {
+  const moveLeft = async () => {
     if (playerPosition.value.column !== BORDER_LEFT) {
       playerPosition.value.column--;
     }
   };
 
-  const moveRight = () => {
+  const moveRight = async () => {
     if (playerPosition.value.column !== BORDER_RIGHT) {
       playerPosition.value.column++;
     }
@@ -47,23 +47,19 @@ export const usePlayerStore = defineStore('player', () => {
 
     switch (direction) {
       case 'up':
-        moveUp();
-        await sleepyWork();
+        await moveUp();
         break;
       case 'down':
-        moveDown();
-        await sleepyWork();
+        await moveDown();
         break;
       case 'left':
-        moveLeft();
-        await sleepyWork();
+        await moveLeft();
         break;
       case 'right':
-        moveRight();
-        await sleepyWork();
+        await moveRight();
         break;
     }
-    updatePlayerPosition();
+    await updatePlayerPosition();
   };
 
   async function updatePlayerPosition() {
@@ -79,11 +75,6 @@ export const usePlayerStore = defineStore('player', () => {
     const data = await response.json();
     console.log('Player at end location: ', data);
   }
-  const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-  async function sleepyWork() {
-    console.log("I'm going to sleep for 1 second.");
-    await sleep(1000);
-    console.log('I woke up after 1 second.');
-  }
+
   return { playerPosition, movePlayer };
 });
