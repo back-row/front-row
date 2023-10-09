@@ -15,12 +15,15 @@ enum Direction {
 export const usePlayerStore = defineStore('player', () => {
   const playerPosition = ref({
     player: null as Player | null,
+    x: 0,
+    y: 0,
     row: BORDER_LEFT,
     column: BORDER_TOP,
     //TODO: get mapId from ? player status?
     mapId: 1,
     atEnd: false
   });
+
   const moveUp = async () => {
     if (playerPosition.value.player) playerPosition.value.player.setVelocityY(-200);
   };

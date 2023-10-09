@@ -1,7 +1,7 @@
 {
   "anims": [
     {
-      "key": "idle",
+      "key": "king_idle",
       "type": "frames",
       "repeat": -1,
       "frameRate": 12,
@@ -25,7 +25,7 @@
       ]
     },
     {
-      "key": "walk",
+      "key": "king_walk",
       "type": "frames",
       "repeat": -1,
       "frameRate": 12,

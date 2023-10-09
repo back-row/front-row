@@ -1,10 +1,12 @@
 import 'phaser';
 import Player from '../player';
 import { usePlayerStore } from '@/stores/player';
+import Finish from '../finish';
 const playerStore = usePlayerStore();
 
 export default class MainScene extends Phaser.Scene {
   player: Player | undefined;
+  finish: Finish | undefined;
 
   constructor() {
     super({ key: 'MainScene' });
@@ -12,13 +14,16 @@ export default class MainScene extends Phaser.Scene {
 
   preload() {
     Player.preload(this);
+    Finish.preload(this);
   }
 
   create() {
     this.player = new Player(this, 0, 0, 'king', 'king_idle_1');
+    this.finish = new Finish(this, 230, 400, 'princess', 'princess_idle_1');
     this.player.setCollideWorldBounds(true);
     this.player.setScale(1.5);
     this.player.create();
+    this.finish.create();
     playerStore.playerPosition.player = this.player;
 
     this.input.keyboard!.on('keydown', (event: KeyboardEvent) => {
@@ -45,5 +50,6 @@ export default class MainScene extends Phaser.Scene {
 
   update() {
     this.player?.update();
+    this.finish?.update();
   }
 }
