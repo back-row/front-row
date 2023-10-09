@@ -12,8 +12,12 @@ const items = ref([
         route: '/'
       },
       {
-        label: 'Game',
+        label: 'Play',
         route: '/game'
+      },
+      {
+        label: 'High score',
+        route: '/highscore'
       },
       {
         label: 'About',
@@ -29,7 +33,7 @@ const toggle = (event: any) => {
 </script>
 
 <template>
-  <nav class='flex items-center bg-[#0A0F14] text-white text-center h-10'>
+  <nav class='flex items-center bg-[#0A0F14] text-[#408080] text-center h-10'>
     <button
       class='ml-3'
       type='button'
@@ -42,9 +46,9 @@ const toggle = (event: any) => {
         xmlns='http://www.w3.org/2000/svg'
         fill='none'
         viewBox='0 0 24 24'
-        stroke-width='1.5'
+        stroke-width='2.0'
         stroke='currentColor'
-        class='w-8 h-8'
+        class='w-10'
       >
         <path
           stroke-linecap='round'
@@ -53,16 +57,16 @@ const toggle = (event: any) => {
         />
       </svg>
     </button>
-    <Menu ref='menu' id='overlay_menu' :model='items' :popup='true'>
+    <Menu class="flex flex-col items-center justify-center bg-black h-52 w-32 rounded-md" ref='menu' id='overlay_menu' :model='items' :popup='true'>
       <template #item='{ label, item, props }'>
         <router-link v-if='item.route' v-slot='routerProps' :to='item.route' custom>
           <a :href='routerProps.href' v-bind='props.action'>
-            <span v-bind='props.label'>{{ label }}</span>
+            <span class="p-2 text-[#408080] text-lg" v-bind='props.label'>{{ label }}</span>
           </a>
         </router-link>
       </template>
     </Menu>
-    <h2 class='m-0 w-full'>Back Row</h2>
+    <h2 class='m-0 w-full text-white'>Back Row</h2>
     <p>Login</p>
     <p class='w-20'>Sign up</p>
   </nav>
