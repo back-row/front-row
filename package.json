@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "flowbite": "^1.8.1",
+    "phaser": "^3.60.0",
     "pinia": "^2.1.6",
     "primevue": "^3.35.0",
     "vue": "^3.3.4",
