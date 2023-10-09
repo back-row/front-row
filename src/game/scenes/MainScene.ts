@@ -21,7 +21,7 @@ export default class MainScene extends Phaser.Scene {
     this.player.create();
     playerStore.playerPosition.player = this.player;
 
-    this.input.keyboard.on('keydown', (event: KeyboardEvent) => {
+    this.input.keyboard!.on('keydown', (event: KeyboardEvent) => {
       switch (event.key) {
         case 'ArrowUp':
           this.player?.setVelocityY(-200);
