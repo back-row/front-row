@@ -1,9 +1,5 @@
 <script setup lang='ts'>
-import { RouterLink } from 'vue-router';
-
-const game = () => {
-  
-}
+import { RouterLink } from 'vue-router';  
 </script>
 
 <template>
