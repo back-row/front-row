@@ -1,5 +1,9 @@
+<script setup lang="ts">
+import AboutComponent from '@/components/AboutComponent.vue';
+</script>
+
 <template>
-  <div>Detta är aboutsida</div>
+  <AboutComponent />
 </template>
 
 <style>
