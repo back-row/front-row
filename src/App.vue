@@ -8,7 +8,6 @@ import Game from './components/game/Game.vue';
 <template>
   <NavBar />
   <RouterView />
-  <Game />
   <FootBar />
 </template>
 

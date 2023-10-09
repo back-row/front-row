@@ -4,8 +4,6 @@ import kingatlas from './assets/characters/king_atlas.json';
 import kinganim from './assets/characters/king_anim.json';
 
 export default class Player extends Phaser.Physics.Arcade.Sprite {
-  inputKeys: any;
-
   constructor(
     scene: Phaser.Scene,
     x: number,
@@ -24,7 +22,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   }
 
   create() {
-    console.log('Player created');
     const animData = this.scene.cache.json.get('kinganim');
     this.scene.anims.fromJSON(animData);
   }

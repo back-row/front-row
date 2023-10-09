@@ -1,6 +1,5 @@
 import 'phaser';
 import Player from '../player';
-import { launch } from '../game';
 
 export default class MainScene extends Phaser.Scene {
   player: Player | undefined;
