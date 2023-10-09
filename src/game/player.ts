@@ -2,8 +2,11 @@ import Phaser from 'phaser';
 import kingimg from './assets/characters/king.png';
 import kingatlas from './assets/characters/king_atlas.json';
 import kinganim from './assets/characters/king_anim.json';
+import { usePlayerStore } from '@/stores/player';
 
 export default class Player extends Phaser.Physics.Arcade.Sprite {
+  private playerStore: ReturnType<typeof usePlayerStore>;
+
   constructor(
     scene: Phaser.Scene,
     x: number,
@@ -14,6 +17,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     super(scene, x, y, texture, frame);
     this.scene.add.existing(this);
     scene.physics.world.enable(this);
+
+    this.playerStore = usePlayerStore();
   }
 
   static preload(scene: Phaser.Scene) {
@@ -32,5 +37,12 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     } else {
       this.anims.play('idle', true);
     }
+    this.playerStore.playerPosition.x = this.x;
+    this.playerStore.playerPosition.y = this.y;
+    console.log(
+      'playerPosition: ',
+      this.playerStore.playerPosition.x,
+      this.playerStore.playerPosition.y
+    );
   }
 }
