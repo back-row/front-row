@@ -24,7 +24,7 @@ import { RouterLink } from 'vue-router';
      </div>
     </div>
     <div class="play col-span-1 row-span-1 row-start-2 col-start-2 flex items-start justify-center">
-        <router-link to="/game" class="hover:animate-pulse bg-[#408080] h-36 w-7/12 m-2 rounded-xl text-7xl flex items-center justify-center text-[#E5E5E5]"><a :href="'/game'">Play now</a></router-link>
+        <router-link to="/game" class="hover:animate-pulse ease-in-out duration-300 hover:scale-110 bg-[#408080] h-36 w-7/12 m-2 rounded-xl text-7xl flex items-center justify-center text-[#E5E5E5]"><a :href="'/game'">Play now</a></router-link>
     </div>
   </div>
 </template>
