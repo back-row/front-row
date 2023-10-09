@@ -1,28 +1,23 @@
 import 'phaser';
-import kingimg from '../assets/characters/king.png';
-import kingjson from '../assets/characters/king_atlas.json';
-import kinganim from '../assets/characters/king_anim.json';
+import Player from '../player';
+import { launch } from '../game';
 
 export default class MainScene extends Phaser.Scene {
-  private player: Phaser.Physics.Arcade.Sprite | undefined;
+  player: Player | undefined;
 
   constructor() {
     super({ key: 'MainScene' });
   }
 
   preload() {
-    this.load.atlas('king', kingimg, kingjson);
-    // this.load.animation('player_anim', kinganim);
-    this.load.json('king_anim', kinganim);
+    Player.preload(this);
   }
 
   create() {
-    this.player = this.physics.add.sprite(400, 300, 'player');
+    this.player = new Player(this, 400, 300, 'king', 'king_idle_1');
     this.player.setCollideWorldBounds(true);
     this.player.setScale(1.5);
-    // Load animation data from the loaded JSON
-    const animData = this.cache.json.get('king_anim');
-    this.anims.fromJSON(animData);
+    this.player.create();
 
     this.input.keyboard.on('keydown', (event: KeyboardEvent) => {
       switch (event.key) {
@@ -47,6 +42,6 @@ export default class MainScene extends Phaser.Scene {
   }
 
   update() {
-    this.player?.anims.play('walk', true);
+    this.player?.update();
   }
 }
