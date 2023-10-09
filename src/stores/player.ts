@@ -21,7 +21,6 @@ export const usePlayerStore = defineStore('player', () => {
     mapId: 1,
     atEnd: false
   });
-
   const moveUp = async () => {
     if (playerPosition.value.player) playerPosition.value.player.setVelocityY(-200);
   };
