@@ -7,7 +7,7 @@ const game = () => {
 </script>
 
 <template>
-  <div class="start grid grid-cols-2 grid-rows-2 gap-x-3 gap-y-3 h-screen">
+  <div class="start grid grid-cols-2 grid-rows-2 gap-x-3 gap-y-3 mt-4">
     <div class="knowledge col-span-1 col-start-1 row-span-1 row-start-1 flex items-center justify-center">
       <h2 class="rounded-full ml-12 -rotate-12 h-24 w-96 bg-[#2C3540] flex items-center justify-center text-4xl text-[#E5E5E5]" >Spela dig till kunskap</h2>
     </div>
