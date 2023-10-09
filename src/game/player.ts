@@ -30,6 +30,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   }
 
   update() {
-    this.anims.play('walk', true);
+    if (Math.abs(this.body.velocity.x) > 0 || Math.abs(this.body.velocity.y) > 0) {
+      this.anims.play('walk', true);
+    } else {
+      this.anims.play('idle', true);
+    }
   }
 }
