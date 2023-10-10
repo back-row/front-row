@@ -3,7 +3,6 @@ import GameContainer from '@/components/game/GameContainer.vue';
 import MissionContainer from '@/components/game/MissionContainer.vue';
 import AnswerContainer from '@/components/game/AnswerContainer.vue';
 import WinModal from '@/components/game/WinModal.vue';
-import Game from '@/components/game/Game.vue';
 import { usePlayerStore } from '@/stores/player';
 
 const playerStore = usePlayerStore();
@@ -12,8 +11,7 @@ const playerStore = usePlayerStore();
 <template>
   <section class="gamePage">
     <div class="gameArea">
-      <!-- <GameContainer /> -->
-      <Game />
+      <GameContainer />
     </div>
     <div class="sideArea">
       <MissionContainer />
