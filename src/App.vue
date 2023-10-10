@@ -18,8 +18,9 @@ const toggleLogin = () => {
   <NavBar @toggleLogin='toggleLogin' />
   <RouterView />
   <FootBar />
-  <LoginModal v-if='loginVisible' />
+  <LoginModal :visible='loginVisible' />
 </template>
 
 <style scoped>
+
 </style>

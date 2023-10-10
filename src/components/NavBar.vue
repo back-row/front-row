@@ -68,7 +68,7 @@ const toggle = (event: any) => {
       </template>
     </Menu>
     <h2 class='m-0 w-full text-white'>Back Row</h2>
-    <p class='w-20' @click='$emit("toggleLogin")'>Login</p>
+    <p class='w-20 cursor-pointer' @click='$emit("toggleLogin")'>Login</p>
     <p class='w-20'>Sign up</p>
   </nav>
 </template>
