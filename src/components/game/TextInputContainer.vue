@@ -21,8 +21,8 @@ onMounted(() => {
   <div class="relative bg-[#2C3540] h-80 w-full p-2 pt-4 rounded-sm">
     <div class="bg-[#E5E5E5] h-4/5">
       <div class="question">{{ question }}</div>
-      <div v-bind="userInput">
-        <textarea class="ml-4 mt-4" id="" cols="45" rows="5" placeholder="Type your code here..."></textarea>
+      <div class="flex items-center justify-center" v-bind="userInput">
+        <textarea class="mt-4" id="" cols="45" rows="5" placeholder="Type your code here..."></textarea>
       </div>
     </div>
     <button
