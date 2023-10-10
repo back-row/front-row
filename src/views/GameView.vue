@@ -16,7 +16,7 @@ const playerStore = usePlayerStore();
     </div>
     <div class="sideArea">
       <MissionContainer />
-      <!-- <AnswerContainer /> --> 
+      <!-- <AnswerContainer /> -->
       <TextInputContainer />
     </div>
     <div v-show="playerStore.playerPosition.atEnd">

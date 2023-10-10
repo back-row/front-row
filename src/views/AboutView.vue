@@ -6,6 +6,4 @@ import AboutComponent from '@/components/about/AboutComponent.vue';
   <AboutComponent />
 </template>
 
-<style>
-
-</style>
+<style></style>

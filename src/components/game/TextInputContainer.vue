@@ -19,30 +19,22 @@ onMounted(() => {
 });
 
 const parseUserInput = async (stringArray: string[]) => {
-  stringArray.forEach(async (s) => {
+  for (const s of stringArray) {
     switch (s) {
       case 'up':
         await playerStore.movePlayer(Direction.Up);
-        await new Promise((resolve) => setTimeout(resolve, 500));
-        playerStore.playerPosition.player!.setVelocity(0);
         break;
       case 'down':
         await playerStore.movePlayer(Direction.Down);
-        await new Promise((resolve) => setTimeout(resolve, 500));
-        playerStore.playerPosition.player!.setVelocity(0);
         break;
       case 'left':
         await playerStore.movePlayer(Direction.Left);
-        await new Promise((resolve) => setTimeout(resolve, 500));
-        playerStore.playerPosition.player!.setVelocity(0);
         break;
       case 'right':
         await playerStore.movePlayer(Direction.Right);
-        await new Promise((resolve) => setTimeout(resolve, 500));
-        playerStore.playerPosition.player!.setVelocity(0);
         break;
     }
-  });
+  }
 };
 
 const onSubmit = async () => {
