@@ -6,6 +6,4 @@ import HighScoreComponent from '@/components/highScore/HighScoreComponent.vue';
   <HighScoreComponent />
 </template>
 
-<style>
-
-</style>
+<style></style>
