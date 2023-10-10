@@ -21,17 +21,19 @@ onMounted(() => {
 const parseUserInput = async (stringArray: string[]) => {
   for (const s of stringArray) {
     switch (s) {
-      case 'up':
+      case 'hero.up()':
         await playerStore.movePlayer(Direction.Up);
         break;
-      case 'down':
+      case 'hero.down()':
         await playerStore.movePlayer(Direction.Down);
         break;
-      case 'left':
+      case 'hero.left()':
         await playerStore.movePlayer(Direction.Left);
         break;
-      case 'right':
+      case 'hero.right()':
         await playerStore.movePlayer(Direction.Right);
+        break;
+        default: console.log('You fail', s)
         break;
     }
   }
