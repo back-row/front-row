@@ -17,23 +17,23 @@
       </div>
       <div class="flex justify-evenly m-10 w-4/5">
         <div class="flex flex-col">
-          <img class="h-32 w-32 rounded-full" src='../assets/about/head1.png' alt='blue'>
+          <img class="h-32 w-32 rounded-full" src='../../assets/about/head1.png' alt='blue'>
           <p class="text-center bg-[#E5E5E5] p-1 rounded-md mt-4">Oliver</p>
         </div>
         <div class="flex flex-col">
-          <img class="h-32 w-32 rounded-full" src='../assets/about/head2.png' alt='blue'>
+          <img class="h-32 w-32 rounded-full" src='../../assets/about/head2.png' alt='blue'>
           <p class="text-center bg-[#E5E5E5] p-1 rounded-md mt-4">Robert</p>
         </div>
         <div class="flex flex-col">
-          <img class="h-32 w-32 rounded-full" src='../assets/about/head3.png' alt='blue'>
+          <img class="h-32 w-32 rounded-full" src='../../assets/about/head3.png' alt='blue'>
           <p class="text-center bg-[#E5E5E5] p-1 rounded-md mt-4">Fredrik</p>
         </div>
         <div class="flex flex-col">
-          <img class="h-32 w-32 rounded-full" src='../assets/about/head4.png' alt='blue'>
+          <img class="h-32 w-32 rounded-full" src='../../assets/about/head4.png' alt='blue'>
           <p class="text-center bg-[#E5E5E5] p-1 rounded-md mt-4">Julia</p>
         </div>
         <div class="flex flex-col">
-          <img class="h-32 w-32 rounded-full" src='../assets/about/head5.png' alt='blue'>
+          <img class="h-32 w-32 rounded-full" src='../../assets/about/head5.png' alt='blue'>
           <p class="text-center bg-[#E5E5E5] p-1 rounded-md mt-4">Henrik</p>
         </div>
       </div>  
