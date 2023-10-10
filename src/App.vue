@@ -2,13 +2,23 @@
 import { RouterView } from 'vue-router';
 import NavBar from './components/NavBar.vue';
 import FootBar from './components/FootBar.vue';
+import LoginModal from '@/components/LoginModal.vue';
+import { ref } from 'vue';
+
+const loginVisible = ref(false);
+
+const toggleLogin = () => {
+  console.log('Toggling login');
+  loginVisible.value = !loginVisible.value;
+};
 
 </script>
 
 <template>
-  <NavBar />
+  <NavBar @toggleLogin='toggleLogin' />
   <RouterView />
   <FootBar />
+  <LoginModal v-if='loginVisible' />
 </template>
 
 <style scoped>
