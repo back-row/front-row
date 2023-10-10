@@ -2,11 +2,8 @@ import Phaser from 'phaser';
 import princessImg from './assets/characters/princess.png';
 import princessAtlas from './assets/characters/princess_atlas.json';
 import princessAnim from './assets/characters/princess_anim.json';
-import { usePlayerStore } from '@/stores/player';
 
 export default class Finish extends Phaser.Physics.Arcade.Sprite {
-  private playerStore: ReturnType<typeof usePlayerStore>;
-
   constructor(
     scene: Phaser.Scene,
     x: number,
@@ -17,8 +14,6 @@ export default class Finish extends Phaser.Physics.Arcade.Sprite {
     super(scene, x, y, texture, frame);
     this.scene.add.existing(this);
     scene.physics.world.enable(this);
-
-    this.playerStore = usePlayerStore();
   }
 
   static preload(scene: Phaser.Scene) {
@@ -29,7 +24,6 @@ export default class Finish extends Phaser.Physics.Arcade.Sprite {
   create() {
     const animData = this.scene.cache.json.get('princessAnim');
     this.scene.anims.fromJSON(animData);
-    console.log('finish created');
     this.setImmovable(true);
     this.body?.setCircle(8, 8, 16);
 

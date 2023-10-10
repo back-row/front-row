@@ -26,8 +26,6 @@ onMounted(() => {
 const onSubmit = async () => {
   for (const element of selectedAnswer.value) {
     await playerStore.movePlayer(element);
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    playerStore.playerPosition.player!.setVelocity(0);
   }
 };
 </script>
