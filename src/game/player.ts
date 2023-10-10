@@ -42,10 +42,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
     this.playerStore.playerPosition.x = this.x;
     this.playerStore.playerPosition.y = this.y;
-    console.log(
-      'playerPosition: ',
-      this.playerStore.playerPosition.x,
-      this.playerStore.playerPosition.y
-    );
+    // console.log(
+    //   'playerPosition: ',
+    //   this.playerStore.playerPosition.x,
+    //   this.playerStore.playerPosition.y
+    // );
   }
 }

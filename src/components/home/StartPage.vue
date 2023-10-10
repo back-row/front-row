@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
+import { usePlayerStore } from '@/stores/player';
+const playerStore = usePlayerStore();
 </script>
 
 <template>
@@ -35,7 +37,8 @@ import { RouterLink } from 'vue-router';
       <router-link
         to="/game"
         class="hover:animate-pulse ease-in-out duration-300 hover:scale-110 bg-[#408080] h-36 w-7/12 m-2 rounded-xl text-7xl flex items-center justify-center text-[#E5E5E5]"
-        ><a :href="'/game'">Play now</a></router-link
+        @click="playerStore.playerPosition.atEnd = false"
+        >Play now</router-link
       >
     </div>
   </div>
