@@ -52,6 +52,8 @@ export const usePlayerStore = defineStore('player', () => {
         await moveRight();
         break;
     }
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    playerPosition.value.player!.setVelocity(0);
   };
 
   return { playerPosition, movePlayer };
