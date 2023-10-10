@@ -6,6 +6,8 @@ import { usePlayerStore } from '@/stores/player';
 const playerStore = usePlayerStore();
 const userInput = ref('');
 const question = ref('');
+const easyMode = ref(false);
+const emit = defineEmits(['easyMode']);
 
 enum Direction {
   Up = 'up',
@@ -33,10 +35,16 @@ const parseUserInput = async (stringArray: string[]) => {
       case 'hero.right()':
         await playerStore.movePlayer(Direction.Right);
         break;
-        default: console.log('You fail', s)
+      default:
+        console.log('You fail', s);
         break;
     }
   }
+};
+
+const setDifficulty = () => {
+  easyMode.value = !easyMode.value;
+  emit('easyMode', easyMode.value);
 };
 
 const onSubmit = async () => {
@@ -61,6 +69,12 @@ const onSubmit = async () => {
         ></textarea>
       </div>
     </div>
+    <button
+      @click.prevent="setDifficulty"
+      class="hover:animate-pulse bg-[#408080] h-10 w-20 m-2 rounded-md flex items-center justify-center absolute bottom-0 left-0 text-white"
+    >
+      Quiz mode
+    </button>
     <button
       type="submit"
       @click.prevent="onSubmit"

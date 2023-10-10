@@ -10,6 +10,8 @@ type answer = { choice: string; answer: string[] };
 const selectedAnswer = ref([]);
 const answers: Ref<answer[]> = ref([]);
 const question = ref('');
+const easyMode = ref(false);
+const emit = defineEmits(['easyMode']);
 
 onMounted(() => {
   getAnswers().then((obj) => [
@@ -22,6 +24,11 @@ onMounted(() => {
     (question.value = obj.question)
   ]);
 });
+
+const setDifficulty = () => {
+  easyMode.value = !easyMode.value;
+  emit('easyMode', easyMode.value);
+};
 
 const onSubmit = async () => {
   for (const element of selectedAnswer.value) {
@@ -44,6 +51,12 @@ const onSubmit = async () => {
         <label class="ml-2">{{ answer.choice }}</label>
       </div>
     </div>
+    <button
+      @click.prevent="setDifficulty"
+      class="hover:animate-pulse bg-[#408080] h-10 w-20 m-2 rounded-md flex items-center justify-center absolute bottom-0 left-0 text-white"
+    >
+      Text input
+    </button>
     <button
       type="submit"
       @click.prevent="onSubmit()"
