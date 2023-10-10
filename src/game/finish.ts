@@ -24,7 +24,6 @@ export default class Finish extends Phaser.Physics.Arcade.Sprite {
   create() {
     const animData = this.scene.cache.json.get('princessAnim');
     this.scene.anims.fromJSON(animData);
-    console.log('finish created');
     this.setImmovable(true);
     this.body?.setCircle(8, 8, 16);
 

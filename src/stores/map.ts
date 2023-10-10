@@ -6,8 +6,8 @@ type DbMap = {
   mapdifficulty: number;
   mapisquiz: boolean;
   mapquizid: number;
-  mapendlocationrow: number;
-  mapendlocationcolumn: number;
+  mapendlocationx: number;
+  mapendlocationy: number;
   maptutorialid: number;
 };
 
@@ -32,12 +32,11 @@ export const useMapStore = defineStore('map', () => {
   }
 
   const setMap = (newMap: DbMap) => {
-    console.log(newMap);
     map.value.id = newMap.mapid;
     map.value.isQuiz = newMap.mapisquiz;
     map.value.quizId = newMap.mapquizid;
-    map.value.endLocationX = newMap.mapendlocationrow;
-    map.value.endLocationY = newMap.mapendlocationcolumn;
+    map.value.endLocationX = newMap.mapendlocationx;
+    map.value.endLocationY = newMap.mapendlocationy;
     map.value.tutorialId = newMap.maptutorialid;
   };
   return { map, getMapFromDb };

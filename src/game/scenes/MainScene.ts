@@ -17,6 +17,7 @@ export default class MainScene extends Phaser.Scene {
   preload() {
     Player.preload(this);
     Finish.preload(this);
+    mapStore.getMapFromDb(1);
   }
 
   create() {
