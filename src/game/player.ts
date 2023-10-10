@@ -29,6 +29,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   create() {
     const animData = this.scene.cache.json.get('kinganim');
     this.scene.anims.fromJSON(animData);
+    this.body?.setCircle(8, 8, 16);
+    this.setCollideWorldBounds(true);
+    this.setScale(1.5);
   }
 
   update() {

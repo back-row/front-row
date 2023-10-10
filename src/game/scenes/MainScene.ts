@@ -18,17 +18,26 @@ export default class MainScene extends Phaser.Scene {
   }
 
   create() {
-    this.player = new Player(this, 0, 0, 'king', 'king_idle_1');
+    this.player = new Player(this, 10, 10, 'king', 'king_idle_1');
     this.finish = new Finish(this, 230, 400, 'princess', 'princess_idle_1');
-    this.player.setCollideWorldBounds(true);
-    this.player.setScale(1.5);
-    this.player.create();
-    this.finish.create();
+
     playerStore.playerPosition.player = this.player;
 
+    this.player.create();
+    this.finish.create();
+
+    this.physics.add.collider(this.player, this.finish, () => {
+      this.scene.pause('MainScene');
+      setTimeout(() => {
+        playerStore.playerPosition.atEnd = true;
+      }, 2000);
+    });
+
+    // this is for testing
     this.input.keyboard!.on('keydown', (event: KeyboardEvent) => {
       switch (event.key) {
         case 'ArrowUp':
+          // this.physics.moveTo(this.player, 400, 400, 200, 400);
           this.player?.setVelocityY(-200);
           break;
         case 'ArrowDown':
@@ -43,7 +52,7 @@ export default class MainScene extends Phaser.Scene {
       }
     });
 
-    this.input.keyboard.on('keyup', () => {
+    this.input.keyboard!.on('keyup', () => {
       this.player?.setVelocity(0);
     });
   }
