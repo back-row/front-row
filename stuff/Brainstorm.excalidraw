@@ -1,7 +1,7 @@
 {
   "type": "excalidraw",
   "version": 2,
-  "source": "https://excalidraw-jetbrains-plugin",
+  "source": "https://marketplace.visualstudio.com/items?itemName=pomdtr.excalidraw-editor",
   "elements": [
     {
       "type": "ellipse",
@@ -66,12 +66,12 @@
       "containerId": null,
       "originalText": "Back Row",
       "lineHeight": 1.15,
-      "baseline": 92
+      "baseline": 91
     },
     {
       "type": "text",
-      "version": 233,
-      "versionNonce": 185388221,
+      "version": 234,
+      "versionNonce": 1408476718,
       "isDeleted": false,
       "id": "Gzhdt8IvNBjyDvXALD3Sn",
       "fillStyle": "hachure",
@@ -91,7 +91,7 @@
       "frameId": null,
       "roundness": null,
       "boundElements": [],
-      "updated": 1695719234020,
+      "updated": 1696848172099,
       "link": null,
       "locked": false,
       "fontSize": 40.400000000000006,
@@ -336,7 +336,7 @@
       "containerId": "cqYDdwxljhf-nFEg-OU8J",
       "originalText": "2 github repos\n1 för frontend (front row)\n1 för backend (back row)",
       "lineHeight": 1.15,
-      "baseline": 115
+      "baseline": 116
     },
     {
       "type": "text",
@@ -442,7 +442,7 @@
       "containerId": "RNtgi0ZbfDwTe7_Z2pJVr",
       "originalText": "KRAV: \nFrontend: Vue, Js/Ts, html/css\n\nBackend: Node Js med valfri databas",
       "lineHeight": 1.15,
-      "baseline": 239
+      "baseline": 240
     },
     {
       "type": "rectangle",
@@ -515,37 +515,45 @@
       "baseline": 281
     },
     {
-      "id": "atl_xR3Ymafmwzal7PCAG",
       "type": "text",
-      "x": 1065.6999816894531,
-      "y": -66.49999999999997,
-      "width": 585,
-      "height": 224,
-      "angle": 0,
-      "strokeColor": "#000000",
-      "backgroundColor": "transparent",
+      "version": 41,
+      "versionNonce": 1394842546,
+      "isDeleted": false,
+      "id": "atl_xR3Ymafmwzal7PCAG",
       "fillStyle": "hachure",
       "strokeWidth": 1,
       "strokeStyle": "solid",
       "roughness": 1,
       "opacity": 100,
-      "groupIds": [],
-      "strokeSharpness": "sharp",
+      "angle": 0,
+      "x": 1065.6999816894531,
+      "y": -66.49999999999997,
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
+      "width": 586.755859375,
+      "height": 224,
       "seed": 56591689,
-      "version": 40,
-      "versionNonce": 515498087,
-      "isDeleted": false,
-      "boundElementIds": null,
-      "text": "Produkten Back Row Adventures är ett kodspel\nFör nybörjare inom programmering (15+)\nSom ska lära ut kodsyntax\nDen kan lära ut kod på ett roligt sätt\n\nI motsats till coding adventures\nÄr vår produkt enkel",
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "boundElements": [],
+      "updated": 1696848172100,
+      "link": null,
+      "locked": false,
       "fontSize": 28,
       "fontFamily": 2,
+      "text": "Produkten Back Row Adventures är ett kodspel\nFör nybörjare inom programmering (15+)\nSom ska lära ut kodsyntax\nDen kan lära ut kod på ett roligt sätt\n\nI motsats till coding adventures\nÄr vår produkt enkel",
       "textAlign": "left",
       "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Produkten Back Row Adventures är ett kodspel\nFör nybörjare inom programmering (15+)\nSom ska lära ut kodsyntax\nDen kan lära ut kod på ett roligt sätt\n\nI motsats till coding adventures\nÄr vår produkt enkel",
+      "lineHeight": 1.1428571428571428,
       "baseline": 217
     }
   ],
   "appState": {
     "gridSize": null,
     "viewBackgroundColor": "#ffffff"
-  }
+  },
+  "files": {}
 }
