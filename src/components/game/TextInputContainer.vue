@@ -1,33 +1,75 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import type { Ref } from 'vue';
 import { getAnswers } from '@/utility/utility';
+import { usePlayerStore } from '@/stores/player';
 
-type answer = { choice: string; answer: string[] };
-const selectedAnswer = ref([]);
+const playerStore = usePlayerStore();
 const userInput = ref('');
 const question = ref('');
 
-onMounted(() => {
-  getAnswers().then((obj) => [
+enum Direction {
+  Up = 'up',
+  Down = 'down',
+  Left = 'left',
+  Right = 'right'
+}
 
-    (question.value = obj.question)
-  ]);
+onMounted(() => {
+  getAnswers().then((obj) => [(question.value = obj.question)]);
 });
 
+const parseUserInput = async (stringArray: string[]) => {
+  stringArray.forEach(async (s) => {
+    switch (s) {
+      case 'up':
+        await playerStore.movePlayer(Direction.Up);
+        await new Promise((resolve) => setTimeout(resolve, 500));
+        playerStore.playerPosition.player!.setVelocity(0);
+        break;
+      case 'down':
+        await playerStore.movePlayer(Direction.Down);
+        await new Promise((resolve) => setTimeout(resolve, 500));
+        playerStore.playerPosition.player!.setVelocity(0);
+        break;
+      case 'left':
+        await playerStore.movePlayer(Direction.Left);
+        await new Promise((resolve) => setTimeout(resolve, 500));
+        playerStore.playerPosition.player!.setVelocity(0);
+        break;
+      case 'right':
+        await playerStore.movePlayer(Direction.Right);
+        await new Promise((resolve) => setTimeout(resolve, 500));
+        playerStore.playerPosition.player!.setVelocity(0);
+        break;
+    }
+  });
+};
+
+const onSubmit = async () => {
+  let commands = userInput.value.split('\n');
+  console.log(commands);
+  await parseUserInput(commands);
+};
 </script>
 
-<template>  
+<template>
   <div class="relative bg-[#2C3540] h-80 w-full p-2 pt-4 rounded-sm">
     <div class="bg-[#E5E5E5] h-4/5">
       <div class="question">{{ question }}</div>
-      <div class="flex items-center justify-center" v-bind="userInput">
-        <textarea class="mt-4" id="" cols="45" rows="5" placeholder="Type your code here..."></textarea>
+      <div class="flex items-start justify-center">
+        <textarea
+          v-model="userInput"
+          class="mt-4"
+          id=""
+          cols="45"
+          rows="5"
+          placeholder="Type your code here..."
+        ></textarea>
       </div>
     </div>
     <button
       type="submit"
-      @click.prevent=""
+      @click.prevent="onSubmit"
       class="hover:animate-pulse bg-[#408080] h-10 w-20 m-2 rounded-md flex items-center justify-center absolute bottom-0 right-0 text-white"
     >
       <svg
