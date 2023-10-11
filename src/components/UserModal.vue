@@ -2,6 +2,8 @@
 import { ref } from 'vue';
 
 const props = defineProps({ visible: { type: Boolean, required: true } });
+
+//TODO: Get user data from backend
 const score = ref(0);
 const avatar = ref('src/assets/avatars/boy1.png');
 const username = ref('Kalle kula');
