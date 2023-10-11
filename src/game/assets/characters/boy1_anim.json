@@ -1,0 +1,84 @@
+{
+    "anims": [
+        {
+            "key": "right",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 10,
+            "frames": [
+                {
+                    "key": "boy1",
+                    "frame": "$npc005_6"
+                },
+                {
+                    "key": "boy1",
+                    "frame": "$npc005_7"
+                },
+                {
+                    "key": "boy1",
+                    "frame": "$npc005_8"
+                }
+            ]
+        },
+        {
+            "key": "left",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 10,
+            "frames": [
+                {
+                    "key": "boy1",
+                    "frame": "$npc005_3"
+                },
+                {
+                    "key": "boy1",
+                    "frame": "$npc005_4"
+                },
+                {
+                    "key": "boy1",
+                    "frame": "$npc005_5"
+                }
+            ]
+        },
+        {
+            "key": "up",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 10,
+            "frames": [
+                {
+                    "key": "boy1",
+                    "frame": "$npc005_9"
+                },
+                {
+                    "key": "boy1",
+                    "frame": "$npc005_10"
+                },
+                {
+                    "key": "boy1",
+                    "frame": "$npc005_11"
+                }
+            ]
+        },
+        {
+            "key": "down",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 10,
+            "frames": [
+                {
+                    "key": "boy1",
+                    "frame": "$npc005_0"
+                },
+                {
+                    "key": "boy1",
+                    "frame": "$npc005_1"
+                },
+                {
+                    "key": "boy1",
+                    "frame": "$npc005_2"
+                }
+            ]
+        }
+    ]
+}
