@@ -1,5 +1,5 @@
 export async function getAnswers() {
-  const response = await fetch('http://localhost:8000/quiz/1');
+  const response = await fetch('http://localhost:8000/quiz/');
   const data = await response.text();
   const obj = JSON.parse(data);
 
@@ -16,8 +16,8 @@ export async function getAnswers() {
   return quizQuestion;
 }
 
-export async function getUser() {
-  const response = await fetch('http://localhost:8000/users/1');
+export async function getUser(id: number) {
+  const response = await fetch('http://localhost:8000/users/' + id);
   const data = await response.text();
   const obj = JSON.parse(data);
 
