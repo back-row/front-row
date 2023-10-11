@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import { RouterLink } from 'vue-router';
 import { getUser } from '@/utility/utility'
 import { getNumberOfMaps } from '@/utility/utility'
+import { useMapStore } from '@/stores/map';
 
 import { onMounted, ref } from 'vue';
 
+const mapStore = useMapStore()
 const userLevel = ref(0)
 const numberOfMaps = ref(0)
 
@@ -14,11 +17,23 @@ onMounted( () => {
 onMounted( () => {
     getNumberOfMaps().then( (obj) => numberOfMaps.value = parseInt(obj) )
 })
+
+const selectProgress = (value: number) => {
+    let progress = ''
+
+    if(userLevel.value > value )
+        progress = 'Completed'
+    else if(userLevel.value === value)
+        progress = 'In progress'
+    else
+        progress = 'Not started'
+    return progress; 
+}
 </script>
 
 <template>
     <div class="flex justify-center">
-    <table class="table-fixed border-separate border-spacing-2 bg-[#E5E5E5] w-1/2 mt-32 rounded-lg p-10">
+    <table class="inline-block table-fixed border-separate border-spacing-3 bg-[#E5E5E5] w-1/2 max-h-[400px] mt-32 rounded-lg pt-10 overflow-y-scroll">
         <thead>
             <tr>
                 <th>Level</th>
@@ -28,11 +43,16 @@ onMounted( () => {
         </thead>
         <tbody>
             <tr v-for="(number, index) in numberOfMaps" :key="number">
-                <td class="text-center">{{ index + 1 + '.'}}</td>
-                <td class="text-center"><button v-if="userLevel >= index + 1" class='w-16 h-6 rounded-lg text-white bg-[#408080] hover:animate-pulse'>Play</button></td>
-                <td class="text-center" v-if="userLevel> index + 1">Completed</td>
-                <td class="text-center" v-else-if="userLevel === index + 1">In progress</td>
-                <td class="text-center" v-else>Not started</td>
+                <td class="text-center w-1/2">{{ index + 1 + '.'}}</td>
+                <td class="text-center w-fit">
+                    <router-link to="/game">
+                    <button v-if="userLevel >= index + 1" 
+                        class='w-16 h-6 rounded-lg text-white bg-[#408080] hover:animate-pulse'
+                        @click="mapStore.map.id = index + 1">
+                        Play</button>
+                    </router-link>    
+                </td>
+                <td class="text-center w-1/2">{{ selectProgress(index + 1) }}</td>
             </tr>
         </tbody>
     </table>
