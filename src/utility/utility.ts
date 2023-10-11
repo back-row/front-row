@@ -15,3 +15,18 @@ export async function getAnswers() {
 
   return quizQuestion;
 }
+
+export async function getUser() {
+  const response = await fetch('http://localhost:8000/users/1');
+  const data = await response.text();
+  const obj = JSON.parse(data);
+
+  return obj;
+}
+
+export async function getNumberOfMaps() {
+  const response = await fetch('http://localhost:8000/map/count');
+  const data = await response.text();
+
+  return data;
+}
