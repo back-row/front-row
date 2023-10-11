@@ -1,0 +1,84 @@
+{
+    "anims": [
+        {
+            "key": "right",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 10,
+            "frames": [
+                {
+                    "key": "ghoul",
+                    "frame": "$ghoulbase1_6"
+                },
+                {
+                    "key": "ghoul",
+                    "frame": "$ghoulbase1_7"
+                },
+                {
+                    "key": "ghoul",
+                    "frame": "$ghoulbase1_8"
+                }
+            ]
+        },
+        {
+            "key": "left",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 10,
+            "frames": [
+                {
+                    "key": "ghoul",
+                    "frame": "$ghoulbase1_3"
+                },
+                {
+                    "key": "ghoul",
+                    "frame": "$ghoulbase1_4"
+                },
+                {
+                    "key": "ghoul",
+                    "frame": "$ghoulbase1_5"
+                }
+            ]
+        },
+        {
+            "key": "up",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 10,
+            "frames": [
+                {
+                    "key": "ghoul",
+                    "frame": "$ghoulbase1_9"
+                },
+                {
+                    "key": "ghoul",
+                    "frame": "$ghoulbase1_10"
+                },
+                {
+                    "key": "ghoul",
+                    "frame": "$ghoulbase1_11"
+                }
+            ]
+        },
+        {
+            "key": "down",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 10,
+            "frames": [
+                {
+                    "key": "ghoul",
+                    "frame": "$ghoulbase1_0"
+                },
+                {
+                    "key": "ghoul",
+                    "frame": "$ghoulbase1_1"
+                },
+                {
+                    "key": "ghoul",
+                    "frame": "$ghoulbase1_2"
+                }
+            ]
+        }
+    ]
+}

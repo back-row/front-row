@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import AboutComponent from '@/components/AboutComponent.vue';
+import AboutComponent from '@/components/about/AboutComponent.vue';
 </script>
 
 <template>
   <AboutComponent />
 </template>
 
-<style>
-
-</style>
+<style></style>

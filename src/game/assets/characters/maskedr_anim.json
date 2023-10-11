@@ -1,0 +1,84 @@
+{
+    "anims": [
+        {
+            "key": "right",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 10,
+            "frames": [
+                {
+                    "key": "maskedr",
+                    "frame": "$maskeddr_6"
+                },
+                {
+                    "key": "maskedr",
+                    "frame": "$maskeddr_7"
+                },
+                {
+                    "key": "maskedr",
+                    "frame": "$maskeddr_8"
+                }
+            ]
+        },
+        {
+            "key": "left",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 10,
+            "frames": [
+                {
+                    "key": "maskedr",
+                    "frame": "$maskeddr_3"
+                },
+                {
+                    "key": "maskedr",
+                    "frame": "$maskeddr_4"
+                },
+                {
+                    "key": "maskedr",
+                    "frame": "$maskeddr_5"
+                }
+            ]
+        },
+        {
+            "key": "down",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 10,
+            "frames": [
+                {
+                    "key": "maskedr",
+                    "frame": "$maskeddr_0"
+                },
+                {
+                    "key": "maskedr",
+                    "frame": "$maskeddr_1"
+                },
+                {
+                    "key": "maskedr",
+                    "frame": "$maskeddr_2"
+                }
+            ]
+        },
+        {
+            "key": "up",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 10,
+            "frames": [
+                {
+                    "key": "maskedr",
+                    "frame": "$maskeddr_9"
+                },
+                {
+                    "key": "maskedr",
+                    "frame": "$maskeddr_10"
+                },
+                {
+                    "key": "maskedr",
+                    "frame": "$maskeddr_11"
+                }
+            ]
+        }
+    ]
+}
