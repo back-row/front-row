@@ -11,7 +11,7 @@ const data = reactive({
 async function login() {
   try {
     const response = await fetch('/users', {
-      method: 'POST',
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -23,6 +23,7 @@ async function login() {
 
     if (response.ok) {
       console.log('Login successful');
+      localStorage.setItem('username', data.username);
     } else {
       console.error('Login failed');
     }
