@@ -33,14 +33,15 @@ const parseUserInput = async (stringArray: string[]) => {
       case 'hero.right()':
         await playerStore.movePlayer(Direction.Right);
         break;
-        default: console.log('You fail', s)
+      default:
+        console.log('You fail', s);
         break;
     }
   }
 };
 
 const onSubmit = async () => {
-  let commands = userInput.value.split('\n');
+  let commands = userInput.value.split(/[\n;]/).map((s) => s.trim());
   console.log(commands);
   await parseUserInput(commands);
 };
