@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue';
+import { ref } from 'vue';
 
 const props = defineProps({ visible: { type: Boolean, required: true } });
 const score = ref(0);
-const username = ref('Kalletttttt');
+const avatar = ref('src/assets/avatars/boy1.png');
+const username = ref('Kalle kula');
 </script>
 
 <template>
@@ -13,15 +14,15 @@ const username = ref('Kalletttttt');
   >
     <div class="flex">
       <div class="flex flex-col items-center justify-center mx-6">
-        <h2 class="text-white text-2xl">{{ username }}</h2>
-        <h2 class="text-white text-2xl">Points</h2>
+        <h2 class="text-white text-2xl my-4">{{ username }}</h2>
+        <h2 class="text-white text-xl">Points</h2>
         <p class="text-white text-2xl">{{ score }}</p>
       </div>
-      <img class="w-20 h-20 mx-6" src="../assets/avatars/boy1.png" alt="User avatar" />
+      <img class="w-20 h-20 m-6" :src="avatar" alt="User avatar" />
     </div>
     <div class="flex">
-      <button class="bg-greenBackrow text-blackBackrow rounded-md p-2 mx-10">Logout</button>
       <button class="bg-greenBackrow text-blackBackrow rounded-md p-2 mx-10">Edit user</button>
+      <button class="bg-greenBackrow text-blackBackrow rounded-md p-2 mx-10">Logout</button>
     </div>
   </div>
 </template>
