@@ -1,5 +1,5 @@
-export async function getAnswers() {
-  const response = await fetch('http://localhost:8000/quiz/');
+export async function getAnswers(id: number) {
+  const response = await fetch('http://localhost:8000/quiz/' + id);
   const data = await response.text();
   const obj = JSON.parse(data);
 

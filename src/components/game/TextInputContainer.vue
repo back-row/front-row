@@ -2,7 +2,9 @@
 import { onMounted, ref } from 'vue';
 import { getAnswers } from '@/utility/utility';
 import { usePlayerStore } from '@/stores/player';
+import { useMapStore } from '@/stores/map';
 
+const mapStore = useMapStore();
 const playerStore = usePlayerStore();
 const userInput = ref('');
 const question = ref('');
@@ -17,7 +19,7 @@ enum Direction {
 }
 
 onMounted(() => {
-  getAnswers().then((obj) => [(question.value = obj.question)]);
+  getAnswers(mapStore.map.quizId).then((obj) => [(question.value = obj.question)]);
 });
 
 const parseUserInput = async (stringArray: string[]) => {
