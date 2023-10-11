@@ -1,0 +1,84 @@
+{
+    "anims": [
+        {
+            "key": "right",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 10,
+            "frames": [
+                {
+                    "key": "girl2",
+                    "frame": "$npc007_6"
+                },
+                {
+                    "key": "girl2",
+                    "frame": "$npc007_7"
+                },
+                {
+                    "key": "girl2",
+                    "frame": "$npc007_8"
+                }
+            ]
+        },
+        {
+            "key": "left",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 10,
+            "frames": [
+                {
+                    "key": "girl2",
+                    "frame": "$npc007_3"
+                },
+                {
+                    "key": "girl2",
+                    "frame": "$npc007_4"
+                },
+                {
+                    "key": "girl2",
+                    "frame": "$npc007_5"
+                }
+            ]
+        },
+        {
+            "key": "up",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 10,
+            "frames": [
+                {
+                    "key": "girl2",
+                    "frame": "$npc007_9"
+                },
+                {
+                    "key": "girl2",
+                    "frame": "$npc007_10"
+                },
+                {
+                    "key": "girl2",
+                    "frame": "$npc007_11"
+                }
+            ]
+        },
+        {
+            "key": "down",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 10,
+            "frames": [
+                {
+                    "key": "girl2",
+                    "frame": "$npc007_0"
+                },
+                {
+                    "key": "girl2",
+                    "frame": "$npc007_1"
+                },
+                {
+                    "key": "girl2",
+                    "frame": "$npc007_2"
+                }
+            ]
+        }
+    ]
+}
