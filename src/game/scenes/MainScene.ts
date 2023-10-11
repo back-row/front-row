@@ -5,6 +5,9 @@ import { useMapStore } from '@/stores/map';
 import Finish from '../finish';
 const playerStore = usePlayerStore();
 const mapStore = useMapStore();
+import tilesetImport from '../assets/map/tiles/Dungeon Prison/Tiles.png';
+import mapImport from '../assets/map/tiles/Dungeon Prison/test.json';
+
 
 export default class MainScene extends Phaser.Scene {
   player: Player | undefined;
@@ -14,13 +17,29 @@ export default class MainScene extends Phaser.Scene {
     super({ key: 'MainScene' });
   }
 
+  
   preload() {
     Player.preload(this);
     Finish.preload(this);
     mapStore.getMapFromDb(1);
-  }
+
+  
+    
+    this.load.image("tiles", tilesetImport);
+    this.load.tilemapTiledJSON("map", mapImport);
+    }
 
   create() {
+
+    const map = this.make.tilemap({ key: "map" });
+    const tileset = map.addTilesetImage("Tiles", "tiles");
+    const belowLayer = map.createLayer("Tile Layer 1", tileset!, 0, 0);
+    const belowLayer2 = map.createLayer("Second", tileset!, 0, 0);
+    const belowLayer3 = map.createLayer("Third", tileset!, 0, 0);
+
+    belowLayer2.setCollisionByProperty({ collides: true });
+
+  
     this.player = new Player(this, 10, 10, 'king', 'king_idle_1');
     this.finish = new Finish(
       this,
@@ -34,7 +53,7 @@ export default class MainScene extends Phaser.Scene {
 
     this.player.create();
     this.finish.create();
-
+    this.physics.add.collider(this.player, belowLayer2);
     this.physics.add.collider(this.player, this.finish, () => {
       this.scene.pause('MainScene');
       setTimeout(() => {
