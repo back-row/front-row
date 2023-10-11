@@ -25,6 +25,11 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue')
     },
     {
+      path: '/level',
+      name: 'level',
+      component: () => import('../views/LevelView.vue')
+    },
+    {
       path: '/:pathMatch(.*)*',
       name: '404',
       component: () => import('../views/NotFoundView.vue')
