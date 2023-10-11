@@ -57,6 +57,7 @@ const toggle = (event: any) => {
         />
       </svg>
     </button>
+
     <Menu
       class="flex flex-col items-center justify-center bg-black h-52 w-32 rounded-md"
       ref="menu"
@@ -68,12 +69,14 @@ const toggle = (event: any) => {
         <router-link v-if="item.route" v-slot="routerProps" :to="item.route" custom>
           <a :href="routerProps.href" v-bind="props.action">
             <span class="p-2 text-[#408080] text-lg" v-bind="props.label">{{ label }}</span>
+
           </a>
         </router-link>
       </template>
     </Menu>
+    
     <router-link to="/" class="m-0 w-full text-white"> <h2>Back Row</h2></router-link>
-    <p>Login</p>
+    <p class='w-20 cursor-pointer' @click='$emit("toggleLogin")'>Login</p>
     <p class="w-20">Sign up</p>
   </nav>
 </template>
