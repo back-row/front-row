@@ -1,13 +1,11 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
-import { usePlayerStore } from '@/stores/player';
 import Menu from 'primevue/menu';
 import { ref } from 'vue';
 import { useUserStore } from '@/stores/user';
 
 const userStore = useUserStore();
 
-const playerStore = usePlayerStore();
 const menu = ref();
 const items = ref([
   {
@@ -18,7 +16,7 @@ const items = ref([
       },
       {
         label: 'Play',
-        route: '/game'
+        route: '/level'
       },
       {
         label: 'High score',
@@ -64,7 +62,7 @@ const toggle = (event: any) => {
     </button>
     <div class="hidden md:flex flex-row gap-3 items-center w-1/3">
       <router-link :to="'/'">Home</router-link>
-      <router-link @click="playerStore.playerPosition.atEnd = false" :to="'/game'"
+      <router-link @click="playerStore.playerPosition.atEnd = false" :to="'/level'"
         >Play</router-link
       >
       <router-link class="flex flex-shrink-0" :to="'/highscore'">High Score</router-link>
