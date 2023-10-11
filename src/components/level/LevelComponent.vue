@@ -11,7 +11,7 @@ const userLevel = ref(0)
 const numberOfMaps = ref(0)
 
 onMounted( () => {
-    getUser().then( (obj) => userLevel.value = obj.userslevel)
+    getUser(1).then( (obj) => userLevel.value = obj.userslevel)
     })
 
 onMounted( () => {
@@ -33,7 +33,7 @@ const selectProgress = (value: number) => {
 
 <template>
     <div class="flex justify-center">
-    <table class="inline-block table-fixed border-separate border-spacing-3 bg-[#E5E5E5] w-1/2 max-h-[400px] mt-32 rounded-lg pt-10 overflow-y-scroll">
+    <table class="inline-block table-fixed border-spacing-3 bg-[#E5E5E5] w-1/2 max-h-[400px] mt-32 rounded-lg pt-10 overflow-y-scroll">
         <thead>
             <tr>
                 <th>Level</th>
@@ -42,13 +42,13 @@ const selectProgress = (value: number) => {
             </tr>
         </thead>
         <tbody>
-            <tr v-for="(number, index) in numberOfMaps" :key="number">
-                <td class="text-center w-1/2">{{ index + 1 + '.'}}</td>
+            <tr v-for="(number, index) in numberOfMaps" :key="number" class="odd:bg-gray-300">
+                <td class="text-center w-1/2 p-2">{{ index + 1 + '.'}}</td>
                 <td class="text-center w-fit">
                     <router-link to="/game">
                     <button v-if="userLevel >= index + 1" 
                         class='w-16 h-6 rounded-lg text-white bg-[#408080] hover:animate-pulse'
-                        @click="mapStore.map.id = index + 1">
+                        @click="mapStore.getMapFromDb(index + 1)">
                         Play</button>
                     </router-link>    
                 </td>
