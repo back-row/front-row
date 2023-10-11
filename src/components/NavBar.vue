@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
+import { usePlayerStore } from '@/stores/player';
 import Menu from 'primevue/menu';
 import { ref } from 'vue';
 import { useUserStore } from '@/stores/user';
 
 const userStore = useUserStore();
 
+const playerStore = usePlayerStore();
 const menu = ref();
 const items = ref([
   {
@@ -62,7 +64,7 @@ const toggle = (event: any) => {
     </button>
     <div class="hidden md:flex flex-row gap-3 items-center">
       <router-link :to="'/'">Home</router-link>
-      <router-link :to="'/game'">Play</router-link>
+      <router-link @click="playerStore.playerPosition.atEnd = false" :to="'/game'">Play</router-link>
       <router-link class="flex flex-shrink-0" :to="'/highscore'">High Score</router-link>
       <router-link :to="'/about'">About</router-link>
     </div>
