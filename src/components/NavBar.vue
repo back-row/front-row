@@ -72,7 +72,7 @@ const toggle = (event: any) => {
         </router-link>
       </template>
     </Menu>
-    <h2 class="m-0 w-full text-white">Back Row</h2>
+    <router-link to="/" class="m-0 w-full text-white"> <h2>Back Row</h2></router-link>
     <p>Login</p>
     <p class="w-20">Sign up</p>
   </nav>
