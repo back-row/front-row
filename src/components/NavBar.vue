@@ -1,4 +1,4 @@
-<script setup lang='ts'>
+<script setup lang="ts">
 import { RouterLink } from 'vue-router';
 import Menu from 'primevue/menu';
 import { ref } from 'vue';
@@ -38,28 +38,34 @@ const toggle = (event: any) => {
 <template>
   <nav class="flex items-center bg-blackBackRow text-greenBackRow text-center h-10">
     <button
-      class='ml-3'
-      type='button'
-      label='Toggle'
-      @click='toggle'
-      aria-haspopup='true'
-      aria-controls='overlay_menu'
+      class="ml-3 md:hidden"
+      type="button"
+      label="Toggle"
+      @click="toggle"
+      aria-haspopup="true"
+      aria-controls="overlay_menu"
     >
       <svg
-        xmlns='http://www.w3.org/2000/svg'
-        fill='none'
-        viewBox='0 0 24 24'
-        stroke-width='2.0'
-        stroke='currentColor'
-        class='w-10'
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="2.0"
+        stroke="currentColor"
+        class="w-10"
       >
         <path
-          stroke-linecap='round'
-          stroke-linejoin='round'
-          d='M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5'
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
         />
       </svg>
     </button>
+    <div class="hidden md:flex flex-row gap-3 items-center">
+      <router-link :to="'/'">Home</router-link>
+      <router-link :to="'/game'">Play</router-link>
+      <router-link class="flex flex-shrink-0" :to="'/highscore'">High Score</router-link>
+      <router-link :to="'/about'">About</router-link>
+    </div>
 
     <Menu
       class="flex flex-col items-center justify-center bg-blackBackRow h-52 w-32 rounded-md"
@@ -77,10 +83,20 @@ const toggle = (event: any) => {
       </template>
     </Menu>
     <router-link to="/" class="m-0 w-full text-white"> <h2>Back Row</h2></router-link>
-    <p v-show="userStore.user.id === 0" class="w-20 cursor-pointer hover:text-2xl underline underline-offset-2" @click="$emit('toggleLogin')">
+    <p
+      v-show="userStore.user.id === 0"
+      class="w-20 cursor-pointer hover:text-2xl underline underline-offset-2"
+      @click="$emit('toggleLogin')"
+    >
       Login
     </p>
-    <p v-show="userStore.user.id === 0" class="w-24 mr-3 cursor-pointer hover:text-2xl underline underline-offset-2" @click="$emit('toggleSignUp')">Sign up</p>
+    <p
+      v-show="userStore.user.id === 0"
+      class="w-24 mr-3 cursor-pointer hover:text-2xl underline underline-offset-2"
+      @click="$emit('toggleSignUp')"
+    >
+      Sign up
+    </p>
     <p
       v-show="userStore.user.id !== 0"
       class="w-20 cursor-pointer mr-3 hover:text-2xl underline underline-offset-2"
