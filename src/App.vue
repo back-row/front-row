@@ -22,8 +22,8 @@ const toggleUser = () => {
   <NavBar @toggleLogin="toggleLogin" @toggleUserModal="toggleUser" />
   <RouterView />
   <FootBar />
-  <LoginModal :visible="loginVisible" />
-  <UserModal :visible="userModalVisible" />
+  <LoginModal :visible="loginVisible" @close="toggleLogin" />
+  <!-- <UserModal :visible="userModalVisible" /> -->
 </template>
 
 <style scoped></style>

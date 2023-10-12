@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import { reactive } from 'vue';
+import { useUserStore } from '@/stores/user';
+import router from '@/router';
+const userStore = useUserStore();
 
 const props = defineProps({ visible: { type: Boolean, required: true } });
+const emit = defineEmits(['close']);
 
 const data = reactive({
   username: '',
@@ -33,8 +37,9 @@ async function login() {
         }
       });
       const data = await response.json();
-      console.log(data);
-      //TODO: send data to userstore
+      userStore.setUser(data);
+      emit('close');
+      router.push({ name: 'home' });
     } else {
       console.error('Login failed');
     }
