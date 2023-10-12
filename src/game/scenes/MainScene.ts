@@ -55,8 +55,12 @@ export default class MainScene extends Phaser.Scene {
 
     this.player.create();
     this.finish.create();
-    this.physics.add.collider(this.player, wall);
-    this.physics.add.collider(this.player, third);
+    if (wall) {
+      this.physics.add.collider(this.player, wall);
+    }
+    if (third){
+      this.physics.add.collider(this.player, third);
+    }
     this.physics.add.collider(this.player, this.finish, () => {
       this.scene.pause('MainScene');
       setTimeout(() => {
