@@ -37,10 +37,12 @@ export default class MainScene extends Phaser.Scene {
     const ground = map.createLayer('Tile Layer 1', tileset!, 0, 0);
     const wall = map.createLayer('Second', tileset!, 0, 0);
     const third = map.createLayer('third', props!, 0, 0);
+    
 
     wall!.setCollisionByProperty({ collides: true });
+    third!.setCollisionByProperty({ collides: true });
 
-    this.player = new Player(this, 50, 50, 'king', 'king_idle_1');
+    this.player = new Player(this, 50, 70, 'king', 'king_idle_1');
     this.finish = new Finish(
       this,
       mapStore.map.endLocationX,
@@ -54,6 +56,7 @@ export default class MainScene extends Phaser.Scene {
     this.player.create();
     this.finish.create();
     this.physics.add.collider(this.player, wall);
+    this.physics.add.collider(this.player, third);
     this.physics.add.collider(this.player, this.finish, () => {
       this.scene.pause('MainScene');
       setTimeout(() => {
