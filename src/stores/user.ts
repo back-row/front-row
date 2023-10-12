@@ -7,6 +7,7 @@ type DbUser = {
   usersemail: string;
   userstotalscore: number;
   userslevel: number;
+  usersimage: string;
 };
 
 export const useUserStore = defineStore('user', () => {
@@ -15,13 +16,16 @@ export const useUserStore = defineStore('user', () => {
     name: '',
     email: '',
     score: 0,
-    level: 0
+    level: 0,
+    avatar: ''
   });
 
   async function getUserFromDb(id: number) {
     try {
       const response = await fetch('http://localhost:8000/users/' + id);
-      setUser(await response.json());
+      const data = await response.json();
+      setUser(data);
+      console.log('user', data);
     } catch (error) {
       console.log(error);
       console.log('Could not get user from db');
@@ -34,6 +38,7 @@ export const useUserStore = defineStore('user', () => {
     user.value.email = newUser.usersemail;
     user.value.score = newUser.userstotalscore;
     user.value.level = newUser.userslevel;
+    user.value.avatar = newUser.usersimage;
   };
   return { user, getUserFromDb };
 });
