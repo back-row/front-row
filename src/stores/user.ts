@@ -28,5 +28,15 @@ export const useUserStore = defineStore('user', () => {
     user.value.level = newUser.userslevel;
     user.value.avatar = newUser.usersimage;
   }
-  return { user, setUser };
+
+  function logout() {
+    user.value.id = 0;
+    user.value.name = '';
+    user.value.email = '';
+    user.value.score = 0;
+    user.value.level = 0;
+    user.value.avatar = '';
+    localStorage.removeItem('Authorization');
+  }
+  return { user, setUser, logout };
 });
