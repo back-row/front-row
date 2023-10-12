@@ -4,7 +4,6 @@ import { useUserStore } from '@/stores/user';
 import router from '@/router';
 const userStore = useUserStore();
 
-const props = defineProps({ visible: { type: Boolean, required: true } });
 const emit = defineEmits(['close']);
 
 const data = reactive({
@@ -52,7 +51,6 @@ async function login() {
 <template>
   <div
     class="absolute right-0 top-9 ease-in-out duration-200 rounded-md flex items-center gap-4 flex-col bg-blackBackrow text-greenBackrow h-48 w-96"
-    :class="{ 'opacity-0': !props.visible }"
   >
     <form @submit.prevent="login">
       <div class="flex flex-col">
