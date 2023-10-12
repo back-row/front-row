@@ -5,10 +5,14 @@ function launch(containerId: string) {
   return new Phaser.Game({
     type: Phaser.AUTO,
     scale: {
-      mode: Phaser.Scale.CENTER_BOTH,
+      mode: Phaser.Scale.FIT,
       parent: containerId,
       width: 800,
-      height: 600
+      height: 600,
+      max: {
+        width: 800,
+        height: 600
+      }
     },
     physics: {
       default: 'arcade',
