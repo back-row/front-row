@@ -36,6 +36,7 @@ export const useUserStore = defineStore('user', () => {
     user.value.score = 0;
     user.value.level = 0;
     user.value.avatar = '';
+    localStorage.removeItem('Authorization');
   }
   return { user, setUser, logout };
 });
