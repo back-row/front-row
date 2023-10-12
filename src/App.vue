@@ -23,7 +23,7 @@ const toggleUser = () => {
   <RouterView />
   <FootBar />
   <LoginModal v-show="loginVisible" @close="toggleLogin" />
-  <!-- <UserModal :visible="userModalVisible" /> -->
+  <UserModal v-show="userModalVisible" @close="toggleUser" />
 </template>
 
 <style scoped></style>
