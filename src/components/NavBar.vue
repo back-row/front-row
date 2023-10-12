@@ -2,6 +2,9 @@
 import { RouterLink } from 'vue-router';
 import Menu from 'primevue/menu';
 import { ref } from 'vue';
+import { useUserStore } from '@/stores/user';
+
+const userStore = useUserStore();
 
 const menu = ref();
 const items = ref([
@@ -75,9 +78,17 @@ const toggle = (event: any) => {
     </Menu>
 
     <router-link to="/" class="m-0 w-full text-white"> <h2>Back Row</h2></router-link>
-    <p class="w-20 cursor-pointer" @click="$emit('toggleLogin')">Login</p>
-    <p class="w-20">Sign up</p>
-    <p class="w-20 cursor-pointer" @click="$emit('toggleUserModal')">Username</p>
+    <p v-show="userStore.user.id === 0" class="w-20 cursor-pointer" @click="$emit('toggleLogin')">
+      Login
+    </p>
+    <p v-show="userStore.user.id === 0" class="w-20 mr-3">Sign up</p>
+    <p
+      v-show="userStore.user.id !== 0"
+      class="w-20 cursor-pointer mr-3"
+      @click="$emit('toggleUserModal')"
+    >
+      {{ userStore.user.name }}
+    </p>
   </nav>
 </template>
 

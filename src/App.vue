@@ -10,7 +10,6 @@ const loginVisible = ref(false);
 const userModalVisible = ref(false);
 
 const toggleLogin = () => {
-  console.log('Toggling login');
   loginVisible.value = !loginVisible.value;
 };
 const toggleUser = () => {
