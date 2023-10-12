@@ -3,8 +3,10 @@ import { onMounted, ref } from 'vue';
 import type { Ref } from 'vue';
 import { getAnswers } from '@/utility/utility';
 import { usePlayerStore } from '@/stores/player';
+import { useMapStore } from '@/stores/map';
 
 const playerStore = usePlayerStore();
+const mapStore = useMapStore();
 
 type answer = { choice: string; answer: string[] };
 const selectedAnswer = ref([]);
@@ -14,7 +16,7 @@ const easyMode = ref(false);
 const emit = defineEmits(['easyMode']);
 
 onMounted(() => {
-  getAnswers().then((obj) => [
+  getAnswers(mapStore.map.quizId).then((obj) => [
     answers.value.push(
       { choice: obj.choice1, answer: obj.answer1 },
       { choice: obj.choice2, answer: obj.answer2 },

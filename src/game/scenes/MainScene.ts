@@ -21,12 +21,12 @@ export default class MainScene extends Phaser.Scene {
   preload() {
     Player.preload(this);
     Finish.preload(this);
-    mapStore.getMapFromDb(1);
 
     this.load.image('tiles', tilesetImport);
     this.load.image('props', tilesetImportProps);
 
     this.load.tilemapTiledJSON('map', mapImport);
+
   }
 
   create() {

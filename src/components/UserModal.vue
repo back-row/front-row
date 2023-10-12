@@ -1,12 +1,20 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
+import { useUserStore } from '@/stores/user';
 
 const props = defineProps({ visible: { type: Boolean, required: true } });
+const userStore = useUserStore();
 
-//TODO: Get user data from backend
 const score = ref(0);
-const avatar = ref('src/assets/avatars/boy1.png');
-const username = ref('Kalle kula');
+const avatar = ref('');
+const username = ref('');
+
+onMounted( () => {
+      score.value = userStore.user.score
+      username.value = userStore.user.name
+      avatar.value = 'src/assets/avatars/' + userStore.user.avatar + '.png'
+    })
+
 </script>
 
 <template>
