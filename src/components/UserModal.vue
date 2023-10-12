@@ -3,7 +3,7 @@ import { onMounted, ref } from 'vue';
 import { useUserStore } from '@/stores/user';
 
 const userStore = useUserStore();
-
+const emit = defineEmits(['close']);
 const score = ref(0);
 const avatar = ref('');
 const username = ref('');
@@ -13,6 +13,11 @@ onMounted(() => {
   username.value = userStore.user.name;
   avatar.value = 'src/assets/avatars/' + userStore.user.avatar + '.png';
 });
+
+function logout() {
+  userStore.logout();
+  emit('close');
+}
 </script>
 
 <template>
@@ -29,7 +34,9 @@ onMounted(() => {
     </div>
     <div class="flex">
       <button class="bg-greenBackrow text-blackBackrow rounded-md p-2 mx-10">Edit user</button>
-      <button class="bg-greenBackrow text-blackBackrow rounded-md p-2 mx-10">Logout</button>
+      <button @click="logout" class="bg-greenBackrow text-blackBackrow rounded-md p-2 mx-10">
+        Logout
+      </button>
     </div>
   </div>
 </template>
