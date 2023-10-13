@@ -40,5 +40,22 @@ export const useMapStore = defineStore('map', () => {
     map.value.endLocationY = newMap.mapendlocationy;
     map.value.tutorialId = newMap.maptutorialid;
   };
-  return { map, getMapFromDb };
+
+  async function updateMapScore(score: number, mapid: number) {
+    try {
+      await fetch('http://localhost:8000/score', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem('Authorization')!
+        },
+        body: JSON.stringify({ map: mapid, score: score })
+      });
+    } catch (error) {
+      console.log(error);
+      console.log('Could not update score');
+    }
+  }
+
+  return { map, getMapFromDb, updateMapScore };
 });
