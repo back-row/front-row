@@ -40,7 +40,7 @@ const toggle = (event: any) => {
 <template>
   <nav class="flex items-center bg-blackBackRow text-greenBackRow text-center h-10">
     <button
-      class="ml-3 md:hidden"
+      class="ml-3 w-1/3 md:hidden"
       type="button"
       label="Toggle"
       @click="toggle"
@@ -62,9 +62,11 @@ const toggle = (event: any) => {
         />
       </svg>
     </button>
-    <div class="hidden md:flex flex-row gap-3 items-center">
+    <div class="hidden md:flex flex-row gap-3 items-center w-1/3">
       <router-link :to="'/'">Home</router-link>
-      <router-link @click="playerStore.playerPosition.atEnd = false" :to="'/game'">Play</router-link>
+      <router-link @click="playerStore.playerPosition.atEnd = false" :to="'/game'"
+        >Play</router-link
+      >
       <router-link class="flex flex-shrink-0" :to="'/highscore'">High Score</router-link>
       <router-link :to="'/about'">About</router-link>
     </div>
