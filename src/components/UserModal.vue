@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import { useUserStore } from '@/stores/user';
 import EditUserForm from './EditUserForm.vue';
+import EditUserForm from './EditUserForm.vue';
 
 const userStore = useUserStore();
 
@@ -33,6 +34,7 @@ function logout() {
         Logout
       </button>
     </div>
+    <EditUserForm v-if="showEditForm"/>
     <EditUserForm v-if="showEditForm"/>
   </div>
 </template>
