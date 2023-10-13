@@ -65,7 +65,6 @@ export default class MainScene extends Phaser.Scene {
       this.scene.pause('MainScene');
       userStore.user.score += mapStore.map.score;
       userStore.updateUser();
-      console.log(userStore.user.score);
       mapStore.map.score = 100;
       setTimeout(() => {
         playerStore.playerPosition.atEnd = true;

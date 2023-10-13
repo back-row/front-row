@@ -51,9 +51,7 @@ const setDifficulty = () => {
 
 const onSubmit = async () => {
   let commands = userInput.value.split(/[\n;]/).map((s) => s.trim());
-  console.log(commands);
   mapStore.map.score = mapStore.map.score - commands.length * 2;
-  console.log(mapStore.map.score);
   await parseUserInput(commands);
 };
 </script>
