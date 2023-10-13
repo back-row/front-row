@@ -38,5 +38,21 @@ export const useUserStore = defineStore('user', () => {
     user.value.avatar = '';
     localStorage.removeItem('Authorization');
   }
-  return { user, setUser, logout };
+
+  async function updateUser() {
+    try {
+      await fetch('http://localhost:8000/users', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem('Authorization')!
+        },
+        body: JSON.stringify(user.value)
+      });
+    } catch (error) {
+      console.log('Failed to update user: ' + error);
+    }
+  }
+
+  return { user, setUser, logout, updateUser };
 });
