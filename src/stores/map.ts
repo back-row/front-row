@@ -1,5 +1,8 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
+import { useUserStore } from '@/stores/user';
+
+const userStore = useUserStore();
 
 type DbMap = {
   mapid: number;
@@ -55,6 +58,8 @@ export const useMapStore = defineStore('map', () => {
       console.log(error);
       console.log('Could not update score');
     }
+
+    await userStore.updateUser();
   }
 
   return { map, getMapFromDb, updateMapScore };
