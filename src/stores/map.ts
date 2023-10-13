@@ -1,5 +1,8 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
+import { useUserStore } from '@/stores/user';
+
+const userStore = useUserStore();
 
 type DbMap = {
   mapid: number;
@@ -18,7 +21,8 @@ export const useMapStore = defineStore('map', () => {
     quizId: 0,
     endLocationX: 0,
     endLocationY: 0,
-    tutorialId: 0
+    tutorialId: 0,
+    score: 100
   });
 
   async function getMapFromDb(id: number) {
@@ -39,5 +43,24 @@ export const useMapStore = defineStore('map', () => {
     map.value.endLocationY = newMap.mapendlocationy;
     map.value.tutorialId = newMap.maptutorialid;
   };
-  return { map, getMapFromDb };
+
+  async function updateMapScore(score: number, mapid: number) {
+    try {
+      await fetch('http://localhost:8000/score', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem('Authorization')!
+        },
+        body: JSON.stringify({ map: mapid, score: score })
+      });
+    } catch (error) {
+      console.log(error);
+      console.log('Could not update score');
+    }
+
+    await userStore.updateUser();
+  }
+
+  return { map, getMapFromDb, updateMapScore };
 });

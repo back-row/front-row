@@ -36,6 +36,7 @@ const onSubmit = async () => {
   for (const element of selectedAnswer.value) {
     await playerStore.movePlayer(element);
   }
+  mapStore.map.score = mapStore.map.score - 50;
 };
 </script>
 
