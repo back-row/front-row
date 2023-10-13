@@ -18,7 +18,8 @@ export const useMapStore = defineStore('map', () => {
     quizId: 0,
     endLocationX: 0,
     endLocationY: 0,
-    tutorialId: 0
+    tutorialId: 0,
+    score: 100
   });
 
   async function getMapFromDb(id: number) {
