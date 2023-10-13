@@ -36,8 +36,8 @@ onMounted(async () => {
   <NavBar @toggleLogin="toggleLogin" @toggleUserModal="toggleUser" />
   <RouterView />
   <FootBar />
-  <LoginModal :visible="loginVisible" @close="toggleLogin" />
-  <UserModal :visible="userModalVisible" />
+  <LoginModal v-show="loginVisible" @close="toggleLogin" />
+  <UserModal v-show="userModalVisible" @close="toggleUser" />
 </template>
 
 <style scoped></style>
