@@ -3,8 +3,10 @@ import { RouterLink } from 'vue-router';
 import Menu from 'primevue/menu';
 import { ref } from 'vue';
 import { useUserStore } from '@/stores/user';
+import { usePlayerStore } from '@/stores/player';
 
 const userStore = useUserStore();
+const playerStore = usePlayerStore();
 
 const menu = ref();
 const items = ref([
