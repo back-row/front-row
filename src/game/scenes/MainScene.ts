@@ -63,8 +63,7 @@ export default class MainScene extends Phaser.Scene {
     }
     this.physics.add.collider(this.player, this.finish, () => {
       this.scene.pause('MainScene');
-      userStore.user.score += mapStore.map.score;
-      userStore.updateUser();
+      mapStore.updateMapScore(mapStore.map.score, mapStore.map.id);
       mapStore.map.score = 100;
       setTimeout(() => {
         playerStore.playerPosition.atEnd = true;
