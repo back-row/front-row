@@ -57,13 +57,13 @@ const onSubmit = async () => {
 </script>
 
 <template>
-  <div class="relative bg-[#2C3540] h-80 w-full p-2 pt-4 rounded-sm">
-    <div class="bg-[#E5E5E5] h-4/5">
-      <div class="question">{{ question }}</div>
+  <div class="relative bg-grayBackRow h-80 w-full p-2 pt-4 rounded-sm">
+    <div class="bg-whiteBackRow h-4/5">
+      <div class="question text-blackBackRow">{{ question }}</div>
       <div class="flex items-start justify-center">
         <textarea
           v-model="userInput"
-          class="mt-4"
+          class="mt-4 text-blackBackRow"
           id=""
           cols="45"
           rows="5"
@@ -73,14 +73,14 @@ const onSubmit = async () => {
     </div>
     <button
       @click.prevent="setDifficulty"
-      class="hover:animate-pulse bg-[#408080] h-10 w-20 m-2 rounded-md flex items-center justify-center absolute bottom-0 left-0 text-white"
+      class="hover:animate-pulse bg-greenBackRow h-10 w-20 m-2 rounded-md flex items-center justify-center absolute bottom-0 left-0 text-whiteBackRow"
     >
       Quiz mode
     </button>
     <button
       type="submit"
       @click.prevent="onSubmit"
-      class="hover:animate-pulse bg-[#408080] h-10 w-20 m-2 rounded-md flex items-center justify-center absolute bottom-0 right-0 text-white"
+      class="hover:animate-pulse bg-greenBackRow h-10 w-20 m-2 rounded-md flex items-center justify-center absolute bottom-0 right-0 text-whiteBackRow"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

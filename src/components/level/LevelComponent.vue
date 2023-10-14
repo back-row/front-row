@@ -33,7 +33,7 @@ const selectProgress = (value: number) => {
 
 <template>
     <div class="flex justify-center">
-    <table class="inline-block table-fixed border-spacing-3 bg-[#E5E5E5] w-1/2 max-h-[400px] mt-32 rounded-lg pt-10 overflow-y-scroll">
+    <table class="inline-block table-fixed border-spacing-3 bg-whiteBackRow w-1/2 max-h-[400px] mt-32 rounded-lg pt-10 overflow-y-scroll text-blackBackRow">
         <thead>
             <tr>
                 <th>Level</th>
@@ -47,7 +47,7 @@ const selectProgress = (value: number) => {
                 <td class="text-center w-fit">
                     <router-link to="/game">
                     <button v-if="userLevel >= index + 1" 
-                        class='w-16 h-6 rounded-lg text-white bg-[#408080] hover:animate-pulse'
+                        class='w-16 h-6 rounded-lg text-whiteBackRow bg-greenBackRow hover:animate-pulse'
                         @click="mapStore.getMapFromDb(index + 1)">
                         Play</button>
                     </router-link>    
