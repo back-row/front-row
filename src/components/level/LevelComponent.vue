@@ -1,17 +1,18 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
-import { getUser } from '@/utility/utility'
 import { getNumberOfMaps } from '@/utility/utility'
 import { useMapStore } from '@/stores/map';
+import { useUserStore } from '@/stores/user';
 
 import { onMounted, ref } from 'vue';
 
 const mapStore = useMapStore()
+const userStore = useUserStore()
 const userLevel = ref(0)
 const numberOfMaps = ref(0)
 
 onMounted( () => {
-    getUser(1).then( (obj) => userLevel.value = obj.userslevel)
+    userLevel.value = userStore.user.level;
     })
 
 onMounted( () => {
