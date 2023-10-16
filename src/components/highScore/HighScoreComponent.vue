@@ -29,7 +29,7 @@ onMounted(async () => {
     <router-link to="/game">
       <button
         @click="mapStore.getMapFromDb(userStore.user.level)"
-        class="w-64 h-16 m-4 rounded-lg text-2xl text-white bg-[#408080] hover:animate-pulse"
+        class="w-64 h-16 m-4 rounded-lg text-2xl text-whiteBackRow bg-greenBackRow hover:animate-pulse"
       >
         Play
       </button>
