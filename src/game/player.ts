@@ -1,8 +1,7 @@
 import Phaser from 'phaser';
-import kingimg from './assets/characters/king.png';
-import kingatlas from './assets/characters/king_atlas.json';
-import kinganim from './assets/characters/king_anim.json';
 import { usePlayerStore } from '@/stores/player';
+import { useUserStore } from '@/stores/user';
+const characterPath = 'src/game/assets/characters/';
 
 export default class Player extends Phaser.Physics.Arcade.Sprite {
   private playerStore: ReturnType<typeof usePlayerStore>;
@@ -11,41 +10,54 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     scene: Phaser.Scene,
     x: number,
     y: number,
-    texture: string | Phaser.Textures.Texture,
-    frame: string | number | undefined
+    texture: string | Phaser.Textures.Texture
   ) {
-    super(scene, x, y, texture, frame);
+    super(scene, x, y, texture);
     this.scene.add.existing(this);
     scene.physics.world.enable(this);
-
     this.playerStore = usePlayerStore();
   }
 
   static preload(scene: Phaser.Scene) {
-    scene.load.atlas('king', kingimg, kingatlas);
-    scene.load.json('kinganim', kinganim);
+    const userStore = useUserStore();
+    scene.load.atlas(
+      `${userStore.user.avatar}`,
+      `${characterPath}${userStore.user.avatar}.png`,
+      `${characterPath}${userStore.user.avatar}_atlas.json`
+    );
+    scene.load.json('playeranim', `${characterPath}${userStore.user.avatar}_anim.json`);
   }
 
   create() {
-    const animData = this.scene.cache.json.get('kinganim');
+    const animData = this.scene.cache.json.get('playeranim');
     this.scene.anims.fromJSON(animData);
-    this.body?.setCircle(8, 8, 16);
+    this.body?.setCircle(12, 5, 8);
     this.setCollideWorldBounds(true);
-    this.setScale(1.5);
   }
 
   update() {
-    if (Math.abs(this.body!.velocity.x) > 0 || Math.abs(this.body!.velocity.y) > 0) {
-      this.anims.play('king_walk', true);
+    const velocityX = this.body!.velocity.x;
+    const velocityY = this.body!.velocity.y;
+
+    let animationKey = 'down';
+
+    if (Math.abs(velocityX) > Math.abs(velocityY)) {
+      if (velocityX > 0) {
+        animationKey = 'right';
+      } else if (velocityX < 0) {
+        animationKey = 'left';
+      }
     } else {
-      this.anims.play('king_idle', true);
+      if (velocityY > 0) {
+        animationKey = 'down';
+      } else if (velocityY < 0) {
+        animationKey = 'up';
+      }
     }
+
+    this.anims.play(animationKey, true);
+
     this.playerStore.playerPosition.x = this.x;
     this.playerStore.playerPosition.y = this.y;
-    // console.log(
-    //   'playerPosition: ',
-    //   this.playerStore.playerPosition.x,
-    //   this.playerStore.playerPosition.y
-    // );
   }
 }
