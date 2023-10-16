@@ -7,13 +7,15 @@ import { onClickOutside } from '@vueuse/core'
 const userStore = useUserStore();
 
 const showEditForm = ref(false)
-const emit = defineEmits(['close']);
+const emit = defineEmits(['close','closeOutside']);
 
 
 const target = ref(null)
 
-onClickOutside(target, (event: MouseEvent) => 
-console.log(event))
+onClickOutside(target, (event: MouseEvent) => {
+console.log(event)
+ emit('closeOutside')
+})
 
 
 function logout() {
