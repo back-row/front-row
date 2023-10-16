@@ -15,11 +15,12 @@ const signUpVisible = ref(false);
 
 const toggleLogin = () => {
   loginVisible.value = !loginVisible.value;
+  signUpVisible.value = false;
 };
 
 const toggleSignUp = () => {
-  console.log('Toggling Sign up');
   signUpVisible.value = !signUpVisible.value;
+  loginVisible.value = false;
 };
 const toggleUser = () => {
   userModalVisible.value = !userModalVisible.value;
@@ -45,7 +46,7 @@ onMounted(async () => {
   <FootBar />
   <LoginModal v-show="loginVisible" @close="toggleLogin" />
   <UserModal v-show="userModalVisible" @close="toggleUser" />
-  <SignUpModal :visible='signUpVisible' />
+  <SignUpModal v-show="signUpVisible" @close="toggleSignUp"/>
 </template>
 
 <style scoped></style>

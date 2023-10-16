@@ -80,7 +80,7 @@ const toggle = (event: any) => {
     <p v-show="userStore.user.id === 0" class="w-20 cursor-pointer hover:text-2xl underline underline-offset-2" @click="$emit('toggleLogin')">
       Login
     </p>
-    <p v-show="userStore.user.id === 0" class="w-24 mr-3 hover:text-2xl underline underline-offset-2">Sign up</p>
+    <p v-show="userStore.user.id === 0" class="w-24 mr-3 cursor-pointer hover:text-2xl underline underline-offset-2" @click="$emit('toggleSignUp')">Sign up</p>
     <p
       v-show="userStore.user.id !== 0"
       class="w-20 cursor-pointer mr-3 hover:text-2xl underline underline-offset-2"
