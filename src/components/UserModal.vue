@@ -27,9 +27,9 @@ function logout() {
 <template>
   <div
     ref="target"
-    class="absolute right-0 top-9 ease-in-out duration-200 transition-all rounded-md flex
-    justify-start items-center gap-4 flex-col bg-blackBackRow text-greenBackRow w-96 pt-4" :class="{'h-3/5': showEditForm, 'h-2/5': !showEditForm }"
-  >
+    class="absolute right-0 top-9 ease-in-out duration-200 transition-all rounded-md flex justify-start items-center gap-4 flex-col bg-blackBackRow text-greenBackRow w-96 pt-4"
+    :class="{'h-3/5': showEditForm, 'h-2/5': !showEditForm }"
+    >
     <div class="flex">
       <div class="flex flex-col items-center justify-center mx-6">
         <h2 class="text-white text-2xl my-4">{{ userStore.user.name }}</h2>
