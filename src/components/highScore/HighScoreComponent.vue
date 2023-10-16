@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
+import { useMapStore } from '@/stores/map';
+import { useUserStore } from '@/stores/user';
 
 type scores = { name: string; score: string };
+const userStore = useUserStore();
+const mapStore = useMapStore();
 
 const highScore: scores[] = [
   { name: 'test test', score: '2000' },
@@ -29,7 +33,7 @@ const highScore: scores[] = [
       </ol>
     </div>
     <router-link to="/game">
-      <button class="w-64 h-16 m-4 rounded-lg text-2xl text-whiteBackRow bg-greenBackRow hover:animate-pulse">
+      <button @click="mapStore.getMapFromDb(userStore.user.level)" class="w-64 h-16 m-4 rounded-lg text-2xl text-white bg-[#408080] hover:animate-pulse">
         Play
       </button>
     </router-link>
