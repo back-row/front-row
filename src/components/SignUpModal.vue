@@ -4,8 +4,6 @@ import type { Ref } from 'vue';
 
 type avatar = { name: string; src: string};
 
-const emit = defineEmits(['close']);
-
 const data = reactive({
   username: '',
   email: '',
