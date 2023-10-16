@@ -22,3 +22,10 @@ export async function getNumberOfMaps() {
 
   return data;
 }
+
+export async function getHighScore() {
+  const response = await fetch('http://localhost:8000/score');
+  const data = await response.json();
+
+  return data;
+}
