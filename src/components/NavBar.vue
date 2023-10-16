@@ -78,13 +78,13 @@ const toggle = (event: any) => {
     </Menu>
 
     <router-link to="/" class="m-0 w-full text-white"> <h2>Back Row</h2></router-link>
-    <p v-show="userStore.user.id === 0" class="w-20 cursor-pointer hover:text-2xl" @click="$emit('toggleLogin')">
+    <p v-show="userStore.user.id === 0" class="w-20 cursor-pointer hover:text-2xl underline underline-offset-2" @click="$emit('toggleLogin')">
       Login
     </p>
-    <p v-show="userStore.user.id === 0" class="w-24 mr-3 hover:text-2xl">Sign up</p>
+    <p v-show="userStore.user.id === 0" class="w-24 mr-3 hover:text-2xl underline underline-offset-2">Sign up</p>
     <p
       v-show="userStore.user.id !== 0"
-      class="w-20 cursor-pointer mr-3 hover:text-2xl"
+      class="w-20 cursor-pointer mr-3 hover:text-2xl underline underline-offset-2"
       @click="$emit('toggleUserModal')"
     >
       {{ userStore.user.name }}
