@@ -88,7 +88,7 @@ async function signUp() {
         </div>
       </div>
       <div class="flex justify-center">  
-        <button
+        <button @click="$emit('close')"
           type='submit'
           class='hover:animate-pulse bg-greenBackRow h-8 w-20 m-4 rounded-md text-whiteBackRow'
           >Sign up</button>
