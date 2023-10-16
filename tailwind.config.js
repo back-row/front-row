@@ -10,9 +10,10 @@ export const theme = {
       sans: ['Fredoka', 'sans-serif']
     },
     colors: {
-      greenBackrow: '#408080',
-      blackBackrow: '#0A0F14',
-      whiteBackRow: '#E5E5E5'
+      greenBackRow: '#408080',
+      blackBackRow: '#0A0F14',
+      whiteBackRow: '#E5E5E5',
+      grayBackRow: '#2C3540'
     }
   }
 };
