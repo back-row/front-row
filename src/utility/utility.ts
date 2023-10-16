@@ -1,5 +1,5 @@
-export async function getAnswers() {
-  const response = await fetch('http://localhost:8000/quiz/1');
+export async function getAnswers(id: number) {
+  const response = await fetch('http://localhost:8000/quiz/' + id);
   const data = await response.text();
   const obj = JSON.parse(data);
 
@@ -14,4 +14,18 @@ export async function getAnswers() {
   } = JSON.parse(obj.quizquestion);
 
   return quizQuestion;
+}
+
+export async function getNumberOfMaps() {
+  const response = await fetch('http://localhost:8000/map/count');
+  const data = await response.text();
+
+  return data;
+}
+
+export async function getHighScore() {
+  const response = await fetch('http://localhost:8000/score');
+  const data = await response.json();
+
+  return data;
 }

@@ -2,6 +2,9 @@
 import { RouterLink } from 'vue-router';
 import Menu from 'primevue/menu';
 import { ref } from 'vue';
+import { useUserStore } from '@/stores/user';
+
+const userStore = useUserStore();
 
 const menu = ref();
 const items = ref([
@@ -33,7 +36,7 @@ const toggle = (event: any) => {
 </script>
 
 <template>
-  <nav class='flex items-center bg-[#0A0F14] text-[#408080] text-center h-10'>
+  <nav class="flex items-center bg-blackBackRow text-greenBackRow text-center h-10">
     <button
       class='ml-3'
       type='button'
@@ -59,24 +62,32 @@ const toggle = (event: any) => {
     </button>
 
     <Menu
-      class='flex flex-col items-center justify-center bg-black h-52 w-32 rounded-md'
-      ref='menu'
-      id='overlay_menu'
-      :model='items'
-      :popup='true'
+      class="flex flex-col items-center justify-center bg-blackBackRow h-52 w-32 rounded-md"
+      ref="menu"
+      id="overlay_menu"
+      :model="items"
+      :popup="true"
     >
-      <template #item='{ label, item, props }'>
-        <router-link v-if='item.route' v-slot='routerProps' :to='item.route' custom>
-          <a :href='routerProps.href' v-bind='props.action'>
-            <span class='p-2 text-[#408080] text-lg' v-bind='props.label'>{{ label }}</span>
+      <template #item="{ label, item, props }">
+        <router-link v-if="item.route" v-slot="routerProps" :to="item.route" custom>
+          <a :href="routerProps.href" v-bind="props.action">
+            <span class="p-2 text-greenBackRow text-lg" v-bind="props.label">{{ label }}</span>
           </a>
         </router-link>
       </template>
     </Menu>
-
-    <router-link to='/' class='m-0 w-full text-white'><h2>Back Row</h2></router-link>
-    <p class='w-20 cursor-pointer' @click="$emit('toggleLogin')">Login</p>
-    <p class='w-20 cursor-pointer' @click="$emit('toggleSignUp')">Sign up</p>
+    <router-link to="/" class="m-0 w-full text-white"> <h2>Back Row</h2></router-link>
+    <p v-show="userStore.user.id === 0" class="w-20 cursor-pointer hover:text-2xl underline underline-offset-2" @click="$emit('toggleLogin')">
+      Login
+    </p>
+    <p v-show="userStore.user.id === 0" class="w-24 mr-3 hover:text-2xl underline underline-offset-2">Sign up</p>
+    <p
+      v-show="userStore.user.id !== 0"
+      class="w-20 cursor-pointer mr-3 hover:text-2xl underline underline-offset-2"
+      @click="$emit('toggleUserModal')"
+    >
+      {{ userStore.user.name }}
+    </p>
   </nav>
 </template>
 
