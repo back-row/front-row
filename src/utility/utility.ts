@@ -16,14 +16,6 @@ export async function getAnswers(id: number) {
   return quizQuestion;
 }
 
-export async function getUser(id: number) {
-  const response = await fetch('http://localhost:8000/users/' + id);
-  const data = await response.text();
-  const obj = JSON.parse(data);
-
-  return obj;
-}
-
 export async function getNumberOfMaps() {
   const response = await fetch('http://localhost:8000/map/count');
   const data = await response.text();
