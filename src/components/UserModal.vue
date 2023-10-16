@@ -32,15 +32,15 @@ function logout() {
     >
     <div class="flex">
       <div class="flex flex-col items-center justify-center mx-6">
-        <h2 class="text-white text-2xl my-4">{{ userStore.user.name }}</h2>
-        <h2 class="text-white text-xl">Points</h2>
-        <p class="text-white text-2xl">{{ userStore.user.score }}</p>
+        <h2 class="text-whiteBackRow text-2xl my-4">{{ userStore.user.name }}</h2>
+        <h2 class="text-whiteBackRow text-xl">Points</h2>
+        <p class="text-whiteBackRow text-2xl">{{ userStore.user.score }}</p>
       </div>
       <img class="w-20 h-20 m-6" :src="'src/assets/avatars/' + userStore.user.avatar + '.png'" alt="User avatar" />
     </div>
     <div class="flex">
-      <button @click.prevent="showEditForm = !showEditForm" class="bg-greenBackrow text-blackBackrow rounded-md p-2 mx-10">Edit user</button>
-      <button @click="logout" class="bg-greenBackrow text-blackBackrow rounded-md p-2 mx-10">
+      <button @click.prevent="showEditForm = !showEditForm" class="bg-greenBackRow text-whiteBackRow rounded-md p-2 mx-10">Edit user</button>
+      <button @click="logout" class="bg-greenBackRow text-whiteBackRow rounded-md p-2 mx-10">
         Logout
       </button>
     </div>

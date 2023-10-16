@@ -8,27 +8,32 @@ type avatar = { name: string; src: string};
 
 const data = reactive({
     username: '',
-    email:''
+    email:'',
+    avatar: userStore.user.avatar
 });
 
 const avatars: Ref<avatar[]> = ref([
-    {name: 'Boy1', src: 'src/assets/avatars/boy1.png'},
-    {name: 'Ghoul', src: 'src/assets/avatars/ghoul.png'},
-    {name: 'Girl1', src: 'src/assets/avatars/girl1.png'},
-    {name: 'Girl2', src: 'src/assets/avatars/girl2.png'},
-    {name: 'Masked', src: 'src/assets/avatars/maskedr.png'}
+    {name: 'Boy1', src: 'boy1'},
+    {name: 'Ghoul', src: 'ghoul'},
+    {name: 'Girl1', src: 'girl1'},
+    {name: 'Girl2', src: 'girl2'},
+    {name: 'Masked', src: 'maskedr'}
     ])
 
-const picked = ref('src/assets/avatars/' + userStore.user.avatar + '.png');
-
 async function editUser() {
-  
+  if(data.username != '')
+    userStore.user.name = data.username;
+  if(data.email != '')
+    userStore.user.email = data.email;
+  if(data.avatar != '')
+    userStore.user.avatar = data.avatar;
+  userStore.updateUser();
 }
 
 </script>
 
 <template>
-  <div class="flex bg-blackBackrow text-greenBackrow h-40 w-96 p-6">
+  <div class="flex bg-blackBackRow text-greenBackRow h-40 w-96 p-6">
       <form @submit.prevent="editUser">
         <div class="flex">
           <div class="flex flex-col w-1/2">
@@ -44,15 +49,15 @@ async function editUser() {
           <div class="flex">
             <div class="flex flex-col w-1/2">
               <div v-for="avatar in avatars" :key="avatar.src">
-                <input type="radio" :value="avatar.src" v-model="picked" />
+                <input type="radio" :value="avatar.src" v-model="data.avatar" />
                 <label class="text-whiteBackRow">{{ avatar.name }}</label>
               </div>
             </div>
-            <img class="w-20 h-20 m-2" :src="picked" alt="Picked avatar" />
+            <img class="w-20 h-20 m-2" :src="'src/assets/avatars/' + data.avatar + '.png'" alt="Picked avatar" />
           </div>
         </div>
         <div class="flex justify-center">
-          <button type="submit" class="hover:animate-pulse bg-[#408080] h-8 w-20 m-4 rounded-md text-whiteBackRow"
+          <button type="submit" class="hover:animate-pulse bg-greenBackRow h-8 w-20 m-4 rounded-md text-whiteBackRow"
             >Submit</button>
         </div>    
       </form>

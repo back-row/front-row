@@ -2,13 +2,14 @@ import 'phaser';
 import Player from '../player';
 import { usePlayerStore } from '@/stores/player';
 import { useMapStore } from '@/stores/map';
+import { useUserStore } from '@/stores/user';
 import Finish from '../finish';
-const playerStore = usePlayerStore();
-const mapStore = useMapStore();
 import tilesetImport from '../assets/map/tiles/Dungeon Prison/Tiles.png';
 import tilesetImportProps from '../assets/map/tiles/Dungeon Prison/Props.png';
-
 import mapImport from '../assets/map/tiles/Dungeon Prison/mapOne.json';
+
+const playerStore = usePlayerStore();
+const mapStore = useMapStore();
 
 export default class MainScene extends Phaser.Scene {
   player: Player | undefined;
@@ -26,7 +27,6 @@ export default class MainScene extends Phaser.Scene {
     this.load.image('props', tilesetImportProps);
 
     this.load.tilemapTiledJSON('map', mapImport);
-
   }
 
   create() {
@@ -37,12 +37,11 @@ export default class MainScene extends Phaser.Scene {
     const ground = map.createLayer('Tile Layer 1', tileset!, 0, 0);
     const wall = map.createLayer('Second', tileset!, 0, 0);
     const third = map.createLayer('third', props!, 0, 0);
-    
 
     wall!.setCollisionByProperty({ collides: true });
     third!.setCollisionByProperty({ collides: true });
 
-    this.player = new Player(this, 50, 70, 'king', 'king_idle_1');
+    this.player = new Player(this, 50, 70, 'player');
     this.finish = new Finish(
       this,
       mapStore.map.endLocationX,
@@ -58,14 +57,16 @@ export default class MainScene extends Phaser.Scene {
     if (wall) {
       this.physics.add.collider(this.player, wall);
     }
-    if (third){
+    if (third) {
       this.physics.add.collider(this.player, third);
     }
     this.physics.add.collider(this.player, this.finish, () => {
       this.scene.pause('MainScene');
+      mapStore.updateMapScore(mapStore.map.score, mapStore.map.id);
+      mapStore.map.score = 100;
       setTimeout(() => {
         playerStore.playerPosition.atEnd = true;
-      }, 2000);
+      }, 1500);
     });
 
     // this is for testing
