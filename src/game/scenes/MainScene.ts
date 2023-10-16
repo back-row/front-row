@@ -10,7 +10,6 @@ import mapImport from '../assets/map/tiles/Dungeon Prison/mapOne.json';
 
 const playerStore = usePlayerStore();
 const mapStore = useMapStore();
-const userStore = useUserStore();
 
 export default class MainScene extends Phaser.Scene {
   player: Player | undefined;
@@ -42,7 +41,7 @@ export default class MainScene extends Phaser.Scene {
     wall!.setCollisionByProperty({ collides: true });
     third!.setCollisionByProperty({ collides: true });
 
-    this.player = new Player(this, 50, 70, 'king', 'king_idle_1');
+    this.player = new Player(this, 50, 70, 'player');
     this.finish = new Finish(
       this,
       mapStore.map.endLocationX,
