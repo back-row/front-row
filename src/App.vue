@@ -46,7 +46,6 @@ onMounted(async () => {
   <RouterView />
   <FootBar />
   <LoginModal v-show="loginVisible" @close="toggleLogin" />
-  <UserModal v-show="userModalVisible" @close="toggleUser" 
   @closeOutside="userModalVisible=false" />
   <UserModal v-show="userModalVisible" @close="toggleUser" />
   <SignUpModal v-show="signUpVisible" @close="toggleSignUp"/>
