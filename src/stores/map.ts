@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import { useUserStore } from '@/stores/user';
-import type { argv0 } from 'process';
 
 const userStore = useUserStore();
 
@@ -12,6 +11,9 @@ type DbMap = {
   mapquizid: number;
   mapendlocationx: number;
   mapendlocationy: number;
+  mapstartlocationx: number;
+  mapstartlocationy: number;
+  mapjson: string;
   maptutorialid: number;
 };
 
@@ -46,6 +48,9 @@ export const useMapStore = defineStore('map', () => {
     map.value.quizId = newMap.mapquizid;
     map.value.endLocationX = newMap.mapendlocationx;
     map.value.endLocationY = newMap.mapendlocationy;
+    map.value.startLocationX = newMap.mapstartlocationx;
+    map.value.startLocationY = newMap.mapstartlocationy;
+    map.value.mapJSON = newMap.mapjson;
     map.value.tutorialId = newMap.maptutorialid;
   };
 
