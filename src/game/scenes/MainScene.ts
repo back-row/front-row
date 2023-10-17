@@ -2,11 +2,10 @@ import 'phaser';
 import Player from '../player';
 import { usePlayerStore } from '@/stores/player';
 import { useMapStore } from '@/stores/map';
-import { useUserStore } from '@/stores/user';
 import Finish from '../finish';
-import tilesetImport from '../assets/map/tiles/Dungeon Prison/Tiles.png';
-import tilesetImportProps from '../assets/map/tiles/Dungeon Prison/Props.png';
-import mapImport from '../assets/map/tiles/Dungeon Prison/mapOne.json';
+import tilesetImport from '../assets/map/tiles/DungeonPrison/Tiles.png';
+import tilesetImportProps from '../assets/map/tiles/DungeonPrison/Props.png';
+import mapImport from '../assets/map/tiles/DungeonPrison/mapOne.json';
 
 const playerStore = usePlayerStore();
 const mapStore = useMapStore();
@@ -34,12 +33,13 @@ export default class MainScene extends Phaser.Scene {
     const tileset = map.addTilesetImage('Tiles', 'tiles');
     const props = map.addTilesetImage('Props', 'props');
 
-    const ground = map.createLayer('Tile Layer 1', tileset!, 0, 0);
-    const wall = map.createLayer('Second', tileset!, 0, 0);
-    const third = map.createLayer('third', props!, 0, 0);
+    // TODO:rename layers
+    const ground = map.createLayer('Layer1', tileset!, 0, 0);
+    const layer2 = map.createLayer('Layer2', tileset!, 0, 0);
+    const layer3 = map.createLayer('Layer3', props!, 0, 0);
 
-    wall!.setCollisionByProperty({ collides: true });
-    third!.setCollisionByProperty({ collides: true });
+    layer2!.setCollisionByProperty({ collides: true });
+    layer3!.setCollisionByProperty({ collides: true });
 
     this.player = new Player(this, 50, 70, 'player');
     this.finish = new Finish(
@@ -54,11 +54,11 @@ export default class MainScene extends Phaser.Scene {
 
     this.player.create();
     this.finish.create();
-    if (wall) {
-      this.physics.add.collider(this.player, wall);
+    if (layer2) {
+      this.physics.add.collider(this.player, layer2);
     }
-    if (third) {
-      this.physics.add.collider(this.player, third);
+    if (layer3) {
+      this.physics.add.collider(this.player, layer3);
     }
     this.physics.add.collider(this.player, this.finish, () => {
       this.scene.pause('MainScene');
