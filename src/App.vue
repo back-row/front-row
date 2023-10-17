@@ -13,6 +13,7 @@ const loginVisible = ref(false);
 const userModalVisible = ref(false);
 const signUpVisible = ref(false);
 
+
 const toggleLogin = () => {
   loginVisible.value = !loginVisible.value;
   signUpVisible.value = false;
@@ -45,7 +46,8 @@ onMounted(async () => {
   <RouterView />
   <FootBar />
   <LoginModal v-show="loginVisible" @close="toggleLogin" />
-  <UserModal v-show="userModalVisible" @close="toggleUser" />
+ 
+  <UserModal v-show="userModalVisible"  @closeOutside="userModalVisible=false" @close="toggleUser" />
   <SignUpModal v-show="signUpVisible" @close="toggleSignUp"/>
 </template>
 
