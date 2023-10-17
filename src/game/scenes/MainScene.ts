@@ -44,8 +44,12 @@ export default class MainScene extends Phaser.Scene {
     layer2!.setCollisionByProperty({ collides: true });
     layer3!.setCollisionByProperty({ collides: true });
 
-    //TODO: set endlocation depending on map
-    this.player = new Player(this, 50, 70, 'player');
+    this.player = new Player(
+      this,
+      this.mapStore.map.startLocationX,
+      this.mapStore.map.startLocationY,
+      'player'
+    );
     this.finish = new Finish(
       this,
       this.mapStore.map.endLocationX,
