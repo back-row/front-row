@@ -37,7 +37,7 @@ async function getTutorial(id: number) {
 </script>
 
 <template>
-  <div class="relative bg-grayBackRow h-64 w-full mb-3 p-2 pt-10 rounded-sm">
+  <div class="relative bg-[#2C3540] h-64 sm:w-128 mb-3 p-2 pt-10 rounded-sm">
     <button class="hover:animate-pulse" @click="showJson">
       <svg
         xmlns="http://www.w3.org/2000/svg"
