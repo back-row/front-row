@@ -15,11 +15,11 @@ const changeDifficulty = () => {
 </script>
 
 <template>
-  <section class="gamePage">
+  <section class="gamePage m-6 grid grid-cols-1 sm:flex sm:flex-row justify-center">
     <div class="gameArea">
-      <GameContainer />
+      <GameContainer class="ml-6"/>
     </div>
-    <div class="sideArea">
+    <div class="sideArea mx-6">
       <MissionContainer />
       <TextInputContainer @easy-mode="changeDifficulty" v-if="!easyMode" />
       <AnswerContainer @easy-mode="changeDifficulty" v-else-if="easyMode" />
@@ -31,7 +31,7 @@ const changeDifficulty = () => {
 </template>
 
 <style scoped>
-.gamePage {
+/* .gamePage {
   display: flex;
   margin: 20px;
 }
@@ -43,5 +43,5 @@ const changeDifficulty = () => {
 
 .sideArea {
   width: 100%;
-}
+} */
 </style>
