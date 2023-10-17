@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
 import { usePlayerStore } from '@/stores/player';
+import { useUserStore } from '@/stores/user';
 const playerStore = usePlayerStore();
+const userStore = useUserStore();
 </script>
 
 <template>
@@ -39,10 +41,17 @@ const playerStore = usePlayerStore();
       class="play sm: order-4 col-span-1 row-span-1 row-start-2 col-start-2 flex items-start justify-center"
     >
       <router-link
+        v-show="userStore.user.id !== 0"
         to="/level"
         class="hover:animate-pulse ease-in-out duration-300 hover:scale-110 bg-[#408080] h-36 w-7/12 m-2 rounded-xl flex items-center justify-center text-[#E5E5E5] text-4xl sm:text-5xl lg:text-7xl"
         @click="playerStore.playerPosition.atEnd = false"
         >Play now</router-link
+      >
+      <router-link
+        v-show="userStore.user.id === 0"
+        to="/highscore"
+        class="hover:animate-pulse ease-in-out duration-300 hover:scale-110 bg-[#408080] h-36 w-7/12 m-2 rounded-xl flex items-center justify-center text-[#E5E5E5] text-4xl sm:text-5xl lg:text-7xl"
+        >Highscore</router-link
       >
     </div>
   </div>
