@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import { useUserStore } from '@/stores/user';
+import type { argv0 } from 'process';
 
 const userStore = useUserStore();
 
@@ -22,7 +23,11 @@ export const useMapStore = defineStore('map', () => {
     endLocationX: 0,
     endLocationY: 0,
     tutorialId: 0,
-    score: 100
+    score: 100,
+    //TODO: add this to db
+    startLocationX: 0,
+    startLocationY: 0,
+    mapJSON: 'mapOne'
   });
 
   async function getMapFromDb(id: number) {
