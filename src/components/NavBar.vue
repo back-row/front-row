@@ -62,7 +62,7 @@ const toggle = (event: any) => {
         />
       </svg>
     </button>
-    <div class="hidden md:flex flex-row gap-3 items-center w-1/3">
+    <div class="hidden md:flex ml-4 flex-row gap-3 items-center w-1/3">
       <router-link :to="'/'">Home</router-link>
       <router-link @click="playerStore.playerPosition.atEnd = false" :to="'/level'"
         >Play</router-link
@@ -81,12 +81,12 @@ const toggle = (event: any) => {
       <template #item="{ label, item, props }">
         <router-link v-if="item.route" v-slot="routerProps" :to="item.route" custom>
           <a :href="routerProps.href" v-bind="props.action">
-            <span class="p-2 text-greenBackRow text-lg" v-bind="props.label">{{ label }}</span>
+            <span class="p-2 text-greenBackrow text-lg" v-bind="props.label">{{ label }}</span>
           </a>
         </router-link>
       </template>
     </Menu>
-    <router-link to="/" class="m-0 w-full text-white"> <h2>Back Row</h2></router-link>
+    <router-link to="/" class="m-0 w-1/3 text-white"> <h2>Back Row</h2></router-link>
     <div class="loginUser flex flex-row justify-end w-1/3 mr-2">
       <p
         v-show="userStore.user.id === 0"

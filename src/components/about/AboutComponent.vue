@@ -14,23 +14,23 @@
       </p>
     </div>
     <div class="flex flex-wrap justify-evenly m-10 w-4/5">
-      <div>
+      <div class="mb-2">
         <img class="h-32 w-32 rounded-full" src="../../assets/about/head1.png" alt="blue" />
         <p class="text-center bg-whiteBackRow p-1 rounded-md mt-4">Oliver</p>
       </div>
-      <div>
+      <div class="mb-2">
         <img class="h-32 w-32 rounded-full" src="../../assets/about/head2.png" alt="blue" />
         <p class="text-center bg-whiteBackRow p-1 rounded-md mt-4">Robert</p>
       </div>
-      <div>
+      <div class="mb-2">
         <img class="h-32 w-32 rounded-full" src="../../assets/about/head3.png" alt="blue" />
         <p class="text-center bg-whiteBackRow p-1 rounded-md mt-4">Fredrik</p>
       </div>
-      <div>
+      <div class="mb-2">
         <img class="h-32 w-32 rounded-full" src="../../assets/about/head4.png" alt="blue" />
         <p class="text-center bg-whiteBackRow p-1 rounded-md mt-4">Julia</p>
       </div>
-      <div>
+      <div class="mb-2">
         <img class="h-32 w-32 rounded-full" src="../../assets/about/head5.png" alt="blue" />
         <p class="text-center bg-whiteBackRow p-1 rounded-md mt-4">Henrik</p>
       </div>
