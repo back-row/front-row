@@ -13,7 +13,6 @@ const emit = defineEmits(['close','closeOutside']);
 const target = ref(null)
 
 onClickOutside(target, (event: MouseEvent) => {
-console.log(event)
  emit('closeOutside')
 })
 
