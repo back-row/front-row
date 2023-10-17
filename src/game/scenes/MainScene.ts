@@ -29,7 +29,7 @@ export default class MainScene extends Phaser.Scene {
     this.load.image('tiles', tilesetImport);
     this.load.image('props', tilesetImportProps);
 
-    this.load.tilemapTiledJSON('map', `${mapPath}mapTwo.json`);
+    this.load.tilemapTiledJSON('map', `${mapPath}${mapStore.map.mapJSON}.json`);
   }
 
   create() {
