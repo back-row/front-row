@@ -11,6 +11,9 @@ type DbMap = {
   mapquizid: number;
   mapendlocationx: number;
   mapendlocationy: number;
+  mapstartlocationx: number;
+  mapstartlocationy: number;
+  mapjson: string;
   maptutorialid: number;
 };
 
@@ -22,7 +25,11 @@ export const useMapStore = defineStore('map', () => {
     endLocationX: 0,
     endLocationY: 0,
     tutorialId: 0,
-    score: 100
+    score: 100,
+    //TODO: add this to db
+    startLocationX: 0,
+    startLocationY: 0,
+    mapJSON: 'mapOne'
   });
 
   async function getMapFromDb(id: number) {
@@ -41,6 +48,9 @@ export const useMapStore = defineStore('map', () => {
     map.value.quizId = newMap.mapquizid;
     map.value.endLocationX = newMap.mapendlocationx;
     map.value.endLocationY = newMap.mapendlocationy;
+    map.value.startLocationX = newMap.mapstartlocationx;
+    map.value.startLocationY = newMap.mapstartlocationy;
+    map.value.mapJSON = newMap.mapjson;
     map.value.tutorialId = newMap.maptutorialid;
   };
 

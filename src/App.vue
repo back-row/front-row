@@ -1,19 +1,27 @@
-<script setup lang="ts">
+<script setup lang='ts'>
 import { RouterView } from 'vue-router';
 import NavBar from './components/NavBar.vue';
 import FootBar from './components/FootBar.vue';
 import UserModal from './components/UserModal.vue';
 import LoginModal from '@/components/LoginModal.vue';
+import SignUpModal from '@/components/SignUpModal.vue';
 import { onMounted, ref } from 'vue';
 import { useUserStore } from '@/stores/user';
 
 const userStore = useUserStore();
 const loginVisible = ref(false);
 const userModalVisible = ref(false);
+const signUpVisible = ref(false);
 
 
 const toggleLogin = () => {
   loginVisible.value = !loginVisible.value;
+  signUpVisible.value = false;
+};
+
+const toggleSignUp = () => {
+  signUpVisible.value = !signUpVisible.value;
+  loginVisible.value = false;
 };
 const toggleUser = () => {
   userModalVisible.value = !userModalVisible.value;
@@ -34,12 +42,14 @@ onMounted(async () => {
 </script>
 
 <template>
-  <NavBar @toggleLogin="toggleLogin" @toggleUserModal="toggleUser" />
+  <NavBar @toggleLogin="toggleLogin" @toggleUserModal="toggleUser" @toggleSignUp='toggleSignUp' />
   <RouterView />
   <FootBar />
   <LoginModal v-show="loginVisible" @close="toggleLogin" />
   <UserModal v-show="userModalVisible" @close="toggleUser" 
   @closeOutside="userModalVisible=false" />
+  <UserModal v-show="userModalVisible" @close="toggleUser" />
+  <SignUpModal v-show="signUpVisible" @close="toggleSignUp"/>
 </template>
 
 <style scoped></style>

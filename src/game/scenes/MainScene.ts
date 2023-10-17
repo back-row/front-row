@@ -2,31 +2,34 @@ import 'phaser';
 import Player from '../player';
 import { usePlayerStore } from '@/stores/player';
 import { useMapStore } from '@/stores/map';
-import { useUserStore } from '@/stores/user';
 import Finish from '../finish';
-import tilesetImport from '../assets/map/tiles/Dungeon Prison/Tiles.png';
-import tilesetImportProps from '../assets/map/tiles/Dungeon Prison/Props.png';
-import mapImport from '../assets/map/tiles/Dungeon Prison/mapOne.json';
+import tilesetImport from '../assets/map/tiles/DungeonPrison/Tiles.png';
+import tilesetImportProps from '../assets/map/tiles/DungeonPrison/Props.png';
+const mapPath = 'src/game/assets/map/maps/';
 
 const playerStore = usePlayerStore();
-const mapStore = useMapStore();
 
 export default class MainScene extends Phaser.Scene {
   player: Player | undefined;
   finish: Finish | undefined;
 
+  private mapStore: ReturnType<typeof useMapStore>;
+
   constructor() {
     super({ key: 'MainScene' });
+
+    this.mapStore = useMapStore();
   }
 
   preload() {
+    const mapStore = useMapStore();
     Player.preload(this);
     Finish.preload(this);
 
     this.load.image('tiles', tilesetImport);
     this.load.image('props', tilesetImportProps);
 
-    this.load.tilemapTiledJSON('map', mapImport);
+    this.load.tilemapTiledJSON('map', `${mapPath}${mapStore.map.mapJSON}.json`);
   }
 
   create() {
@@ -34,18 +37,23 @@ export default class MainScene extends Phaser.Scene {
     const tileset = map.addTilesetImage('Tiles', 'tiles');
     const props = map.addTilesetImage('Props', 'props');
 
-    const ground = map.createLayer('Tile Layer 1', tileset!, 0, 0);
-    const wall = map.createLayer('Second', tileset!, 0, 0);
-    const third = map.createLayer('third', props!, 0, 0);
+    const ground = map.createLayer('Layer1', tileset!, 0, 0);
+    const layer2 = map.createLayer('Layer2', tileset!, 0, 0);
+    const layer3 = map.createLayer('Layer3', props!, 0, 0);
 
-    wall!.setCollisionByProperty({ collides: true });
-    third!.setCollisionByProperty({ collides: true });
+    layer2!.setCollisionByProperty({ collides: true });
+    layer3!.setCollisionByProperty({ collides: true });
 
-    this.player = new Player(this, 50, 70, 'player');
+    this.player = new Player(
+      this,
+      this.mapStore.map.startLocationX,
+      this.mapStore.map.startLocationY,
+      'player'
+    );
     this.finish = new Finish(
       this,
-      mapStore.map.endLocationX,
-      mapStore.map.endLocationY,
+      this.mapStore.map.endLocationX,
+      this.mapStore.map.endLocationY,
       'princess',
       'princess_idle_1'
     );
@@ -54,16 +62,16 @@ export default class MainScene extends Phaser.Scene {
 
     this.player.create();
     this.finish.create();
-    if (wall) {
-      this.physics.add.collider(this.player, wall);
+    if (layer2) {
+      this.physics.add.collider(this.player, layer2);
     }
-    if (third) {
-      this.physics.add.collider(this.player, third);
+    if (layer3) {
+      this.physics.add.collider(this.player, layer3);
     }
     this.physics.add.collider(this.player, this.finish, () => {
       this.scene.pause('MainScene');
-      mapStore.updateMapScore(mapStore.map.score, mapStore.map.id);
-      mapStore.map.score = 100;
+      this.mapStore.updateMapScore(this.mapStore.map.score, this.mapStore.map.id);
+      this.mapStore.map.score = 100;
       setTimeout(() => {
         playerStore.playerPosition.atEnd = true;
       }, 1500);
