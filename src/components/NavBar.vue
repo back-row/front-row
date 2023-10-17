@@ -38,7 +38,7 @@ const toggle = (event: any) => {
 </script>
 
 <template>
-  <nav class="flex items-center bg-blackBackRow text-greenBackRow text-center h-10">
+  <nav class="flex items-center bg-blackBackrow text-greenBackrow text-center h-10">
     <button
       class="ml-3 w-1/3 md:hidden"
       type="button"
@@ -72,7 +72,7 @@ const toggle = (event: any) => {
     </div>
 
     <Menu
-      class="flex flex-col items-center justify-center bg-blackBackRow h-52 w-32 rounded-md"
+      class="flex flex-col items-center justify-center bg-blackBackrow h-52 w-32 rounded-md"
       ref="menu"
       id="overlay_menu"
       :model="items"

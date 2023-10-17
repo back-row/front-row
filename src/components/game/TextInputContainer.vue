@@ -73,14 +73,14 @@ const onSubmit = async () => {
     </div>
     <button
       @click.prevent="setDifficulty"
-      class="hover:animate-pulse bg-greenBackRow h-10 w-20 m-2 rounded-md flex items-center justify-center absolute bottom-0 left-0 text-whiteBackRow"
+      class="hover:animate-pulse bg-greenBackrow h-10 w-20 m-2 rounded-md flex items-center justify-center absolute bottom-0 left-0 text-whiteBackRow"
     >
       Quiz mode
     </button>
     <button
       type="submit"
       @click.prevent="onSubmit"
-      class="hover:animate-pulse bg-greenBackRow h-10 w-20 m-2 rounded-md flex items-center justify-center absolute bottom-0 right-0 text-whiteBackRow"
+      class="hover:animate-pulse bg-greenBackrow h-10 w-20 m-2 rounded-md flex items-center justify-center absolute bottom-0 right-0 text-whiteBackRow"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

@@ -42,7 +42,7 @@ async function signUp() {
 
 <template>
   <div
-    class='absolute right-0 top-9 ease-in-out duration-200 rounded-md flex justify-center bg-blackBackRow text-greenBackRow h-64 w-96 p-6'
+    class='absolute right-0 top-9 ease-in-out duration-200 rounded-md flex justify-center bg-blackBackrow text-greenBackrow h-64 w-96 p-6'
   >
     <form @submit.prevent='signUp'>
       <div class="flex">
@@ -88,7 +88,7 @@ async function signUp() {
       <div class="flex justify-center">  
         <button @click="$emit('close')"
           type='submit'
-          class='hover:animate-pulse bg-greenBackRow h-8 w-20 m-4 rounded-md text-whiteBackRow'
+          class='hover:animate-pulse bg-greenBackrow h-8 w-20 m-4 rounded-md text-whiteBackRow'
           >Sign up</button>
       </div>
     </form>
