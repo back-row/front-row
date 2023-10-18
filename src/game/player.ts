@@ -33,6 +33,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.scene.anims.fromJSON(animData);
     this.body?.setCircle(12, 5, 8);
     this.setCollideWorldBounds(true);
+    this.setDepth(1);
   }
 
   update() {
