@@ -15,6 +15,8 @@ export default class MainScene extends Phaser.Scene {
   player: Player | undefined;
   finish: Finish | undefined;
   spike: Spikes | undefined;
+  spike2: Spikes | undefined;
+  spikecolliders: Phaser.Physics.Arcade.Collider[] | undefined;
 
   private mapStore: ReturnType<typeof useMapStore>;
 
@@ -61,12 +63,10 @@ export default class MainScene extends Phaser.Scene {
       'princess',
       'princess_idle_1'
     );
-    this.spike = new Spikes(this, 295, 295, 'spikes');
 
     playerStore.playerPosition.player = this.player;
     this.player.create();
     this.finish.create();
-    this.spike.create();
 
     if (layer2) {
       this.physics.add.collider(this.player, layer2);
@@ -82,6 +82,15 @@ export default class MainScene extends Phaser.Scene {
     //     playerStore.playerPosition.atEnd = true;
     //   }, 1500);
     // });
+    if (this.mapStore.map.id === 1) {
+      this.spike = new Spikes(this, 295, 285, 'spikes');
+      this.spike2 = new Spikes(this, 295, 305, 'spikes');
+      this.spike.create();
+      this.spike2.create();
+      this.spikecolliders = [];
+      this.spikecolliders.push(this.physics.add.collider(this.player, this.spike));
+      this.spikecolliders.push(this.physics.add.collider(this.player, this.spike2));
+    }
 
     // this is for testing
     this.input.keyboard!.on('keydown', (event: KeyboardEvent) => {
@@ -110,5 +119,17 @@ export default class MainScene extends Phaser.Scene {
     this.player?.update();
     this.finish?.update();
     this.spike?.update();
+    this.spike2?.update();
+
+    if (this.mapStore.map.id === 1) {
+      if (playerStore.playerPosition.hideSpikes) {
+        this.spike!.hideSpike = true;
+        this.spike2!.hideSpike = true;
+        this.spikecolliders?.forEach((collider) => {
+          this.physics.world.removeCollider(collider);
+        });
+        this.spikecolliders = [];
+      }
+    }
   }
 }

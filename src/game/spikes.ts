@@ -24,10 +24,12 @@ export default class Spikes extends Phaser.Physics.Arcade.Sprite {
   }
 
   create() {
-    const animData = this.scene.cache.json.get('spikesAnim');
-    this.scene.anims.fromJSON(animData);
+    if (!this.scene.anims.exists('spike_up')) {
+      const animData = this.scene.cache.json.get('spikesAnim');
+      this.scene.anims.fromJSON(animData);
+    }
     this.setImmovable(true);
-    this.setScale(2);
+    this.setScale(1.2);
   }
 
   update() {
