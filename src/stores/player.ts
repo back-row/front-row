@@ -34,8 +34,9 @@ export const usePlayerStore = defineStore('player', () => {
     if (playerPosition.value.player) playerPosition.value.player.setVelocityX(200);
   };
 
-  const hideSpikes = () => {
+  const hideSpikes = async () => {
     playerPosition.value.hideSpikes = true;
+    await new Promise((resolve) => setTimeout(resolve, 500));
   };
 
   const movePlayer = async (direction: Direction) => {

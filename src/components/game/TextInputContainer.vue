@@ -38,7 +38,7 @@ const parseUserInput = async (stringArray: string[]) => {
         await playerStore.movePlayer(Direction.Right);
         break;
       case 'hide(spikes)':
-        playerStore.hideSpikes();
+        await playerStore.hideSpikes();
         break;
       default:
         console.log('You fail', s);
