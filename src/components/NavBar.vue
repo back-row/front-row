@@ -64,7 +64,10 @@ const toggle = (event: any) => {
     </button>
     <div class="hidden md:flex ml-4 flex-row gap-3 items-center w-1/3">
       <router-link :to="'/'">Home</router-link>
-      <router-link @click="playerStore.playerPosition.atEnd = false" :to="'/level'"
+      <router-link
+        @click="playerStore.playerPosition.atEnd = false"
+        :to="'/level'"
+        v-show="userStore.user.id !== 0"
         >Play</router-link
       >
       <router-link class="flex flex-shrink-0" :to="'/highscore'">High Score</router-link>
