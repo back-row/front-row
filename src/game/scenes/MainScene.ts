@@ -118,10 +118,10 @@ export default class MainScene extends Phaser.Scene {
   update() {
     this.player?.update();
     this.finish?.update();
-    this.spike?.update();
-    this.spike2?.update();
 
     if (this.mapStore.map.id === 1) {
+      this.spike?.update();
+      this.spike2?.update();
       if (playerStore.playerPosition.hideSpikes) {
         this.spike!.hideSpike = true;
         this.spike2!.hideSpike = true;
