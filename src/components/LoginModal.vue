@@ -12,9 +12,9 @@ const data = reactive({
   username: '',
   password: ''
 });
-const target = ref(null)
+const closingTarget = ref(null)
 
-onClickOutside(target, (event: MouseEvent) => {
+onClickOutside(closingTarget, (event: MouseEvent) => {
  emit('closeOutside')
 })
 
@@ -58,7 +58,7 @@ async function login() {
 
 <template>
   <div
-    ref="target"
+    ref="closingTarget"
     class="absolute right-0 top-9 ease-in-out duration-200 rounded-md flex items-center gap-4 flex-col bg-blackBackrow text-greenBackrow h-48 w-96"
   >
     <form @submit.prevent="login">

@@ -47,7 +47,7 @@ onMounted(async () => {
   <FootBar />
   <LoginModal v-show="loginVisible" @close="toggleLogin" @close-outside="loginVisible=false" />
   <UserModal v-show="userModalVisible"  @closeOutside="userModalVisible=false" @close="toggleUser" />
-  <SignUpModal v-show="signUpVisible" @close="toggleSignUp"/>
+  <SignUpModal v-show="signUpVisible" @close="toggleSignUp" @close-outside="signUpVisible=false"/>
 </template>
 
 <style scoped></style>

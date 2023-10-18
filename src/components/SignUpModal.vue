@@ -1,8 +1,17 @@
 <script setup lang='ts'>
 import { reactive, ref } from 'vue';
 import type { Ref } from 'vue';
+import { onClickOutside } from '@vueuse/core'
 
 type avatar = { name: string; src: string};
+
+const emit = defineEmits(['close','closeOutside']);
+const closingTarget = ref(null)
+
+onClickOutside(closingTarget, (event: MouseEvent) => {
+ emit('closeOutside')
+})
+
 
 const data = reactive({
   username: '',
@@ -42,6 +51,7 @@ async function signUp() {
 
 <template>
   <div
+    ref="closingTarget"
     class='absolute right-0 top-9 ease-in-out duration-200 rounded-md flex justify-center bg-blackBackrow text-greenBackrow h-64 w-96 p-6'
   >
     <form @submit.prevent='signUp'>
