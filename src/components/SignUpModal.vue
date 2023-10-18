@@ -52,7 +52,7 @@ async function signUp() {
 <template>
   <div
     ref="closingTarget"
-    class='absolute right-0 top-9 ease-in-out duration-200 rounded-md flex justify-center bg-blackBackrow text-greenBackrow h-64 w-96 p-6'
+    class='opacity-90 absolute right-0 top-9 ease-in-out duration-200 rounded-md flex justify-center bg-blackBackrow text-greenBackrow h-64 w-96 p-6'
   >
     <form @submit.prevent='signUp'>
       <div class="flex">

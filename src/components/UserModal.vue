@@ -26,7 +26,7 @@ function logout() {
 <template>
   <div
     ref="closingTarget"
-    class="absolute right-0 top-9 ease-in-out duration-200 transition-all rounded-md flex justify-start items-center gap-4 flex-col bg-blackBackrow text-greenBackrow w-96 pt-4"
+    class="absolute right-0 opacity-90 top-9 ease-in-out duration-200 transition-all rounded-md flex justify-start items-center gap-4 flex-col bg-blackBackrow text-greenBackrow w-96 pt-4"
     :class="{'h-3/5': showEditForm, 'h-2/5': !showEditForm }"
     >
     <div class="flex">

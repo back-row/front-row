@@ -59,7 +59,7 @@ async function login() {
 <template>
   <div
     ref="closingTarget"
-    class="absolute right-0 top-9 ease-in-out duration-200 rounded-md flex items-center gap-4 flex-col bg-blackBackrow text-greenBackrow h-48 w-96"
+    class="opacity-90 absolute right-0 top-9 ease-in-out duration-200 rounded-md flex items-center gap-4 flex-col bg-blackBackrow text-greenBackrow h-48 w-96"
   >
     <form @submit.prevent="login">
       <div class="flex flex-col">
