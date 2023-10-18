@@ -74,15 +74,16 @@ export default class MainScene extends Phaser.Scene {
     if (layer3) {
       this.physics.add.collider(this.player, layer3);
     }
-    // this.physics.add.collider(this.player, this.finish, () => {
-    //   this.scene.pause('MainScene');
-    //   this.mapStore.updateMapScore(this.mapStore.map.score, this.mapStore.map.id);
-    //   this.mapStore.map.score = 100;
-    //   setTimeout(() => {
-    //     playerStore.playerPosition.atEnd = true;
-    //   }, 1500);
-    // });
-    if (this.mapStore.map.id === 1) {
+    this.physics.add.collider(this.player, this.finish, () => {
+      this.scene.pause('MainScene');
+      this.mapStore.updateMapScore(this.mapStore.map.score, this.mapStore.map.id);
+      this.mapStore.map.score = 100;
+      setTimeout(() => {
+        playerStore.playerPosition.atEnd = true;
+      }, 1500);
+    });
+
+    if (this.mapStore.map.id === 5) {
       this.spike = new Spikes(this, 295, 285, 'spikes');
       this.spike2 = new Spikes(this, 295, 305, 'spikes');
       this.spike.create();
@@ -119,7 +120,7 @@ export default class MainScene extends Phaser.Scene {
     this.player?.update();
     this.finish?.update();
 
-    if (this.mapStore.map.id === 1) {
+    if (this.mapStore.map.id === 5) {
       this.spike?.update();
       this.spike2?.update();
       if (playerStore.playerPosition.hideSpikes) {
@@ -129,6 +130,7 @@ export default class MainScene extends Phaser.Scene {
           this.physics.world.removeCollider(collider);
         });
         this.spikecolliders = [];
+        playerStore.playerPosition.hideSpikes = false;
       }
     }
   }
