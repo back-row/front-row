@@ -1,15 +1,23 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import { reactive } from 'vue';
 import { useUserStore } from '@/stores/user';
 import router from '@/router';
-const userStore = useUserStore();
+import { onClickOutside } from '@vueuse/core'
 
-const emit = defineEmits(['close']);
+const userStore = useUserStore();
+const emit = defineEmits(['close','closeOutside']);
 
 const data = reactive({
   username: '',
   password: ''
 });
+const target = ref(null)
+
+onClickOutside(target, (event: MouseEvent) => {
+ emit('closeOutside')
+})
+
 
 async function login() {
   try {
@@ -50,6 +58,7 @@ async function login() {
 
 <template>
   <div
+    ref="target"
     class="absolute right-0 top-9 ease-in-out duration-200 rounded-md flex items-center gap-4 flex-col bg-blackBackrow text-greenBackrow h-48 w-96"
   >
     <form @submit.prevent="login">
