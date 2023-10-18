@@ -3,8 +3,10 @@ import Player from '../player';
 import { usePlayerStore } from '@/stores/player';
 import { useMapStore } from '@/stores/map';
 import Finish from '../finish';
+import Spikes from '../spikes';
 import tilesetImport from '../assets/map/tiles/DungeonPrison/Tiles.png';
 import tilesetImportProps from '../assets/map/tiles/DungeonPrison/Props.png';
+
 const mapPath = 'src/game/assets/map/maps/';
 
 const playerStore = usePlayerStore();
@@ -12,6 +14,7 @@ const playerStore = usePlayerStore();
 export default class MainScene extends Phaser.Scene {
   player: Player | undefined;
   finish: Finish | undefined;
+  spike: Spikes | undefined;
 
   private mapStore: ReturnType<typeof useMapStore>;
 
@@ -25,11 +28,12 @@ export default class MainScene extends Phaser.Scene {
     const mapStore = useMapStore();
     Player.preload(this);
     Finish.preload(this);
+    Spikes.preload(this);
 
     this.load.image('tiles', tilesetImport);
     this.load.image('props', tilesetImportProps);
 
-    this.load.tilemapTiledJSON('map', `${mapPath}${mapStore.map.mapJSON}.json`);
+    this.load.tilemapTiledJSON('map', `${mapPath}mapFive.json`);
   }
 
   create() {
@@ -57,25 +61,27 @@ export default class MainScene extends Phaser.Scene {
       'princess',
       'princess_idle_1'
     );
+    this.spike = new Spikes(this, 295, 295, 'spikes');
 
     playerStore.playerPosition.player = this.player;
-
     this.player.create();
     this.finish.create();
+    this.spike.create();
+
     if (layer2) {
       this.physics.add.collider(this.player, layer2);
     }
     if (layer3) {
       this.physics.add.collider(this.player, layer3);
     }
-    this.physics.add.collider(this.player, this.finish, () => {
-      this.scene.pause('MainScene');
-      this.mapStore.updateMapScore(this.mapStore.map.score, this.mapStore.map.id);
-      this.mapStore.map.score = 100;
-      setTimeout(() => {
-        playerStore.playerPosition.atEnd = true;
-      }, 1500);
-    });
+    // this.physics.add.collider(this.player, this.finish, () => {
+    //   this.scene.pause('MainScene');
+    //   this.mapStore.updateMapScore(this.mapStore.map.score, this.mapStore.map.id);
+    //   this.mapStore.map.score = 100;
+    //   setTimeout(() => {
+    //     playerStore.playerPosition.atEnd = true;
+    //   }, 1500);
+    // });
 
     // this is for testing
     this.input.keyboard!.on('keydown', (event: KeyboardEvent) => {
@@ -103,5 +109,6 @@ export default class MainScene extends Phaser.Scene {
   update() {
     this.player?.update();
     this.finish?.update();
+    this.spike?.update();
   }
 }
