@@ -135,6 +135,7 @@ export default class MainScene extends Phaser.Scene {
       }
 
       if (this.mapStore.map.reset) {
+        console
         this.scene.restart();
         this.mapStore.map.reset = false;
         this.mapStore.map.score = MAX_SCORE;

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
 import { useMapStore } from '@/stores/map';
-import router from '@/router';
 import { ref } from 'vue';
 
 const mapStore = useMapStore();
@@ -11,8 +10,8 @@ const showModal = ref(true);
 
 const startGame = async (map: number) => {
   showModal.value = false;
-  //  await mapStore.getMapFromDb(2);
-  
+   await mapStore.getMapFromDb(2);
+ 
 };
 </script>
 <template>
