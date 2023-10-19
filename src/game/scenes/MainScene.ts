@@ -3,8 +3,10 @@ import Player from '../player';
 import { usePlayerStore } from '@/stores/player';
 import { useMapStore } from '@/stores/map';
 import Finish from '../finish';
+import Spikes from '../spikes';
 import tilesetImport from '../assets/map/tiles/DungeonPrison/Tiles.png';
 import tilesetImportProps from '../assets/map/tiles/DungeonPrison/Props.png';
+
 const mapPath = 'src/game/assets/map/maps/';
 const MAX_SCORE = 100;
 
@@ -13,6 +15,9 @@ const playerStore = usePlayerStore();
 export default class MainScene extends Phaser.Scene {
   player: Player | undefined;
   finish: Finish | undefined;
+  spike: Spikes | undefined;
+  spike2: Spikes | undefined;
+  spikecolliders: Phaser.Physics.Arcade.Collider[] | undefined;
 
   private mapStore: ReturnType<typeof useMapStore>;
 
@@ -26,11 +31,12 @@ export default class MainScene extends Phaser.Scene {
     const mapStore = useMapStore();
     Player.preload(this);
     Finish.preload(this);
+    Spikes.preload(this);
 
     this.load.image('tiles', tilesetImport);
     this.load.image('props', tilesetImportProps);
 
-    this.load.tilemapTiledJSON('map', `${mapPath}${mapStore.map.mapJSON}.json`);
+    this.load.tilemapTiledJSON('map', `${mapPath}mapFive.json`);
   }
 
   create() {
@@ -60,9 +66,9 @@ export default class MainScene extends Phaser.Scene {
     );
 
     playerStore.playerPosition.player = this.player;
-
     this.player.create();
     this.finish.create();
+
     if (layer2) {
       this.physics.add.collider(this.player, layer2);
     }
@@ -77,6 +83,16 @@ export default class MainScene extends Phaser.Scene {
         playerStore.playerPosition.atEnd = true;
       }, 1500);
     });
+
+    if (this.mapStore.map.id === 5) {
+      this.spike = new Spikes(this, 295, 285, 'spikes');
+      this.spike2 = new Spikes(this, 295, 305, 'spikes');
+      this.spike.create();
+      this.spike2.create();
+      this.spikecolliders = [];
+      this.spikecolliders.push(this.physics.add.collider(this.player, this.spike));
+      this.spikecolliders.push(this.physics.add.collider(this.player, this.spike2));
+    }
 
     // this is for testing
     this.input.keyboard!.on('keydown', (event: KeyboardEvent) => {
@@ -105,10 +121,24 @@ export default class MainScene extends Phaser.Scene {
     this.player?.update();
     this.finish?.update();
 
+    if (this.mapStore.map.id === 5) {
+      this.spike?.update();
+      this.spike2?.update();
+      if (playerStore.playerPosition.hideSpikes) {
+        this.spike!.hideSpike = true;
+        this.spike2!.hideSpike = true;
+        this.spikecolliders?.forEach((collider) => {
+          this.physics.world.removeCollider(collider);
+        });
+        this.spikecolliders = [];
+        playerStore.playerPosition.hideSpikes = false;
+      }
+
     if (this.mapStore.map.reset) {
       this.scene.restart();
       this.mapStore.map.reset = false;
       this.mapStore.map.score = MAX_SCORE;
+
     }
   }
 }

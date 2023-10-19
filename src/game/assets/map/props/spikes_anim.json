@@ -1,0 +1,72 @@
+{
+  "anims": [
+    {
+      "key": "spike_down",
+      "type": "frames",
+      "repeat": -1,
+      "frameRate": 12,
+      "frames": [
+        {
+          "key": "spikes",
+          "frame": "spikes_anim_f2"
+        }
+      ]
+    },
+    {
+      "key": "spike_lower",
+      "type": "frames",
+      "repeat": -1,
+      "frameRate": 8,
+      "frames": [
+        {
+          "key": "spikes",
+          "frame": "spikes_anim_f9"
+        },
+        {
+          "key": "spikes",
+          "frame": "spikes_anim_f8"
+        },
+        {
+          "key": "spikes",
+          "frame": "spikes_anim_f7"
+        },
+        {
+          "key": "spikes",
+          "frame": "spikes_anim_f6"
+        },
+        {
+          "key": "spikes",
+          "frame": "spikes_anim_f5"
+        },
+        {
+          "key": "spikes",
+          "frame": "spikes_anim_f4"
+        },
+        {
+          "key": "spikes",
+          "frame": "spikes_anim_f3"
+        }
+      ]
+    },
+    {
+      "key": "spike_up",
+      "type": "frames",
+      "repeat": -1,
+      "frameRate": 6,
+      "frames": [
+        {
+          "key": "spikes",
+          "frame": "spikes_anim_f8"
+        },
+        {
+          "key": "spikes",
+          "frame": "spikes_anim_f9"
+        },
+        {
+          "key": "spikes",
+          "frame": "spikes_anim_f7"
+        }
+      ]
+    }
+  ]
+}

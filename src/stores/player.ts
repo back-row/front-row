@@ -14,7 +14,8 @@ export const usePlayerStore = defineStore('player', () => {
     player: null as Player | null,
     x: 0,
     y: 0,
-    atEnd: false
+    atEnd: false,
+    hideSpikes: false
   });
 
   const moveUp = async () => {
@@ -31,6 +32,11 @@ export const usePlayerStore = defineStore('player', () => {
 
   const moveRight = async () => {
     if (playerPosition.value.player) playerPosition.value.player.setVelocityX(200);
+  };
+
+  const hideSpikes = async () => {
+    playerPosition.value.hideSpikes = true;
+    await new Promise((resolve) => setTimeout(resolve, 500));
   };
 
   const movePlayer = async (direction: Direction) => {
@@ -54,5 +60,5 @@ export const usePlayerStore = defineStore('player', () => {
     playerPosition.value.player!.setVelocity(0);
   };
 
-  return { playerPosition, movePlayer };
+  return { playerPosition, movePlayer, hideSpikes };
 });

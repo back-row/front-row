@@ -14,6 +14,12 @@ const answers: Ref<answer[]> = ref([]);
 const question = ref('');
 const easyMode = ref(false);
 const emit = defineEmits(['easyMode']);
+enum Direction {
+  Up = 'up',
+  Down = 'down',
+  Left = 'left',
+  Right = 'right'
+}
 
 onMounted(() => {
   getAnswers(mapStore.map.quizId).then((obj) => [
@@ -34,7 +40,28 @@ const setDifficulty = () => {
 
 const onSubmit = async () => {
   for (const element of selectedAnswer.value) {
-    await playerStore.movePlayer(element);
+    console.log(element);
+    switch (element) {
+      case 'hide(spikes)':
+        await playerStore.hideSpikes();
+        console.log('hide spikes');
+        break;
+      case 'up':
+        await playerStore.movePlayer(Direction.Up);
+        break;
+      case 'down':
+        await playerStore.movePlayer(Direction.Down);
+        break;
+      case 'left':
+        await playerStore.movePlayer(Direction.Left);
+        break;
+      case 'right':
+        await playerStore.movePlayer(Direction.Right);
+        break;
+      default:
+        console.log('You fail', element);
+        break;
+    }
   }
   mapStore.map.score = mapStore.map.score - 50;
 };
