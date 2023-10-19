@@ -8,6 +8,7 @@ import tilesetImport from '../assets/map/tiles/DungeonPrison/Tiles.png';
 import tilesetImportProps from '../assets/map/tiles/DungeonPrison/Props.png';
 
 const mapPath = 'src/game/assets/map/maps/';
+const MAX_SCORE = 100;
 
 const playerStore = usePlayerStore();
 
@@ -77,7 +78,7 @@ export default class MainScene extends Phaser.Scene {
     this.physics.add.collider(this.player, this.finish, () => {
       this.scene.pause('MainScene');
       this.mapStore.updateMapScore(this.mapStore.map.score, this.mapStore.map.id);
-      this.mapStore.map.score = 100;
+      this.mapStore.map.score = MAX_SCORE;
       setTimeout(() => {
         playerStore.playerPosition.atEnd = true;
       }, 1500);
@@ -132,6 +133,12 @@ export default class MainScene extends Phaser.Scene {
         this.spikecolliders = [];
         playerStore.playerPosition.hideSpikes = false;
       }
+
+    if (this.mapStore.map.reset) {
+      this.scene.restart();
+      this.mapStore.map.reset = false;
+      this.mapStore.map.score = MAX_SCORE;
+
     }
   }
 }

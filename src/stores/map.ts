@@ -28,7 +28,8 @@ export const useMapStore = defineStore('map', () => {
     score: 100,
     startLocationX: 0,
     startLocationY: 0,
-    mapJSON: 'mapOne'
+    mapJSON: 'mapOne',
+    reset: false
   });
 
   async function getMapFromDb(id: number) {
