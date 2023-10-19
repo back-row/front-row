@@ -12,13 +12,14 @@ const userLevel = ref(0);
 const numberOfMaps = ref(0);
 
 onMounted(() => {
+  getNumberOfMaps().then((obj) => (numberOfMaps.value = parseInt(obj)));
   userLevel.value = userStore.user.level;
 });
 
-onMounted(() => {
-  getNumberOfMaps().then((obj) => (numberOfMaps.value = parseInt(obj)));
-});
-
+const startGame = async (map: number) => {
+  await mapStore.getMapFromDb(map);
+  mapStore.map.resetKey += 1;
+};
 const selectProgress = (value: number) => {
   let progress = '';
 
@@ -49,7 +50,7 @@ const selectProgress = (value: number) => {
               <button
                 v-if="userLevel >= index + 1"
                 class="w-16 h-6 rounded-lg text-whiteBackRow bg-greenBackrow hover:animate-pulse"
-                @click="mapStore.getMapFromDb(index + 1)"
+                @click="startGame(index + 1)"
               >
                 Play
               </button>
