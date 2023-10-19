@@ -17,7 +17,7 @@ const changeDifficulty = () => {
 <template>
   <section class="gamePage m-6 grid grid-cols-1 sm:flex sm:flex-row justify-center">
     <div class="gameArea">
-      <GameContainer class="ml-6"/>
+      <GameContainer />
     </div>
     <div class="sideArea mx-6">
       <MissionContainer />
@@ -30,18 +30,4 @@ const changeDifficulty = () => {
   </section>
 </template>
 
-<style scoped>
-/* .gamePage {
-  display: flex;
-  margin: 20px;
-}
-
-.gameArea {
-  margin-right: 20px;
-  width: 100%;
-}
-
-.sideArea {
-  width: 100%;
-} */
-</style>
+<style scoped></style>

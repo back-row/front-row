@@ -3,7 +3,7 @@ import { onMounted, onUnmounted } from 'vue';
 import type { Game } from 'phaser';
 
 let gameInstance: Game | null = null;
-const containerId = 'game-container';
+const containerId = 'gamecontainer';
 const game = await import('@/game/game');
 
 onMounted(() => {
@@ -12,6 +12,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   gameInstance?.destroy(false);
+  location.reload();
 });
 </script>
 

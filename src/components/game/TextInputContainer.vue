@@ -67,7 +67,7 @@ const onSubmit = async () => {
 <template>
   <div class="relative bg-[#2C3540] h-80 sm:w-128 p-2 pt-4 rounded-sm">
     <div class="bg-[#E5E5E5] h-4/5 w-full">
-      <div class="question">{{ question }}</div>
+      <div class="question m-1">{{ question }}</div>
       <div class="flex items-start justify-center">
         <textarea
           v-model="userInput"
