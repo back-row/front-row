@@ -18,8 +18,8 @@ onMounted(() => {
 
 const startGame = async (map: number) => {
   await mapStore.getMapFromDb(map);
-  mapStore.map.resetKey += 1;
 };
+
 const selectProgress = (value: number) => {
   let progress = '';
 
