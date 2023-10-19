@@ -22,12 +22,9 @@ const currentMap = ref<tutorial>({
 
 const tutorialDescription = ref<string[]>([]);
 
-// Here is hook happen
 onMounted(async () => {
   currentMap.value = await getTutorial(mapStore.map.id);
-  // console.log(currentMap.value);
-  tutorialDescription.value = currentMap.value.tutorialdescription.split(/[\n.}]+ /);
-  console.log(tutorialDescription.value);
+  tutorialDescription.value = currentMap.value.tutorialdescription.split(/(?<=[.}] |\n)/);
 });
 
 async function getTutorial(id: number) {
