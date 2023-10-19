@@ -14,8 +14,6 @@ export const usePlayerStore = defineStore('player', () => {
     player: null as Player | null,
     x: 0,
     y: 0,
-    //TODO: get mapId from ? player status?
-    mapId: 1,
     atEnd: false
   });
 
