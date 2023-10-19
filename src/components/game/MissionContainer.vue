@@ -66,8 +66,8 @@ async function getTutorial(id: number) {
         </p>
       </div>
     </div>
-    <div class="flex flex-col bg-whiteBackRow">
-      <p v-for="(line, key) in tutorialDescription" class="text-blackBackrow" :key="key">
+    <div class="flex flex-col bg-whiteBackRow mt-1">
+      <p v-for="(line, key) in tutorialDescription" class="text-blackBackrow m-1" :key="key">
         {{ line }}
       </p>
     </div>
