@@ -26,10 +26,10 @@ export const useMapStore = defineStore('map', () => {
     endLocationY: 0,
     tutorialId: 0,
     score: 100,
-    //TODO: add this to db
     startLocationX: 0,
     startLocationY: 0,
-    mapJSON: 'mapOne'
+    mapJSON: 'mapOne',
+    reset: false
   });
 
   async function getMapFromDb(id: number) {

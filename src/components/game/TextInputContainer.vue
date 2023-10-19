@@ -10,13 +10,11 @@ const userInput = ref('');
 const question = ref('');
 const easyMode = ref(false);
 const emit = defineEmits(['easyMode']);
-const inputValue = '';
-
 
 const resetButton = () => {
-    userInput.value = inputValue;
+  userInput.value = '';
+  mapStore.map.reset = true;
 };
-
 
 enum Direction {
   Up = 'up',
@@ -85,8 +83,8 @@ const onSubmit = async () => {
       Quiz mode
     </button>
     <button
-    @click="resetButton"
-    class="hover:animate-pulse bg-greenBackrow h-10 w-20 m-2 rounded-md flex items-center justify-center absolute bottom-0 right-28 text-whiteBackRow"
+      @click="resetButton"
+      class="hover:animate-pulse bg-greenBackrow h-10 w-20 m-2 rounded-md flex items-center justify-center absolute bottom-0 right-28 text-whiteBackRow"
     >
       Reset
     </button>

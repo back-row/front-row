@@ -2,8 +2,6 @@ import Player from '@/game/player';
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 
-
-
 enum Direction {
   Up = 'up',
   Down = 'down',
@@ -16,8 +14,6 @@ export const usePlayerStore = defineStore('player', () => {
     player: null as Player | null,
     x: 0,
     y: 0,
-    //TODO: get mapId from ? player status?
-    mapId: 1,
     atEnd: false
   });
 
@@ -37,11 +33,6 @@ export const usePlayerStore = defineStore('player', () => {
     if (playerPosition.value.player) playerPosition.value.player.setVelocityX(200);
   };
 
-  const resetPlayer = async () => {
-    if (playerPosition.value.player) playerPosition.value.player.setVelocityX(200);
-  };
-
-  
   const movePlayer = async (direction: Direction) => {
     console.log('movePlayer', direction);
 
@@ -63,11 +54,5 @@ export const usePlayerStore = defineStore('player', () => {
     playerPosition.value.player!.setVelocity(0);
   };
 
- 
   return { playerPosition, movePlayer };
 });
-
-
-
-
-
