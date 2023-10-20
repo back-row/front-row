@@ -133,12 +133,11 @@ export default class MainScene extends Phaser.Scene {
         this.spikecolliders = [];
         playerStore.playerPosition.hideSpikes = false;
       }
-
-      if (this.mapStore.map.reset) {
-        this.scene.restart();
-        this.mapStore.map.reset = false;
-        this.mapStore.map.score = MAX_SCORE;
-      }
+    }
+    if (this.mapStore.map.reset) {
+      this.scene.restart();
+      this.mapStore.map.reset = false;
+      this.mapStore.map.score = MAX_SCORE;
     }
   }
 }
