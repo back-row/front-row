@@ -26,7 +26,7 @@ onMounted(async () => {
         </li>
       </ol>
     </div>
-    <router-link to="/game" v-show="userStore.user.id !== 0">
+    <router-link to="/level" v-show="userStore.user.id !== 0">
       <button
         @click="mapStore.getMapFromDb(userStore.user.level)"
         class="w-64 h-16 m-4 rounded-lg text-2xl text-whiteBackRow bg-greenBackrow hover:animate-pulse"
