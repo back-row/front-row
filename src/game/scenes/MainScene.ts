@@ -7,8 +7,13 @@ import Spikes from '../spikes';
 import tilesetImport from '../assets/map/tiles/DungeonPrison/Tiles.png';
 import tilesetImportProps from '../assets/map/tiles/DungeonPrison/Props.png';
 
+import coinImg from '../assets/map/props/coin.png';
+import coinAtlas from '../assets/map/props/coin_atlas.json';
+import coinAnim from '../assets/map/props/coin_anim.json';
+
 const mapPath = 'src/game/assets/map/maps/';
 const MAX_SCORE = 100;
+let coins = 0;
 
 const playerStore = usePlayerStore();
 
@@ -37,6 +42,9 @@ export default class MainScene extends Phaser.Scene {
     this.load.image('props', tilesetImportProps);
 
     this.load.tilemapTiledJSON('map', `${mapPath}${mapStore.map.mapJSON}.json`);
+
+    this.load.atlas('coin', coinImg, coinAtlas);
+    this.load.json('coin_anim', coinAnim);
   }
 
   create() {
@@ -50,6 +58,35 @@ export default class MainScene extends Phaser.Scene {
 
     layer2!.setCollisionByProperty({ collides: true });
     layer3!.setCollisionByProperty({ collides: true });
+
+    const coinsTop = this.physics.add.group({
+      key: 'coin',
+      repeat: 1,
+      setXY: { x: 200, y: 200, stepX: 400 }
+    });
+    const coinsBottom = this.physics.add.group({
+      key: 'coin',
+      repeat: 1,
+      setXY: { x: 200, y: 400, stepX: 400 }
+    });
+    const animData = this.cache.json.get('coin_anim');
+    this.anims.fromJSON(animData);
+
+    coinsTop.playAnimation('rotate');
+    coinsBottom.playAnimation('rotate');
+
+    coinsTop.children.iterate((coin) => {
+      coin.setCircle(8);
+    });
+
+    coinsBottom.children.iterate((coin) => {
+      coin.setCircle(8);
+    });
+
+    const collectCoin = (player: Player, coin: Phaser.Physics.Arcade.Sprite) => {
+      coin.disableBody(true, true);
+      coins += 1;
+    };
 
     this.player = new Player(
       this,
@@ -68,6 +105,9 @@ export default class MainScene extends Phaser.Scene {
     playerStore.playerPosition.player = this.player;
     this.player.create();
     this.finish.create();
+
+    this.physics.add.overlap(this.player, coinsTop, collectCoin, undefined, this);
+    this.physics.add.overlap(this.player, coinsBottom, collectCoin, undefined, this);
 
     if (layer2) {
       this.physics.add.collider(this.player, layer2);
@@ -93,7 +133,6 @@ export default class MainScene extends Phaser.Scene {
       this.spikecolliders.push(this.physics.add.collider(this.player, this.spike));
       this.spikecolliders.push(this.physics.add.collider(this.player, this.spike2));
     }
-
     // this is for testing
     this.input.keyboard!.on('keydown', (event: KeyboardEvent) => {
       switch (event.key) {
@@ -120,6 +159,9 @@ export default class MainScene extends Phaser.Scene {
   update() {
     this.player?.update();
     this.finish?.update();
+    if (coins === 4) {
+      console.log('you win');
+    }
 
     if (this.mapStore.map.id === 5) {
       this.spike?.update();
