@@ -7,6 +7,10 @@ import Spikes from '../spikes';
 import tilesetImport from '../assets/map/tiles/DungeonPrison/Tiles.png';
 import tilesetImportProps from '../assets/map/tiles/DungeonPrison/Props.png';
 
+import executionerImg from '../assets/characters/executioner.png';
+import executionerAtlas from '../assets/characters/executioner_atlas.json';
+import executionerAnim from '../assets/characters/executioner_anim.json';
+
 import coinImg from '../assets/map/props/coin.png';
 import coinAtlas from '../assets/map/props/coin_atlas.json';
 import coinAnim from '../assets/map/props/coin_anim.json';
@@ -45,6 +49,8 @@ export default class MainScene extends Phaser.Scene {
 
     this.load.atlas('coin', coinImg, coinAtlas);
     this.load.json('coin_anim', coinAnim);
+    this.load.atlas('executioner', executionerImg, executionerAtlas);
+    this.load.json('executioner_anim', executionerAnim);
   }
 
   create() {
@@ -58,35 +64,6 @@ export default class MainScene extends Phaser.Scene {
 
     layer2!.setCollisionByProperty({ collides: true });
     layer3!.setCollisionByProperty({ collides: true });
-
-    const coinsTop = this.physics.add.group({
-      key: 'coin',
-      repeat: 1,
-      setXY: { x: 200, y: 200, stepX: 400 }
-    });
-    const coinsBottom = this.physics.add.group({
-      key: 'coin',
-      repeat: 1,
-      setXY: { x: 200, y: 400, stepX: 400 }
-    });
-    const animData = this.cache.json.get('coin_anim');
-    this.anims.fromJSON(animData);
-
-    coinsTop.playAnimation('rotate');
-    coinsBottom.playAnimation('rotate');
-
-    coinsTop.children.iterate((coin) => {
-      coin.setCircle(8);
-    });
-
-    coinsBottom.children.iterate((coin) => {
-      coin.setCircle(8);
-    });
-
-    const collectCoin = (player: Player, coin: Phaser.Physics.Arcade.Sprite) => {
-      coin.disableBody(true, true);
-      coins += 1;
-    };
 
     this.player = new Player(
       this,
@@ -106,8 +83,42 @@ export default class MainScene extends Phaser.Scene {
     this.player.create();
     this.finish.create();
 
-    this.physics.add.overlap(this.player, coinsTop, collectCoin, undefined, this);
-    this.physics.add.overlap(this.player, coinsBottom, collectCoin, undefined, this);
+    if (this.mapStore.map.id === 4) {
+      const executionerAnimData = this.cache.json.get('executioner_anim');
+      this.anims.fromJSON(executionerAnimData);
+      const executioner = this.physics.add
+        .sprite(400, 180, 'executioner')
+        .anims.play('executioner_idle');
+      executioner.setImmovable(true);
+      this.physics.add.collider(this.player, executioner);
+
+      const coinsTop = this.physics.add.group({
+        key: 'coin',
+        repeat: 1,
+        setXY: { x: 200, y: 200, stepX: 400 }
+      });
+      const coinsBottom = this.physics.add.group({
+        key: 'coin',
+        repeat: 1,
+        setXY: { x: 200, y: 400, stepX: 400 }
+      });
+      const coinAnimData = this.cache.json.get('coin_anim');
+      this.anims.fromJSON(coinAnimData);
+
+      coinsTop.playAnimation('rotate');
+      coinsBottom.playAnimation('rotate');
+
+      coinsTop.children.iterate((coin) => {
+        coin.setCircle(8);
+      });
+
+      coinsBottom.children.iterate((coin) => {
+        coin.setCircle(8);
+      });
+
+      this.physics.add.overlap(this.player, coinsTop, collectCoin, undefined, this);
+      this.physics.add.overlap(this.player, coinsBottom, collectCoin, undefined, this);
+    }
 
     if (layer2) {
       this.physics.add.collider(this.player, layer2);
@@ -183,4 +194,8 @@ export default class MainScene extends Phaser.Scene {
       }
     }
   }
+}
+function collectCoin(player, coin) {
+  coin.disableBody(true, true);
+  coins += 1;
 }
