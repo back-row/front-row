@@ -14,11 +14,13 @@ import executionerAnim from '../assets/characters/executioner_anim.json';
 import coinImg from '../assets/map/props/coin.png';
 import coinAtlas from '../assets/map/props/coin_atlas.json';
 import coinAnim from '../assets/map/props/coin_anim.json';
+import type { argv0 } from 'process';
 
 const mapPath = 'src/game/assets/map/maps/';
 const MAX_SCORE = 100;
 let coins = 0;
 
+let executioner = null;
 const playerStore = usePlayerStore();
 
 export default class MainScene extends Phaser.Scene {
@@ -86,10 +88,9 @@ export default class MainScene extends Phaser.Scene {
     if (this.mapStore.map.id === 4) {
       const executionerAnimData = this.cache.json.get('executioner_anim');
       this.anims.fromJSON(executionerAnimData);
-      const executioner = this.physics.add
-        .sprite(400, 180, 'executioner')
-        .anims.play('executioner_idle');
+      executioner = this.physics.add.sprite(400, 180, 'executioner').anims.play('executioner_idle');
       executioner.setImmovable(true);
+      executioner.setCircle(16, 0, 4);
       this.physics.add.collider(this.player, executioner);
 
       const coinsTop = this.physics.add.group({
@@ -172,6 +173,13 @@ export default class MainScene extends Phaser.Scene {
     this.finish?.update();
     if (coins === 4) {
       console.log('you win');
+      this.tweens.add({
+        targets: executioner!,
+        x: 300,
+        duration: 2000,
+        ease: 'linear',
+        repeat: 0
+      });
     }
 
     if (this.mapStore.map.id === 5) {
