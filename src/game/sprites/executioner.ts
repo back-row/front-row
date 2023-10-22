@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
-import executionerImg from './assets/characters/executioner.png';
-import executionerAtlas from './assets/characters/executioner_atlas.json';
-import executionerAnim from './assets/characters/executioner_anim.json';
+import executionerImg from '../assets/characters/executioner.png';
+import executionerAtlas from '../assets/characters/executioner_atlas.json';
+import executionerAnim from '../assets/characters/executioner_anim.json';
 
 export default class Executioner extends Phaser.Physics.Arcade.Sprite {
   hideSpike = false;

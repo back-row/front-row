@@ -1,4 +1,4 @@
-import Player from '@/game/player';
+import Player from '@/game/sprites/player';
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 

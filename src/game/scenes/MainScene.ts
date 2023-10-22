@@ -1,10 +1,10 @@
 import 'phaser';
-import Player from '../player';
+import Player from '../sprites/player';
 import { usePlayerStore } from '@/stores/player';
 import { useMapStore } from '@/stores/map';
-import Finish from '../finish';
-import Spikes from '../spikes';
-import Map4 from '../map4';
+import Finish from '../sprites/finish';
+import Spikes from '../sprites/spikes';
+import Map4 from '../sprites/map4';
 import tilesetImport from '../assets/map/tiles/DungeonPrison/Tiles.png';
 import tilesetImportProps from '../assets/map/tiles/DungeonPrison/Props.png';
 

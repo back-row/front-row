@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
-import coinImg from './assets/map/props/coin.png';
-import coinAtlas from './assets/map/props/coin_atlas.json';
-import coinAnim from './assets/map/props/coin_anim.json';
+import coinImg from '../assets/map/props/coin.png';
+import coinAtlas from '../assets/map/props/coin_atlas.json';
+import coinAnim from '../assets/map/props/coin_anim.json';
 import { useMapStore } from '@/stores/map';
 import Executioner from './executioner';
 
