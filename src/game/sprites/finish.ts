@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
-import princessImg from './assets/characters/princess.png';
-import princessAtlas from './assets/characters/princess_atlas.json';
-import princessAnim from './assets/characters/princess_anim.json';
+import princessImg from '../assets/characters/princess.png';
+import princessAtlas from '../assets/characters/princess_atlas.json';
+import princessAnim from '../assets/characters/princess_anim.json';
 
 export default class Finish extends Phaser.Physics.Arcade.Sprite {
   constructor(
