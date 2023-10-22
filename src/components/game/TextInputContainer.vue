@@ -45,6 +45,12 @@ const parseUserInput = async (stringArray: string[]) => {
       case 'hide(spikes)':
         await playerStore.hideSpikes();
         break;
+      case 'coin += 1':
+        if (mapStore.map.touchCoin) mapStore.map.collectCoin = true;
+        break;
+      case 'coin = coin + 1':
+        if (mapStore.map.touchCoin) mapStore.map.collectCoin = true;
+        break;
       default:
         console.log('You fail', s);
         break;

@@ -14,7 +14,6 @@ import executionerAnim from '../assets/characters/executioner_anim.json';
 import coinImg from '../assets/map/props/coin.png';
 import coinAtlas from '../assets/map/props/coin_atlas.json';
 import coinAnim from '../assets/map/props/coin_anim.json';
-import type { argv0 } from 'process';
 
 const mapPath = 'src/game/assets/map/maps/';
 const MAX_SCORE = 100;
@@ -22,6 +21,7 @@ let coins = 0;
 
 let executioner = null;
 const playerStore = usePlayerStore();
+const mapStore = useMapStore();
 
 export default class MainScene extends Phaser.Scene {
   player: Player | undefined;
@@ -171,8 +171,8 @@ export default class MainScene extends Phaser.Scene {
   update() {
     this.player?.update();
     this.finish?.update();
+
     if (coins === 4) {
-      console.log('you win');
       this.tweens.add({
         targets: executioner!,
         x: 300,
@@ -204,6 +204,11 @@ export default class MainScene extends Phaser.Scene {
   }
 }
 function collectCoin(player, coin) {
-  coin.disableBody(true, true);
-  coins += 1;
+  mapStore.map.touchCoin = true;
+  if (mapStore.map.collectCoin) {
+    coins += 1;
+    mapStore.map.collectCoin = false;
+    mapStore.map.touchCoin = false;
+    coin.disableBody(true, true);
+  }
 }
