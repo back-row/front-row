@@ -31,7 +31,9 @@ export const useMapStore = defineStore('map', () => {
     mapJSON: 'mapOne',
     reset: false,
     collectCoin: false,
-    touchCoin: false
+    touchCoin: false,
+    bribeGuard: false,
+    touchGuard: false
   });
 
   async function getMapFromDb(id: number) {

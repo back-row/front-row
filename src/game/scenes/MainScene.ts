@@ -91,7 +91,10 @@ export default class MainScene extends Phaser.Scene {
       executioner = this.physics.add.sprite(400, 180, 'executioner').anims.play('executioner_idle');
       executioner.setImmovable(true);
       executioner.setCircle(16, 0, 4);
-      this.physics.add.collider(this.player, executioner);
+      this.physics.add.collider(this.player, executioner, () => {
+        mapStore.map.touchGuard = true;
+        console.log('touch guard');
+      });
 
       const coinsTop = this.physics.add.group({
         key: 'coin',
@@ -172,7 +175,8 @@ export default class MainScene extends Phaser.Scene {
     this.player?.update();
     this.finish?.update();
 
-    if (coins === 4) {
+    if (coins === 4 && this.mapStore.map.bribeGuard) {
+      console.log('bribe');
       this.tweens.add({
         targets: executioner!,
         x: 300,
