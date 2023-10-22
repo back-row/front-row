@@ -90,6 +90,7 @@ const onSubmit = async () => {
     </div>
     <button
       @click.prevent="setDifficulty"
+      v-show="mapStore.map.id !== 4"
       class="hover:animate-pulse bg-greenBackrow h-10 w-20 m-2 rounded-md flex items-center justify-center absolute bottom-0 left-0 text-whiteBackRow"
     >
       Quiz mode
