@@ -1,17 +1,16 @@
-<script setup lang='ts'>
+<script setup lang="ts">
 import { reactive, ref } from 'vue';
 import type { Ref } from 'vue';
-import { onClickOutside } from '@vueuse/core'
+import { onClickOutside } from '@vueuse/core';
 
-type avatar = { name: string; src: string};
+type avatar = { name: string; src: string };
 
-const emit = defineEmits(['close','closeOutside']);
-const closingTarget = ref(null)
+const emit = defineEmits(['close', 'closeOutside']);
+const closingTarget = ref(null);
 
 onClickOutside(closingTarget, (event: MouseEvent) => {
- emit('closeOutside')
-})
-
+  emit('closeOutside');
+});
 
 const data = reactive({
   username: '',
@@ -21,13 +20,12 @@ const data = reactive({
 });
 
 const avatars: Ref<avatar[]> = ref([
-    {name: 'Boy1', src: 'boy1'},
-    {name: 'Ghoul', src: 'ghoul'},
-    {name: 'Girl1', src: 'girl1'},
-    {name: 'Girl2', src: 'girl2'},
-    {name: 'Masked', src: 'maskedr'}
-    ])
-
+  { name: 'Boy1', src: 'boy1' },
+  { name: 'Ghoul', src: 'ghoul' },
+  { name: 'Girl1', src: 'girl1' },
+  { name: 'Girl2', src: 'girl2' },
+  { name: 'Masked', src: 'maskedr' }
+]);
 
 async function signUp() {
   try {
@@ -47,42 +45,48 @@ async function signUp() {
     console.error('An error occurred:', error);
   }
 }
+const handleIconClick = (node, e) => {
+  node.props.suffixIcon = node.props.suffixIcon === 'eye' ? 'eyeClosed' : 'eye';
+  node.props.type = node.props.type === 'password' ? 'text' : 'password';
+};
 </script>
 
 <template>
   <div
     ref="closingTarget"
-    class='opacity-90 absolute right-0 top-9 ease-in-out duration-200 rounded-md flex justify-center bg-blackBackrow text-greenBackrow h-64 w-96 p-6'
+    class="opacity-90 absolute right-0 top-9 ease-in-out duration-200 rounded-md flex justify-center bg-blackBackrow text-greenBackrow h-64 w-96 p-6"
   >
-    <form @submit.prevent='signUp'>
+    <form @submit.prevent="signUp">
       <div class="flex">
-        <div class='flex flex-col w-1/2'>
-          <label class='text-whiteBackRow' for='username'><b>Username</b></label>
-          <input
-            class='w-36'
-            v-model='data.username'
-            type='text'
-            placeholder='Enter Username'
-            name='username'
-            required
+        <div class="flex flex-col w-1/2">
+          <FormKit
+            id="username"
+            label="Username"
+            type="text"
+            validation="required|alpha|length:2"
+            placeholder="Enter Username"
+            v-model="data.username"
           />
-          <label class='text-whiteBackRow pt-2' for='email'><b>Email</b></label>
-          <input
-            class='w-36'
-            v-model='data.email'
-            type='text'
-            placeholder='Enter Email'
-            name='email'
-            required
+          <FormKit
+            id="email"
+            label="Email"
+            type="text"
+            validation="required|email"
+            placeholder="Enter Email"
+            v-model="data.email"
           />
-          <label class='text-whiteBackRow pt-2' for='password'><b>Password</b></label>
-          <input
-            class='w-36'
-            type='password'
-            v-model='data.password'
-            placeholder='Enter Password'
-            name='password'
-            required
+          <FormKit
+            id="password"
+            label="Password"
+            type="password"
+            validation="required|length:6|matches:/[^a-zA-Z]/"
+            :validation-messages="{
+              matches: 'Please include at least one symbol'
+            }"
+            placeholder="Enter Password"
+            v-model="data.password"
+            suffix-icon="eyeClosed"
+            @suffix-icon-click="handleIconClick"
           />
         </div>
         <div class="flex">
@@ -92,14 +96,21 @@ async function signUp() {
               <label class="text-whiteBackRow">{{ avatar.name }}</label>
             </div>
           </div>
-          <img class="w-20 h-20 m-2 mt-6" :src="'src/assets/avatars/' + data.avatar + '.png'" alt="Picked avatar" />
+          <img
+            class="w-20 h-20 m-2 mt-6"
+            :src="'src/assets/avatars/' + data.avatar + '.png'"
+            alt="Picked avatar"
+          />
         </div>
       </div>
-      <div class="flex justify-center">  
-        <button @click="$emit('close')"
-          type='submit'
-          class='hover:animate-pulse bg-greenBackrow h-8 w-20 m-4 rounded-md text-whiteBackRow'
-          >Sign up</button>
+      <div class="flex justify-center">
+        <button
+          @click="$emit('close')"
+          type="submit"
+          class="hover:animate-pulse bg-greenBackrow h-8 w-20 m-4 rounded-md text-whiteBackRow"
+        >
+          Sign up
+        </button>
       </div>
     </form>
   </div>

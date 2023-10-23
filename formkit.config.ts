@@ -2,7 +2,7 @@ import { en } from '@formkit/i18n';
 import { type DefaultConfigOptions } from '@formkit/vue';
 import { generateClasses } from '@formkit/themes';
 import { genesisIcons } from '@formkit/icons';
-import { myTailwindTheme } from './tailwind-formkit.js';
+import myTailwindTheme from './tailwind-formkit';
 
 const config: DefaultConfigOptions = {
   icons: {
