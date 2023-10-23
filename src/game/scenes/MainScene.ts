@@ -26,18 +26,19 @@ export default class MainScene extends Phaser.Scene {
 
     this.mapStore = useMapStore();
   }
-
   preload() {
     const mapStore = useMapStore();
     Player.preload(this);
     Finish.preload(this);
     Spikes.preload(this);
+    Map4.preload(this);
 
     this.load.image('tiles', tilesetImport);
     this.load.image('props', tilesetImportProps);
 
     this.load.tilemapTiledJSON('map', `${mapPath}${mapStore.map.mapJSON}.json`);
   }
+
 
   create() {
     const map = this.make.tilemap({ key: 'map' });
