@@ -61,7 +61,6 @@ const handleIconClick = (node, e) => {
       <div class="flex">
         <div class="flex flex-col w-1/2">
           <FormKit
-            id="username"
             label="Username"
             type="text"
             validation="required|alpha|length:1"
@@ -69,7 +68,6 @@ const handleIconClick = (node, e) => {
             v-model="data.username"
           />
           <FormKit
-            id="email"
             label="Email"
             type="text"
             validation="required|email"
