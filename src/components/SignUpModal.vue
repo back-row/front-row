@@ -29,7 +29,7 @@ const avatars: Ref<avatar[]> = ref([
 
 async function signUp() {
   try {
-    await fetch('http://localhost:8000/users', {
+    const response = await fetch('http://localhost:8000/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -41,6 +41,10 @@ async function signUp() {
         usersimage: data.avatar
       })
     });
+    if (!response.ok) {
+      alert('Sign up failed! Please try again.');
+      throw new Error('Sign up failed!');
+    }
     alert('Sign up successful!');
   } catch (error) {
     console.error('An error occurred:', error);
