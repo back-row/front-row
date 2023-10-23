@@ -1,8 +1,11 @@
 /** @type {import('tailwindcss').Config} */
+const FormKitVariants = require('@formkit/themes/tailwindcss');
+
 export const content = [
   './index.html',
   './src/components/**/*.{vue,js,ts,jsx,tsx}',
-  './src/views/*.{vue,js,ts,jsx,tsx'
+  './src/views/*.{vue,js,ts,jsx,tsx',
+  './tailwind-formkit.js'
 ];
 export const theme = {
   extend: {
@@ -19,5 +22,5 @@ export const theme = {
     }
   }
 };
-export const plugins = [];
+export const plugins = [FormKitVariants];
 export const darkMode = 'class';
