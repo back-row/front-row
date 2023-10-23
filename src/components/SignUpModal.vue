@@ -4,6 +4,7 @@ import type { Ref } from 'vue';
 import { onClickOutside } from '@vueuse/core'
 import { useUserStore } from '@/stores/user';
 import router from '@/router';
+import { login } from '@/stores/auth';
 
 type avatar = { name: string; src: string};
 
@@ -51,43 +52,18 @@ async function signUp() {
   }
 }
 
-async function login() {
-  console.log('login in FETCH')
-  try {
-    await new Promise(resolve => setTimeout(resolve, 1000)); 
-    const response = await fetch('http://localhost:8000/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        username: data.username,
-        password: data.password
-      })
-    });
-    const token = response.headers.get('Authorization');
 
-    if (token) {
-      localStorage.setItem('Authorization', token);
+async function handleLogin() {
+  const userData = await login(data.username, data.password);
 
-      console.log('Login successful');
-      const response = await fetch('http://localhost:8000/users/', {
-        method: 'GET',
-        headers: {
-          Authorization: localStorage.getItem('Authorization')!
-        }
-      });
-      const data = await response.json();
-      userStore.setUser(data);
-      emit('close');
-      router.push({ name: 'home' });
-    } else {
-      console.error('Login failed');
-    }
-  } catch (error) {
-    console.error('An error occurred:', error);
+  if (userData) {
+    userStore.setUser(userData);
+    emit('close');
+    router.push({ name: 'home' });
   }
 }
+
+
 </script>
 
 <template>
@@ -138,7 +114,7 @@ async function login() {
       </div>
       <div class="flex justify-center">  
         <button 
-          @click="login"
+          @click="handleLogin"
           type='submit'
           class='hover:animate-pulse bg-greenBackrow h-8 w-20 m-4 rounded-md text-whiteBackRow'
           >Sign up</button>
