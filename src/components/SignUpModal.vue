@@ -2,11 +2,15 @@
 import { reactive, ref } from 'vue';
 import type { Ref } from 'vue';
 import { onClickOutside } from '@vueuse/core'
+import { useUserStore } from '@/stores/user';
+import router from '@/router';
+import { login } from '@/stores/auth';
 
 type avatar = { name: string; src: string};
 
 const emit = defineEmits(['close','closeOutside']);
 const closingTarget = ref(null)
+const userStore = useUserStore();
 
 onClickOutside(closingTarget, (event: MouseEvent) => {
  emit('closeOutside')
@@ -47,6 +51,19 @@ async function signUp() {
     console.error('An error occurred:', error);
   }
 }
+
+
+async function handleLogin() {
+  const userData = await login(data.username, data.password);
+
+  if (userData) {
+    userStore.setUser(userData);
+    emit('close');
+    router.push({ name: 'home' });
+  }
+}
+
+
 </script>
 
 <template>
@@ -96,7 +113,8 @@ async function signUp() {
         </div>
       </div>
       <div class="flex justify-center">  
-        <button @click="$emit('close')"
+        <button 
+          @click="handleLogin"
           type='submit'
           class='hover:animate-pulse bg-greenBackrow h-8 w-20 m-4 rounded-md text-whiteBackRow'
           >Sign up</button>

@@ -4,6 +4,7 @@ import { reactive } from 'vue';
 import { useUserStore } from '@/stores/user';
 import router from '@/router';
 import { onClickOutside } from '@vueuse/core'
+import { login } from '@/stores/auth';
 
 const userStore = useUserStore();
 const emit = defineEmits(['close','closeOutside']);
@@ -19,41 +20,17 @@ onClickOutside(closingTarget, (event: MouseEvent) => {
 })
 
 
-async function login() {
-  try {
-    const response = await fetch('http://localhost:8000/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        username: data.username,
-        password: data.password
-      })
-    });
-    const token = response.headers.get('Authorization');
+async function handleLogin() {
+  const userData = await login(data.username, data.password);
 
-    if (token) {
-      localStorage.setItem('Authorization', token);
-
-      console.log('Login successful');
-      const response = await fetch('http://localhost:8000/users/', {
-        method: 'GET',
-        headers: {
-          Authorization: localStorage.getItem('Authorization')!
-        }
-      });
-      const data = await response.json();
-      userStore.setUser(data);
-      emit('close');
-      router.push({ name: 'home' });
-    } else {
-      console.error('Login failed');
-    }
-  } catch (error) {
-    console.error('An error occurred:', error);
+  if (userData) {
+    userStore.setUser(userData);
+    emit('close');
+    router.push({ name: 'home' });
   }
 }
+
+
 </script>
 
 <template>
@@ -61,7 +38,7 @@ async function login() {
     ref="closingTarget"
     class="opacity-90 absolute right-0 top-9 ease-in-out duration-200 rounded-md flex items-center gap-4 flex-col bg-blackBackrow text-greenBackrow h-48 w-96"
   >
-    <form @submit.prevent="login">
+    <form @submit.prevent="handleLogin">
       <div class="flex flex-col">
         <label class="text-whiteBackRow" for="username"><b>Username</b></label>
         <input
