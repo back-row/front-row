@@ -30,6 +30,7 @@ export default class MainScene extends Phaser.Scene {
 
     this.mapStore = useMapStore();
   }
+  
   preload() {
     const mapStore = useMapStore();
     Player.preload(this);
@@ -42,7 +43,6 @@ export default class MainScene extends Phaser.Scene {
 
     this.load.tilemapTiledJSON('map', `${mapPath}${mapStore.map.mapJSON}.json`);
   }
-
 
   create() {
     const map = this.make.tilemap({ key: 'map' });
