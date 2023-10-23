@@ -7,6 +7,7 @@
     "src/**/*.ts",
     "src/game/**/*.ts",
     "src/game/*.ts",
+    "src/game/sprites/*.ts",
     "src/game/assets/characters/*.json",
     "src/game/assets/map/props/*.json"
   ],

@@ -20,9 +20,11 @@ const currentMap = ref<tutorial>({
   tutorialhint: ''
 });
 
-// Here is hook happen
+const tutorialDescription = ref<string[]>([]);
+
 onMounted(async () => {
   currentMap.value = await getTutorial(mapStore.map.id);
+  tutorialDescription.value = currentMap.value.tutorialdescription.split(/(?<=[.}] |\n)/);
 });
 
 async function getTutorial(id: number) {
@@ -37,7 +39,7 @@ async function getTutorial(id: number) {
 </script>
 
 <template>
-  <div class="relative bg-[#2C3540] h-64 sm:w-128 mb-3 p-2 pt-10 rounded-sm">
+  <div class="flex relative bg-[#2C3540] sm:w-128 mb-3 p-2 pt-10 rounded-sm">
     <button class="hover:animate-pulse" @click="showJson">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -64,8 +66,10 @@ async function getTutorial(id: number) {
         </p>
       </div>
     </div>
-    <div class="bg-whiteBackRow h-4/5">
-      <p class="text-blackBackrow">{{ currentMap.tutorialdescription }}</p>
+    <div class="flex flex-col bg-whiteBackRow mt-1">
+      <p v-for="(line, key) in tutorialDescription" class="text-blackBackrow m-1" :key="key">
+        {{ line }}
+      </p>
     </div>
   </div>
 </template>

@@ -1,9 +1,11 @@
 import 'phaser';
-import Player from '../player';
+import Player from '../sprites/player';
 import { usePlayerStore } from '@/stores/player';
+import { useUserStore } from '@/stores/user';
 import { useMapStore } from '@/stores/map';
-import Finish from '../finish';
-import Spikes from '../spikes';
+import Finish from '../sprites/finish';
+import Spikes from '../sprites/spikes';
+import Map4 from '../sprites/map4';
 import tilesetImport from '../assets/map/tiles/DungeonPrison/Tiles.png';
 import tilesetImportProps from '../assets/map/tiles/DungeonPrison/Props.png';
 
@@ -11,6 +13,7 @@ const mapPath = 'src/game/assets/map/maps/';
 const MAX_SCORE = 100;
 
 const playerStore = usePlayerStore();
+const userStore = useUserStore();
 
 export default class MainScene extends Phaser.Scene {
   player: Player | undefined;
@@ -18,6 +21,7 @@ export default class MainScene extends Phaser.Scene {
   spike: Spikes | undefined;
   spike2: Spikes | undefined;
   spikecolliders: Phaser.Physics.Arcade.Collider[] | undefined;
+  map4: Map4 | undefined;
 
   private mapStore: ReturnType<typeof useMapStore>;
 
@@ -70,14 +74,21 @@ export default class MainScene extends Phaser.Scene {
     this.player.create();
     this.finish.create();
 
+    if (this.mapStore.map.id === 4) {
+      this.map4 = new Map4(this, 200, 180, 'map4');
+      this.map4.create(this.player);
+    }
+
     if (layer2) {
       this.physics.add.collider(this.player, layer2);
     }
     if (layer3) {
       this.physics.add.collider(this.player, layer3);
     }
+
     this.physics.add.collider(this.player, this.finish, () => {
       this.scene.pause('MainScene');
+      userStore.user.level += 1;
       this.mapStore.updateMapScore(this.mapStore.map.score, this.mapStore.map.id);
       this.mapStore.map.score = MAX_SCORE;
       setTimeout(() => {
@@ -94,7 +105,6 @@ export default class MainScene extends Phaser.Scene {
       this.spikecolliders.push(this.physics.add.collider(this.player, this.spike));
       this.spikecolliders.push(this.physics.add.collider(this.player, this.spike2));
     }
-
     // this is for testing
     this.input.keyboard!.on('keydown', (event: KeyboardEvent) => {
       switch (event.key) {
@@ -121,6 +131,7 @@ export default class MainScene extends Phaser.Scene {
   update() {
     this.player?.update();
     this.finish?.update();
+    if (this.mapStore.map.id === 4) this.map4?.update();
 
     if (this.mapStore.map.id === 5) {
       this.spike?.update();
@@ -134,12 +145,11 @@ export default class MainScene extends Phaser.Scene {
         this.spikecolliders = [];
         playerStore.playerPosition.hideSpikes = false;
       }
-
-      if (this.mapStore.map.reset) {
-        this.scene.restart();
-        this.mapStore.map.reset = false;
-        this.mapStore.map.score = MAX_SCORE;
-      }
+    }
+    if (this.mapStore.map.reset) {
+      this.scene.restart();
+      this.mapStore.map.reset = false;
+      this.mapStore.map.score = MAX_SCORE;
     }
   }
 }

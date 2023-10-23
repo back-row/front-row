@@ -45,6 +45,15 @@ const parseUserInput = async (stringArray: string[]) => {
       case 'hide(spikes)':
         await playerStore.hideSpikes();
         break;
+      case 'coin += 1':
+        if (mapStore.map.touchCoin) mapStore.map.collectCoin = true;
+        break;
+      case 'coin = coin + 1':
+        if (mapStore.map.touchCoin) mapStore.map.collectCoin = true;
+        break;
+      case 'bribe()':
+        if (mapStore.map.touchGuard) mapStore.map.bribeGuard = true;
+        break;
       default:
         console.log('You fail', s);
         break;
@@ -67,7 +76,7 @@ const onSubmit = async () => {
 <template>
   <div class="relative bg-[#2C3540] h-80 sm:w-128 p-2 pt-4 rounded-sm">
     <div class="bg-[#E5E5E5] h-4/5 w-full">
-      <div class="question">{{ question }}</div>
+      <div class="question m-1">{{ question }}</div>
       <div class="flex items-start justify-center">
         <textarea
           v-model="userInput"
@@ -81,6 +90,7 @@ const onSubmit = async () => {
     </div>
     <button
       @click.prevent="setDifficulty"
+      v-show="mapStore.map.id !== 4"
       class="hover:animate-pulse bg-greenBackrow h-10 w-20 m-2 rounded-md flex items-center justify-center absolute bottom-0 left-0 text-whiteBackRow"
     >
       Quiz mode

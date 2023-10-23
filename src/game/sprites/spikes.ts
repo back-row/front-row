@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
-import spikeImg from './assets/map/props/spikes.png';
-import spikeAtlas from './assets/map/props/spikes_atlas.json';
-import spikeAnim from './assets/map/props/spikes_anim.json';
+import spikeImg from '../assets/map/props/spikes.png';
+import spikeAtlas from '../assets/map/props/spikes_atlas.json';
+import spikeAnim from '../assets/map/props/spikes_anim.json';
 
 export default class Spikes extends Phaser.Physics.Arcade.Sprite {
   hideSpike = false;

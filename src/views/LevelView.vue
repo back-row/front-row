@@ -6,6 +6,4 @@ import LevelComponent from '@/components/level/LevelComponent.vue';
   <LevelComponent />
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
