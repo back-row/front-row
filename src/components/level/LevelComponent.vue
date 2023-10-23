@@ -28,24 +28,27 @@ const selectProgress = (value: number) => {
   else progress = 'Not started';
   return progress;
 };
+
+const getScore = 100;
 </script>
 
 <template>
   <div class="flex justify-center">
     <table
-      class="inline-block table-fixed border-spacing-3 bg-[#E5E5E5] w-2/3 sm:w-1/2 max-h-[400px] mt-32 rounded-lg pt-10 overflow-y-scroll text-blackBackrow"
+      class="table-auto bg-[#E5E5E5] w-2/3 sm:w-1/2 max-h-[400px] mt-32 rounded-lg pt-10 text-blackBackrow"
     >
       <thead>
         <tr>
-          <th>Level</th>
+          <th class="py-4">Level</th>
           <th></th>
           <th>Status</th>
+          <th>Your score</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(number, index) in numberOfMaps" :key="number" class="odd:bg-gray-300">
-          <td class="text-center w-1/2 p-2">{{ index + 1 + '.' }}</td>
-          <td class="text-center w-fit">
+          <td class="text-center p-2">{{ index + 1 + '.' }}</td>
+          <td class="text-center">
             <router-link to="/game">
               <button
                 v-if="userLevel >= index + 1"
@@ -56,7 +59,8 @@ const selectProgress = (value: number) => {
               </button>
             </router-link>
           </td>
-          <td class="text-center w-1/2">{{ selectProgress(index + 1) }}</td>
+          <td class="text-center">{{ selectProgress(index + 1) }}</td>
+          <td class="text-center">{{ getScore }}</td>
         </tr>
       </tbody>
     </table>
