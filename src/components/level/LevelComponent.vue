@@ -44,16 +44,17 @@ const selectProgress = (value: number) => {
     >
       <thead>
         <tr>
-          <th class="py-4 text-lg">Level</th>
+          <th class="py-4 p-2 text-lg">Level</th>
           <th></th>
           <th class="text-lg">Status</th>
-          <th class="text-lg">Your score</th>
+          <th class="text-lg p-2">Score</th>
+          <th class="text-lg p-2">Stars</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(number, index) in numberOfMaps" :key="number" class="odd:bg-gray-300">
           <td class="text-center p-2">{{ index + 1 + '.' }}</td>
-          <td class="text-center">
+          <td class="text-center p-2">
             <router-link to="/game">
               <button
                 v-if="userLevel >= index + 1"
@@ -67,6 +68,26 @@ const selectProgress = (value: number) => {
           <td class="text-center">{{ selectProgress(index + 1) }}</td>
           <td class="text-center">
             {{ mapScores[index] ? mapScores[index].userscorescore : '0' }}
+          </td>
+          <td class="flex flex-col justify-center items-center md:flex-row">
+            <img
+              v-if="mapScores[index].userscorescore >= 30"
+              class="w-4 h-4 md:w-8 md:h-8"
+              src="../../assets/starfilled.png"
+            />
+            <img v-else class="w-4 h-4 md:w-8 md:h-8" src="../../assets/starunfilled.png" />
+            <img
+              v-if="mapScores[index].userscorescore >= 50"
+              class="w-4 h-4 md:w-8 md:h-8"
+              src="../../assets/starfilled.png"
+            />
+            <img v-else class="w-4 h-4 md:w-8 md:h-8" src="../../assets/starunfilled.png" />
+            <img
+              v-if="mapScores[index].userscorescore >= 80"
+              class="w-4 h-4 md:w-8 md:h-8"
+              src="../../assets/starfilled.png"
+            />
+            <img v-else class="w-4 h-4 md:w-8 md:h-8" src="../../assets/starunfilled.png" />
           </td>
         </tr>
       </tbody>
