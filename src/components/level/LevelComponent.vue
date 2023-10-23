@@ -1,19 +1,26 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
-import { getNumberOfMaps } from '@/utility/utility';
+import { getMapScores, getNumberOfMaps, type MapScore } from '@/utility/utility';
 import { useMapStore } from '@/stores/map';
 import { useUserStore } from '@/stores/user';
 
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, type Ref } from 'vue';
 
 const mapStore = useMapStore();
 const userStore = useUserStore();
 const userLevel = ref(0);
 const numberOfMaps = ref(0);
+const mapScores: Ref<MapScore[]> = ref([]);
 
-onMounted(() => {
+onMounted(async () => {
   getNumberOfMaps().then((obj) => (numberOfMaps.value = parseInt(obj)));
   userLevel.value = userStore.user.level;
+
+  mapScores.value = await getMapScores();
+  mapScores.value.sort((a: MapScore, b: MapScore) => {
+    return a.userscoremapid - b.userscoremapid;
+  });
+  console.log(mapScores.value[1]);
 });
 
 const startGame = async (map: number) => {
@@ -28,8 +35,6 @@ const selectProgress = (value: number) => {
   else progress = 'Not started';
   return progress;
 };
-
-const getScore = 100;
 </script>
 
 <template>
@@ -39,10 +44,10 @@ const getScore = 100;
     >
       <thead>
         <tr>
-          <th class="py-4">Level</th>
+          <th class="py-4 text-lg">Level</th>
           <th></th>
-          <th>Status</th>
-          <th>Your score</th>
+          <th class="text-lg">Status</th>
+          <th class="text-lg">Your score</th>
         </tr>
       </thead>
       <tbody>
@@ -60,7 +65,9 @@ const getScore = 100;
             </router-link>
           </td>
           <td class="text-center">{{ selectProgress(index + 1) }}</td>
-          <td class="text-center">{{ getScore }}</td>
+          <td class="text-center">
+            {{ mapScores[index] ? mapScores[index].userscorescore : '0' }}
+          </td>
         </tr>
       </tbody>
     </table>
