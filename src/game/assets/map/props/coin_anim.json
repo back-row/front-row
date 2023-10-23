@@ -1,0 +1,32 @@
+{
+    "anims": [
+        {
+            "key": "rotate",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 8,
+            "frames": [
+                {
+                    "key": "coin",
+                    "frame": "coin_0"
+                },
+                {
+                    "key": "coin",
+                    "frame": "coin_1"
+                },
+                {
+                    "key": "coin",
+                    "frame": "coin_2"
+                },
+                {
+                    "key": "coin",
+                    "frame": "coin_3"
+                },
+                {
+                    "key": "coin",
+                    "frame": "coin_4"
+                }
+            ]
+        }
+    ]
+}
