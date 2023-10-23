@@ -30,7 +30,6 @@ export default class MainScene extends Phaser.Scene {
 
     this.mapStore = useMapStore();
   }
-  
   preload() {
     const mapStore = useMapStore();
     Player.preload(this);
