@@ -9,9 +9,6 @@ type scores = { usersname: string; userstotalscore: number };
 const userStore = useUserStore();
 const mapStore = useMapStore();
 const highScore: Ref<scores[]> = ref([]);
-const numberOfMaps = ref(0);
-const userLevel = ref(0);
-
 
 onMounted(async () => {
   highScore.value = await getHighScore();
