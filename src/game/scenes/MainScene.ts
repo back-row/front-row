@@ -1,6 +1,7 @@
 import 'phaser';
 import Player from '../sprites/player';
 import { usePlayerStore } from '@/stores/player';
+import { useUserStore } from '@/stores/user';
 import { useMapStore } from '@/stores/map';
 import Finish from '../sprites/finish';
 import Spikes from '../sprites/spikes';
@@ -12,6 +13,7 @@ const mapPath = 'src/game/assets/map/maps/';
 const MAX_SCORE = 100;
 
 const playerStore = usePlayerStore();
+const userStore = useUserStore();
 
 export default class MainScene extends Phaser.Scene {
   player: Player | undefined;
@@ -86,6 +88,7 @@ export default class MainScene extends Phaser.Scene {
 
     this.physics.add.collider(this.player, this.finish, () => {
       this.scene.pause('MainScene');
+      userStore.user.level += 1;
       this.mapStore.updateMapScore(this.mapStore.map.score, this.mapStore.map.id);
       this.mapStore.map.score = MAX_SCORE;
       setTimeout(() => {
