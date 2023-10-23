@@ -41,6 +41,7 @@ async function signUp() {
         usersimage: data.avatar
       })
     });
+    alert('Sign up successful!');
   } catch (error) {
     console.error('An error occurred:', error);
   }
@@ -54,7 +55,7 @@ const handleIconClick = (node, e) => {
 <template>
   <div
     ref="closingTarget"
-    class="opacity-90 absolute right-0 top-9 ease-in-out duration-200 rounded-md flex justify-center bg-blackBackrow text-greenBackrow h-64 w-96 p-6"
+    class="opacity-90 absolute right-0 top-9 ease-in-out duration-200 rounded-md flex justify-center bg-blackBackrow text-greenBackrow p-6"
   >
     <form @submit.prevent="signUp">
       <div class="flex">
@@ -63,7 +64,7 @@ const handleIconClick = (node, e) => {
             id="username"
             label="Username"
             type="text"
-            validation="required|alpha|length:2"
+            validation="required|alpha|length:1"
             placeholder="Enter Username"
             v-model="data.username"
           />
@@ -89,7 +90,7 @@ const handleIconClick = (node, e) => {
             @suffix-icon-click="handleIconClick"
           />
         </div>
-        <div class="flex">
+        <div class="flex items-center">
           <div class="flex flex-col w-20 ml-2 mt-4">
             <div v-for="avatar in avatars" :key="avatar.src">
               <input type="radio" :value="avatar.src" v-model="data.avatar" />
