@@ -21,7 +21,7 @@ const startGame = async (map: number) => {
     >
     <img
     class="max-w-full max-h-full m-4 pt-10 px-20 rounded-lg"
-    src="../../assets/finish.png"
+    src="../../assets/nextLvl.jpg"
     alt="finish"
     />
     
