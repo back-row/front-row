@@ -9,6 +9,9 @@ type scores = { usersname: string; userstotalscore: number };
 const userStore = useUserStore();
 const mapStore = useMapStore();
 const highScore: Ref<scores[]> = ref([]);
+const numberOfMaps = ref(0);
+const userLevel = ref(0);
+
 
 onMounted(async () => {
   highScore.value = await getHighScore();
@@ -19,12 +22,19 @@ onMounted(async () => {
   <div class="flex flex-col items-center">
     <div class="bg-whiteBackRow md:w-1/2 mt-20 rounded-lg text-blackBackrow">
       <h1 class="text-center sm:text-3xl mt-12 mb-6">HIGH SCORE</h1>
-      <ol class="list-decimal list-inside mx-12 md:text-lg md:ml-32 md:mr-32 mb-12">
-        <li v-for="score in highScore" :key="score.usersname" class="odd:bg-gray-300">
-          <span class="pl-3">{{ score.usersname }}</span>
-          <span class="float-right">{{ score.userstotalscore }}</span>
-        </li>
-      </ol>
+
+      <tbody>
+        <tr v-for="(score,index) in highScore" :key="score.usersname" class="odd:bg-gray-300">
+          <td class="text-center w-1/2 p-2 ">
+           <span class="pl-44 float-left">{{ index + 1 + '. ' }}</span>
+           <span class="pl-5 float-left">{{ score.usersname }}</span>
+          </td>
+          <td class="text-center w-1/2">{{ score.userstotalscore  }}</td>
+          <td class="text-right w-1/2">{{ }}</td>
+          <td class="text-center w-1/2">{{ }}</td>
+
+        </tr>
+      </tbody>
     </div>
     <router-link to="/level" v-show="userStore.user.id !== 0">
       <button
