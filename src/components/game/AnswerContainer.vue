@@ -45,7 +45,7 @@ const setDifficulty = () => {
 };
 
 const onSubmit = async () => {
-  mapStore.map.score = mapStore.map.score - 50;
+  mapStore.map.score = mapStore.map.score - 70;
   for (const element of selectedAnswer.value) {
     console.log(element);
     switch (element) {
