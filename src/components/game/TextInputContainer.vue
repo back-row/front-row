@@ -31,7 +31,7 @@ const parseUserInput = async (stringArray: string[]) => {
   for (const s of stringArray) {
 
 
-    let regex = /^hero\.(\w+)\(\d+\)$/;
+    let regex = /^hero\.(up|down|right|left)\(\d+\)$/;
     let argument = 0;
 
     if (s.match(regex)) {
@@ -44,14 +44,20 @@ const parseUserInput = async (stringArray: string[]) => {
         await playerStore.movePlayer(Direction.Up);
       }
         break;
-      case 'hero.down()':
+      case 'hero.down(' + argument + ')':
+      for (let i = 0; i < argument;i++) {
         await playerStore.movePlayer(Direction.Down);
+      }
         break;
-      case 'hero.left()':
+      case 'hero.left(' + argument + ')':
+      for (let i = 0; i < argument;i++) {
         await playerStore.movePlayer(Direction.Left);
+      }
         break;
-      case 'hero.right()':
+      case 'hero.right(' + argument + ')':
+      for (let i = 0; i < argument;i++) {
         await playerStore.movePlayer(Direction.Right);
+      }
         break;
       case 'hide(spikes)':
         await playerStore.hideSpikes();
