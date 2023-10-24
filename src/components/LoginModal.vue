@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import { reactive } from 'vue';
 import { useUserStore } from '@/stores/user';
 import router from '@/router';
-import { onClickOutside } from '@vueuse/core'
+import { onClickOutside } from '@vueuse/core';
 import { login } from '@/stores/auth';
 
 const userStore = useUserStore();
@@ -19,13 +19,13 @@ onClickOutside(closingTarget, (event: MouseEvent) => {
   emit('closeOutside');
 });
 
-async function handleLogin() {
-  const userData = await login(data.username, data.password);
-
-const handleIconClick = (node, e) => {
+const handleIconClick = (node: { props: { suffixIcon: string; type: string } }, _e: any) => {
   node.props.suffixIcon = node.props.suffixIcon === 'eye' ? 'eyeClosed' : 'eye';
   node.props.type = node.props.type === 'password' ? 'text' : 'password';
 };
+
+async function handleLogin() {
+  const userData = await login(data.username, data.password);
 
   if (userData) {
     userStore.setUser(userData);
@@ -33,7 +33,6 @@ const handleIconClick = (node, e) => {
     router.push({ name: 'home' });
   }
 }
-
 </script>
 
 <template>
