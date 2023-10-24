@@ -29,9 +29,20 @@ onMounted(() => {
 
 const parseUserInput = async (stringArray: string[]) => {
   for (const s of stringArray) {
+
+
+    let regex = /^hero\.(\w+)\(\d+\)$/;
+    let argument = 0;
+
+    if (s.match(regex)) {
+      argument = parseInt(s.substring(s.length -2 , s.length -1))
+    }
+
     switch (s) {
-      case 'hero.up()':
+      case 'hero.up(' + argument + ')':
+        for (let i = 0; i < argument;i++) {
         await playerStore.movePlayer(Direction.Up);
+      }
         break;
       case 'hero.down()':
         await playerStore.movePlayer(Direction.Down);
