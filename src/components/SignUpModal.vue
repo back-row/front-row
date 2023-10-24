@@ -113,7 +113,7 @@ async function handleLogin() {
         <div class="flex items-center">
           <div class="flex flex-col w-20 ml-2 mt-4">
             <div v-for="avatar in avatars" :key="avatar.src">
-              <input type="radio" :value="avatar.src" v-model="data.avatar" />
+              <input type="radio" class='accent-greenBackrow' :value="avatar.src" v-model="data.avatar" />
               <label class="text-whiteBackRow">{{ avatar.name }}</label>
             </div>
           </div>

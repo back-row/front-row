@@ -80,7 +80,7 @@ const onSubmit = async () => {
       <div v-for="answer in answers" :key="answer.choice" class="flex items-center ml-4">
         <input
           type="radio"
-          class="border-blackBackRow border-2 w-4 h-4 accent-blackBackRow"
+          class="border-blackBackRow border-2 w-4 h-4 accent-greenBackrow"
           v-model="selectedAnswer"
           :value="answer.answer"
         />

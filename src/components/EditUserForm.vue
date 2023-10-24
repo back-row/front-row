@@ -49,7 +49,7 @@ async function editUser() {
           <div class="flex">
             <div class="flex flex-col w-1/2">
               <div v-for="avatar in avatars" :key="avatar.src">
-                <input type="radio" :value="avatar.src" v-model="data.avatar" />
+                <input type="radio" class='accent-greenBackrow' :value="avatar.src" v-model="data.avatar" />
                 <label class="text-whiteBackRow">{{ avatar.name }}</label>
               </div>
             </div>
