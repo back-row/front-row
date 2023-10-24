@@ -2,8 +2,8 @@
 
 <template>
   <div class="flex flex-col items-center">
-    <header class="text-3xl text-center md:text-7xl text-[#E5E5E5] m-8">About Us</header>
-    <div class="flex container bg-[#E5E5E5] w-4/5 rounded-2xl">
+    <header class="text-3xl text-center md:text-7xl text-whiteBackRow m-8">About Us</header>
+    <div class="flex container bg-whiteBackRow w-4/5 rounded-2xl">
       <p class="p-4 text-center md:text-xl md:p-24 md:py-10">
         In Back Row, we've turned learning to code into a thrilling adventure! Here we've
         transformed learning to code into an exhilarating adventure! Whether you're a beginner or an

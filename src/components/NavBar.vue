@@ -38,7 +38,7 @@ const toggle = (event: any) => {
 </script>
 
 <template>
-  <nav class="flex items-center bg-blackBackrow text-greenBackrow text-center h-10">
+  <nav class="flex items-center bg-blackBackRow text-greenBackRow text-center h-10">
     <button
       class="ml-3 w-1/3 md:hidden"
       type="button"
