@@ -33,7 +33,7 @@ const selectProgress = (value: number) => {
 <template>
   <div class="flex justify-center">
     <table
-      class="inline-block table-fixed border-spacing-3 bg-[#E5E5E5] w-2/3 sm:w-1/2 max-h-[400px] mt-32 rounded-lg pt-10 overflow-y-scroll text-blackBackrow"
+      class=" inline-block table-fixed border-spacing-3 bg-[#E5E5E5] w-2/3 sm:w-1/2 max-h-[400px] mt-32 rounded-lg pt-10 overflow-y-scroll text-blackBackrow"
     >
       <thead>
         <tr>

@@ -17,19 +17,18 @@ onMounted(async () => {
 
 <template>
   <div class="flex flex-col items-center">
-    <div class="bg-whiteBackRow md:w-1/2 mt-20 rounded-lg text-blackBackrow">
+    <div
+      class="inline-block table-fixed bg-[#E5E5E5] w-2/3 sm:w-1/2 max-h-[400px] mt-32 rounded-lg pt-10 overflow-y-scroll text-blackBackrow"
+    >
       <h1 class="text-center sm:text-3xl mt-12 mb-6">HIGH SCORE</h1>
 
       <tbody>
-        <tr v-for="(score,index) in highScore" :key="score.usersname" class="odd:bg-gray-300">
-          <td class="text-center w-1/2 p-2 ">
-           <span class="pl-44 float-left">{{ index + 1 + '. ' }}</span>
-           <span class="pl-5 float-left">{{ score.usersname }}</span>
-          </td>
-          <td class="text-center w-1/2">{{ score.userstotalscore  }}</td>
-          <td class="text-right w-1/2">{{ }}</td>
-          <td class="text-center w-1/2">{{ }}</td>
-
+        <tr v-for="(score, index) in highScore" :key="score.usersname" class="odd:bg-gray-300">
+          
+          <td class="text-right  w-128 p-2">{{ index + 1 + '.' }} </td>
+          <td class="text-left w-1/2">{{ score.usersname }}</td>
+          <td class="text-left w-1/4">{{ score.userstotalscore }}</td>
+          
         </tr>
       </tbody>
     </div>
