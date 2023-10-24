@@ -20,7 +20,6 @@ onMounted(async () => {
   mapScores.value.sort((a: MapScore, b: MapScore) => {
     return a.userscoremapid - b.userscoremapid;
   });
-  console.log(mapScores.value[1]);
 });
 
 const startGame = async (map: number) => {
@@ -71,19 +70,19 @@ const selectProgress = (value: number) => {
           </td>
           <td class="flex flex-col justify-center items-center md:flex-row">
             <img
-              v-if="mapScores[index].userscorescore >= 30"
+              v-if="mapScores[index] && mapScores[index].userscorescore >= 30"
               class="w-4 h-4 md:w-8 md:h-8"
               src="../../assets/starfilled.png"
             />
             <img v-else class="w-4 h-4 md:w-8 md:h-8" src="../../assets/starunfilled.png" />
             <img
-              v-if="mapScores[index].userscorescore >= 50"
+              v-if="mapScores[index] && mapScores[index].userscorescore >= 50"
               class="w-4 h-4 md:w-8 md:h-8"
               src="../../assets/starfilled.png"
             />
             <img v-else class="w-4 h-4 md:w-8 md:h-8" src="../../assets/starunfilled.png" />
             <img
-              v-if="mapScores[index].userscorescore >= 80"
+              v-if="mapScores[index] && mapScores[index].userscorescore >= 80"
               class="w-4 h-4 md:w-8 md:h-8"
               src="../../assets/starfilled.png"
             />
