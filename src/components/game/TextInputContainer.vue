@@ -29,6 +29,17 @@ onMounted(() => {
 
 const parseUserInput = async (stringArray: string[]) => {
   for (const s of stringArray) {
+
+
+    let regex = /^loop\(\d\)$/;
+    let argument = 0;
+
+    if (s.match(regex)) {
+      argument = parseInt(s.substring(s.length -2 , s.length -1))
+      console.log('TTTT' +argument)
+    }
+
+
     switch (s) {
       case 'hero.up()':
         await playerStore.movePlayer(Direction.Up);
@@ -53,6 +64,11 @@ const parseUserInput = async (stringArray: string[]) => {
         break;
       case 'bribe()':
         if (mapStore.map.touchGuard) mapStore.map.bribeGuard = true;
+        break;
+      case 'loop(' + argument + ')':
+        for (let i = 0; i < argument; i++) {
+          await playerStore.movePlayer(Direction.Down);
+        }
         break;
       default:
         console.log('You fail', s);
