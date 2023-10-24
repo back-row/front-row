@@ -74,8 +74,8 @@ const onSubmit = async () => {
 </script>
 
 <template>
-  <div class="relative bg-[#2C3540] h-80 sm:w-128 p-2 pt-4 rounded-sm">
-    <div class="bg-[#E5E5E5] h-4/5 w-full">
+  <div class="relative bg-grayLightBackRow h-80 sm:w-128 p-2 pt-4 rounded-sm">
+    <div class="bg-whiteBackRow h-4/5 w-full">
       <div class="question m-1">{{ question }}</div>
       <div class="flex items-start justify-center">
         <textarea
@@ -91,20 +91,20 @@ const onSubmit = async () => {
     <button
       @click.prevent="setDifficulty"
       v-show="mapStore.map.id !== 4"
-      class="hover:animate-pulse bg-greenBackrow h-10 w-20 m-2 rounded-md flex items-center justify-center absolute bottom-0 left-0 text-whiteBackRow"
+      class="hover:animate-pulse bg-greenBackRow h-10 w-20 m-2 rounded-md flex items-center justify-center absolute bottom-0 left-0 text-whiteBackRow"
     >
       Quiz mode
     </button>
     <button
       @click="resetButton"
-      class="hover:animate-pulse bg-greenBackrow h-10 w-20 m-2 rounded-md flex items-center justify-center absolute bottom-0 right-28 text-whiteBackRow"
+      class="hover:animate-pulse bg-greenBackRow h-10 w-20 m-2 rounded-md flex items-center justify-center absolute bottom-0 right-28 text-whiteBackRow"
     >
       Reset
     </button>
     <button
       type="submit"
       @click.prevent="onSubmit"
-      class="hover:animate-pulse bg-greenBackrow h-10 w-20 m-2 rounded-md flex items-center justify-center absolute bottom-0 right-0 text-whiteBackRow"
+      class="hover:animate-pulse bg-greenBackRow h-10 w-20 m-2 rounded-md flex items-center justify-center absolute bottom-0 right-0 text-whiteBackRow"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

@@ -17,9 +17,7 @@ onMounted(async () => {
 
 <template>
   <div class="flex flex-col items-center">
-    <div
-      class="inline-block table-fixed bg-[#E5E5E5] w-2/3 sm:w-1/2 max-h-[400px] mt-32 rounded-lg pt-10 overflow-y-scroll text-blackBackrow"
-    >
+    <div class="bg-whiteBackRow md:w-1/2 mt-20 rounded-lg text-blackBackRow">
       <h1 class="text-center sm:text-3xl mt-12 mb-6">HIGH SCORE</h1>
 
       <tbody>
@@ -35,7 +33,7 @@ onMounted(async () => {
     <router-link to="/level" v-show="userStore.user.id !== 0">
       <button
         @click="mapStore.getMapFromDb(userStore.user.level)"
-        class="w-64 h-16 m-4 rounded-lg text-2xl text-whiteBackRow bg-greenBackrow hover:animate-pulse"
+        class="w-64 h-16 m-4 rounded-lg text-2xl text-whiteBackRow bg-greenBackRow hover:animate-pulse"
       >
         Play
       </button>

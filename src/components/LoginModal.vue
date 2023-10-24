@@ -39,7 +39,7 @@ const handleIconClick = (node, e) => {
 <template>
   <div
     ref="closingTarget"
-    class="opacity-90 absolute right-0 top-9 ease-in-out duration-200 rounded-md flex justify-center bg-blackBackrow text-greenBackrow w-96 p-6"
+    class="opacity-90 absolute right-0 top-9 ease-in-out duration-200 rounded-md flex justify-center bg-blackBackRow text-greenBackRow w-96 p-6"
   >
     <form class="flex flex-col items-center justify-center" @submit.prevent="handleLogin">
       <div class="flex flex-col w-full">
@@ -67,7 +67,7 @@ const handleIconClick = (node, e) => {
       </div>
       <button
         type="submit"
-        class="hover:animate-pulse bg-greenBackrow h-8 w-20 m-4 rounded-md text-whiteBackRow"
+        class="hover:animate-pulse bg-greenBackRow h-8 w-20 m-4 rounded-md text-whiteBackRow"
       >
         Login
       </button>

@@ -39,7 +39,7 @@ async function getTutorial(id: number) {
 </script>
 
 <template>
-  <div class="flex relative bg-[#2C3540] sm:w-128 mb-3 p-2 pt-10 rounded-sm">
+  <div class="flex relative bg-grayLightBackRow sm:w-128 mb-3 p-2 pt-10 rounded-sm">
     <button class="hover:animate-pulse" @click="showJson">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +47,7 @@ async function getTutorial(id: number) {
         viewBox="0 0 24 24"
         stroke-width="2"
         stroke="currentColor"
-        class="stroke-greenBackrow w-8 h-8 m-2 absolute top-0 right-0"
+        class="stroke-greenBackRow w-8 h-8 m-2 absolute top-0 right-0"
       >
         <path
           stroke-linecap="round"
@@ -59,15 +59,15 @@ async function getTutorial(id: number) {
 
     <div v-if="isShowingHint" class="absolute z-50 opacity-90 p-6">
       <div
-        class="bg-blackBackrow rounded-lg flex items-center -mt-20 mr-5 -ml-7 overflow-x-hidden overflow-y-auto"
+        class="bg-blackBackRow rounded-lg flex items-center -mt-20 mr-5 -ml-7 overflow-x-hidden overflow-y-auto"
       >
-        <p class="text-greenBackrow p-5 text-xl">
+        <p class="text-greenBackRow p-5 text-xl">
           {{ currentMap.tutorialhint }}
         </p>
       </div>
     </div>
     <div class="flex flex-col bg-whiteBackRow mt-1">
-      <p v-for="(line, key) in tutorialDescription" class="text-blackBackrow m-1" :key="key">
+      <p v-for="(line, key) in tutorialDescription" class="text-blackBackRow m-1" :key="key">
         {{ line }}
       </p>
     </div>
