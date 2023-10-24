@@ -14,7 +14,7 @@ const userStore = useUserStore();
       class="knowledge hidden md:flex order-1 col-span-1 col-start-1 row-span-1 row-start-1 items-center justify-center"
     >
       <h2
-        class="rounded-full ml-12 -rotate-12 h-24 w-96 bg-grayBackRow flex items-center justify-center text-4xl text-whiteBackRow"
+        class="rounded-full ml-12 -rotate-12 h-24 w-96 bg-grayLightBackRow flex items-center justify-center text-4xl text-whiteBackRow"
       >
         Spela dig till kunskap
       </h2>
