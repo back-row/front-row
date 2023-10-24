@@ -20,6 +20,14 @@ export const useUserStore = defineStore('user', () => {
     avatar: ''
   });
 
+  const userDTO = ref({
+    id: user.value.id,
+    name: user.value.name,
+    email: user.value.email,
+    level: user.value.level,
+    avatar: user.value.avatar
+  });
+
   function setUser(newUser: DbUser) {
     user.value.id = newUser.usersid;
     user.value.name = newUser.usersname;
@@ -41,13 +49,19 @@ export const useUserStore = defineStore('user', () => {
 
   async function updateUser() {
     try {
+      userDTO.value.id = user.value.id;
+      userDTO.value.name = user.value.name;
+      userDTO.value.email = user.value.email;
+      userDTO.value.level = user.value.level;
+      userDTO.value.avatar = user.value.avatar;
+
       await fetch('http://localhost:8000/users', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem('Authorization')!
         },
-        body: JSON.stringify(user.value)
+        body: JSON.stringify(userDTO.value)
       });
     } catch (error) {
       console.log('Failed to update user: ' + error);

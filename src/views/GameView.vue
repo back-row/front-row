@@ -5,6 +5,7 @@ import MissionContainer from '@/components/game/MissionContainer.vue';
 import AnswerContainer from '@/components/game/AnswerContainer.vue';
 import TextInputContainer from '@/components/game/TextInputContainer.vue';
 import WinModal from '@/components/game/WinModal.vue';
+import NextMap from '@/components/game/NextMap.vue';
 import { usePlayerStore } from '@/stores/player';
 
 const playerStore = usePlayerStore();
@@ -25,7 +26,7 @@ const changeDifficulty = () => {
       <AnswerContainer @easy-mode="changeDifficulty" v-else-if="easyMode" />
     </div>
     <div v-show="playerStore.playerPosition.atEnd">
-      <WinModal />
+      <NextMap />
     </div>
   </section>
 </template>

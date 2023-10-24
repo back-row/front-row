@@ -15,14 +15,12 @@ const question = ref('');
 const easyMode = ref(false);
 const emit = defineEmits(['easyMode']);
 
-
 enum Direction {
   Up = 'up',
   Down = 'down',
   Left = 'left',
   Right = 'right'
 }
-
 
 onMounted(() => {
   getAnswers(mapStore.map.quizId).then((obj) => [
@@ -31,7 +29,6 @@ onMounted(() => {
       { choice: obj.choice2, answer: obj.answer2 },
       { choice: obj.choice3, answer: obj.answer3 }
     ),
-
 
     (question.value = obj.question)
   ]);
@@ -42,13 +39,13 @@ const resetButton = () => {
   selectedAnswer.value = [];
 };
 
-
 const setDifficulty = () => {
   easyMode.value = !easyMode.value;
   emit('easyMode', easyMode.value);
 };
 
 const onSubmit = async () => {
+  mapStore.map.score = mapStore.map.score - 70;
   for (const element of selectedAnswer.value) {
     console.log(element);
     switch (element) {
@@ -73,7 +70,6 @@ const onSubmit = async () => {
         break;
     }
   }
-  mapStore.map.score = mapStore.map.score - 50;
 };
 </script>
 
