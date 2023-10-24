@@ -33,7 +33,7 @@ async function editUser() {
 </script>
 
 <template>
-  <div class="flex bg-blackBackrow text-greenBackrow h-40 w-96 p-6">
+  <div class="flex bg-blackBackRow text-greenBackRow h-40 w-96 p-6">
       <form @submit.prevent="editUser">
         <div class="flex">
           <div class="flex flex-col w-1/2">
@@ -49,7 +49,7 @@ async function editUser() {
           <div class="flex">
             <div class="flex flex-col w-1/2">
               <div v-for="avatar in avatars" :key="avatar.src">
-                <input type="radio" class='accent-greenBackrow' :value="avatar.src" v-model="data.avatar" />
+                <input type="radio" class='accent-greenBackRow' :value="avatar.src" v-model="data.avatar" />
                 <label class="text-whiteBackRow">{{ avatar.name }}</label>
               </div>
             </div>
@@ -57,7 +57,7 @@ async function editUser() {
           </div>
         </div>
         <div class="flex justify-center">
-          <button type="submit" class="hover:animate-pulse bg-greenBackrow h-8 w-20 m-4 rounded-md text-whiteBackRow"
+          <button type="submit" class="hover:animate-pulse bg-greenBackRow h-8 w-20 m-4 rounded-md text-whiteBackRow"
             >Submit</button>
         </div>    
       </form>
