@@ -5,9 +5,12 @@ import { createPinia } from 'pinia';
 import PrimeVue from 'primevue/config';
 import { plugin, defaultConfig } from '@formkit/vue';
 import config from '../formkit.config';
+import dotenv from 'dotenv';
 
 import App from './App.vue';
 import router from './router';
+
+dotenv.config();
 
 const app = createApp(App);
 

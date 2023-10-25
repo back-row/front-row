@@ -3,6 +3,7 @@
   "include": [
     "env.d.ts",
     "*.ts",
+    "./tailwind-formkit.ts",
     "src/**/*",
     "src/**/*.vue",
     "src/**/*.ts",

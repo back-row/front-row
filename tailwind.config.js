@@ -5,7 +5,7 @@ export const content = [
   './index.html',
   './src/components/**/*.{vue,js,ts,jsx,tsx}',
   './src/views/*.{vue,js,ts,jsx,tsx',
-  './tailwind-formkit.js'
+  './tailwind-formkit.ts'
 ];
 export const theme = {
   extend: {
