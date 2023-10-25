@@ -2,6 +2,7 @@
 import { onMounted, ref } from 'vue';
 import { useMapStore } from '@/stores/map';
 
+const backendUrl = import.meta.env.BACKEND_HOST || 'localhost:8000';
 const mapStore = useMapStore();
 const isShowingHint = ref(false);
 const showJson = () => {
@@ -29,7 +30,7 @@ onMounted(async () => {
 
 async function getTutorial(id: number) {
   try {
-    const response = await fetch('http://localhost:8000/tutorial/' + id);
+    const response = await fetch(`http://${backendUrl}/tutorial/` + id);
     return await response.json();
   } catch (error) {
     console.log(error);

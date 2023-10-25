@@ -8,6 +8,7 @@ import { login } from '@/stores/auth';
 
 type avatar = { name: string; src: string };
 
+const backendUrl = import.meta.env.BACKEND_HOST || 'localhost:8000';
 const emit = defineEmits(['close', 'closeOutside']);
 const closingTarget = ref(null);
 const userStore = useUserStore();
@@ -33,7 +34,7 @@ const avatars: Ref<avatar[]> = ref([
 
 async function signUp() {
   try {
-    const response = await fetch('http://localhost:8000/users', {
+    const response = await fetch(`http://${backendUrl}/users`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
