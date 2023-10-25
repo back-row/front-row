@@ -4,6 +4,7 @@ import { getAnswers } from '@/utility/utility';
 import { usePlayerStore } from '@/stores/player';
 import { useMapStore } from '@/stores/map';
 import { match } from 'assert';
+import { handleError } from 'vue';
 
 const mapStore = useMapStore();
 const playerStore = usePlayerStore();
@@ -30,53 +31,45 @@ onMounted(() => {
 
 /*
 loop(2){
+hero.down()
+}
+
+loop(2){ 
+hero.down()
 hero.right()
 }
+
 loop(2){ hero.right() }
 loop(2){ hero.down() }
+loop(2){ hero.down() hero.right() }
+loop(2){ hero.down() hero.down() hero.right() hero.right() hero.up() hero.up() hero.right() hero.right()}
+
+loop(2){ 
+hero.down() 
+hero.down() 
+hero.right() 
+hero.right() 
+hero.up() 
+hero.up() 
+hero.right() 
+hero.right()
+}
 */
 
-
-
-const processLoop = async (action:string, argument:integer, playerStore) => {
-  switch (action) {
-    case 'hero.right()':
-      for (let i = 0; i < argument; i++) {
-        await playerStore.movePlayer(Direction.Right);
-      }
-      break;
-    case 'hero.down()':
-      for (let i = 0; i < argument; i++) {
-        await playerStore.movePlayer(Direction.Down);
-      }
-      break;
-    case 'hero.up()':
-      for (let i = 0; i < argument; i++) {
-        await playerStore.movePlayer(Direction.Up);
-      }
-      break;
-    case 'hero.left()':
-      for (let i = 0; i < argument; i++) {
-        await playerStore.movePlayer(Direction.Left);
-      }
-      break;
-    default:
-      console.log('Invalid action:', action);
-  }
-};
-
-const parseUserInput = async (stringArray:string) => {
+const parseUserInput = async (stringArray: string) => {
   for (const s of stringArray) {
-    const regex2 = /^loop\((\d+)\){\s*([^{}]+)\s*}$/;
+   const regex2 = /^loop\((\d+)\){\s*([^{}]+)\s*}$/;
     const match = s.match(regex2);
 
     if (match) {
-
       const argument = parseInt(match[1]);
-      const action = match[2].trim();
-      await processLoop(action, argument, playerStore);
+      const actions = match[2].trim().split(/\s+/);
 
-
+      for (let i = 0; i < argument; i++) {
+        for (const action of actions) {
+          await processLoop(action, argument, playerStore);
+        }
+      }
     } else {
       switch (s) {
         case 'hero.up()':
@@ -103,11 +96,38 @@ const parseUserInput = async (stringArray:string) => {
         case 'bribe()':
           if (mapStore.map.touchGuard) mapStore.map.bribeGuard = true;
           break;
+
         default:
            console.log('You fail', s);
           break;
       }
     }
+  }
+};
+
+const processLoop = async (action: string, argument: integer, playerStore) => {
+  switch (action) {
+    case 'hero.right()':
+      await playerStore.movePlayer(Direction.Right);
+    
+      break;
+    case 'hero.down()':
+      await playerStore.movePlayer(Direction.Down);
+  
+
+      break;
+    case 'hero.up()':
+      await playerStore.movePlayer(Direction.Up);
+     
+
+      break;
+    case 'hero.left()':
+      await playerStore.movePlayer(Direction.Left);
+     
+
+      break;
+    default:
+      console.log('Invalid action:', action);
   }
 };
 
@@ -117,7 +137,19 @@ const setDifficulty = () => {
 };
 
 const onSubmit = async () => {
-  let commands = userInput.value.split(/[\n;]/).map((s) => s.trim());
+  const userInputValue = userInput.value;
+  let commands = [];
+
+  // Check for a loop construct using a regular expression
+  const loopRegex = /loop\(\d+\)\{[^{}]*\}/;
+
+  if (loopRegex.test(userInputValue)) {
+    commands = userInput.value.split(/[]/).map((s) => s.trim());
+    console.log('commands', commands);
+  } else {
+    commands = userInput.value.split(/[\n;]/).map((s) => s.trim());
+  }
+
   mapStore.map.score = mapStore.map.score - commands.length * 2;
   await parseUserInput(commands);
 };
