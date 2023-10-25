@@ -3,6 +3,7 @@ import { onMounted, ref } from 'vue';
 import { getAnswers } from '@/utility/utility';
 import { usePlayerStore } from '@/stores/player';
 import { useMapStore } from '@/stores/map';
+import { match } from 'assert';
 
 const mapStore = useMapStore();
 const playerStore = usePlayerStore();
@@ -32,81 +33,80 @@ loop(2){
 hero.right()
 }
 loop(2){ hero.right() }
+loop(2){ hero.down() }
 */
 
-const parseUserInput = async (stringArray: string[]) => {
-  for (const s of stringArray) {
-        const concatenatedInput = stringArray.join('\n');
 
-        const regex2 = /^loop\((\d+)\){\s*([^{}]+)\s*}$/;
-        const match = concatenatedInput.trim().match(regex2);
 
-        let argument = 0;
-        let action = '';
-
-        
-      //   if (match) {
-      //   const argument = parseInt(match[1]);
-      //   const action = match[2].trim();
-
-      //   console.log('Argument:', argument);
-      //   console.log('Action:', action);
-      // } else {
-      //   console.log('Invalid loop format');
-      // }
-        // if (s.match(regex)) {
-        //   const startIndex = s.indexOf('(') + 1;
-        //   const endIndex = s.indexOf(')');
-        //   argument = parseInt(s.substring(startIndex , endIndex))
-        //   console.log('argument ' + argument);
-        // }
-
-        if (match) {
-          const startIndex = s.indexOf('(') + 1;
-          const endIndex = s.indexOf(')');
-          const startIndexAction = s.indexOf('{') + 1;
-          const endIndexAction = s.indexOf('}');
-
-          argument = parseInt(s.substring(startIndex , endIndex))
-          action = s.substring(startIndexAction , endIndexAction);
-
-          console.log('ARGUMENT ' + argument);
-          console.log('ACTION ' + action);
-        }
-
-    switch (s) {
-      case 'hero.up()':
-        await playerStore.movePlayer(Direction.Up);
-        break;
-      case 'hero.down()':
-        await playerStore.movePlayer(Direction.Down);
-        break;
-      case 'hero.left()':
-        await playerStore.movePlayer(Direction.Left);
-        break;
-      case 'hero.right()':
+const processLoop = async (action:string, argument:integer, playerStore) => {
+  switch (action) {
+    case 'hero.right()':
+      for (let i = 0; i < argument; i++) {
         await playerStore.movePlayer(Direction.Right);
-        break;
-      case 'hide(spikes)':
-        await playerStore.hideSpikes();
-        break;
-      case 'coin += 1':
-        if (mapStore.map.touchCoin) mapStore.map.collectCoin = true;
-        break;
-      case 'coin = coin + 1':
-        if (mapStore.map.touchCoin) mapStore.map.collectCoin = true;
-        break;
-      case 'bribe()':
-        if (mapStore.map.touchGuard) mapStore.map.bribeGuard = true;
-        break;
-      case 'loop(' + argument + ')':
-        for (let i = 0; i < argument; i++) {
+      }
+      break;
+    case 'hero.down()':
+      for (let i = 0; i < argument; i++) {
+        await playerStore.movePlayer(Direction.Down);
+      }
+      break;
+    case 'hero.up()':
+      for (let i = 0; i < argument; i++) {
+        await playerStore.movePlayer(Direction.Up);
+      }
+      break;
+    case 'hero.left()':
+      for (let i = 0; i < argument; i++) {
+        await playerStore.movePlayer(Direction.Left);
+      }
+      break;
+    default:
+      console.log('Invalid action:', action);
+  }
+};
+
+const parseUserInput = async (stringArray:string) => {
+  for (const s of stringArray) {
+    const regex2 = /^loop\((\d+)\){\s*([^{}]+)\s*}$/;
+    const match = s.match(regex2);
+
+    if (match) {
+
+      const argument = parseInt(match[1]);
+      const action = match[2].trim();
+      await processLoop(action, argument, playerStore);
+
+
+    } else {
+      switch (s) {
+        case 'hero.up()':
+          await playerStore.movePlayer(Direction.Up);
+          break;
+        case 'hero.down()':
           await playerStore.movePlayer(Direction.Down);
-        }
-        break;
-      default:
-        // console.log('You fail', s);
-        break;
+          break;
+        case 'hero.left()':
+          await playerStore.movePlayer(Direction.Left);
+          break;
+        case 'hero.right()':
+          await playerStore.movePlayer(Direction.Right);
+          break;
+        case 'hide(spikes)':
+          await playerStore.hideSpikes();
+          break;
+        case 'coin += 1':
+          if (mapStore.map.touchCoin) mapStore.map.collectCoin = true;
+          break;
+        case 'coin = coin + 1':
+          if (mapStore.map.touchCoin) mapStore.map.collectCoin = true;
+          break;
+        case 'bribe()':
+          if (mapStore.map.touchGuard) mapStore.map.bribeGuard = true;
+          break;
+        default:
+           console.log('You fail', s);
+          break;
+      }
     }
   }
 };
