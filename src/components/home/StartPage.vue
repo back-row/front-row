@@ -22,18 +22,18 @@ const userStore = useUserStore();
     <div
       class="logo sm:order-1 md:col-span-1 row-span-1 row-start-1 col-start-2 flex items-center justify-center"
     >
-      <img src="src\assets\logo-nobg.png" />
+      <img src="/src/assets/logo-nobg.png" />
     </div>
     <div class="characters hidden md:inline col-span-1 col-start-1 row-span-1 row-start-2">
       <div class="flex flex-nowrap rounded-xl ml-24 mr-12 p-6 bg-blackBackRow">
         <div class="character ease-in-out duration-300 hover:scale-110">
-          <img src="src\assets\bluePlayer_nobg.png" />
+          <img src="/src/assets/bluePlayer_nobg.png" />
         </div>
         <div class="character ease-in-out duration-300 hover:scale-110">
-          <img src="src\assets\yellowPlayer_nobg.png" />
+          <img src="/src/assets/yellowPlayer_nobg.png" />
         </div>
         <div class="character ease-in-out duration-300 hover:scale-110">
-          <img src="src\assets\greenPlayer_nobg.png" />
+          <img src="/src/assets/greenPlayer_nobg.png" />
         </div>
       </div>
     </div>

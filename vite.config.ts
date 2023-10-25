@@ -5,9 +5,10 @@ import vue from '@vitejs/plugin-vue';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    vue()
-  ],
+  plugins: [vue()],
+  build: {
+    assetsInlineLimit: 0 // Set to 0 to disable inlining
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))

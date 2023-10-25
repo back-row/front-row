@@ -1,6 +1,8 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 
+const backendUrl = import.meta.env.BACKEND_HOST || 'localhost:8000';
+
 type DbUser = {
   usersid: number;
   usersname: string;
@@ -55,7 +57,7 @@ export const useUserStore = defineStore('user', () => {
       userDTO.value.level = user.value.level;
       userDTO.value.avatar = user.value.avatar;
 
-      await fetch('http://localhost:8000/users', {
+      await fetch(`http://${backendUrl}/users`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

@@ -1,18 +1,17 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue';
 import type { Ref } from 'vue';
-import { onClickOutside } from '@vueuse/core'
+import { onClickOutside } from '@vueuse/core';
 import { useUserStore } from '@/stores/user';
 import router from '@/router';
 import { login } from '@/stores/auth';
 
-
 type avatar = { name: string; src: string };
 
-const emit = defineEmits(['close','closeOutside']);
-const closingTarget = ref(null)
+const backendUrl = import.meta.env.BACKEND_HOST || 'localhost:8000';
+const emit = defineEmits(['close', 'closeOutside']);
+const closingTarget = ref(null);
 const userStore = useUserStore();
-
 
 onClickOutside(closingTarget, (event: MouseEvent) => {
   emit('closeOutside');
@@ -35,7 +34,7 @@ const avatars: Ref<avatar[]> = ref([
 
 async function signUp() {
   try {
-    const response = await fetch('http://localhost:8000/users', {
+    const response = await fetch(`http://${backendUrl}/users`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -57,7 +56,7 @@ async function signUp() {
   }
 }
 
-const handleIconClick = (node, e) => {
+const handleIconClick = (node: { props: { suffixIcon: string; type: string } }, _e: any) => {
   node.props.suffixIcon = node.props.suffixIcon === 'eye' ? 'eyeClosed' : 'eye';
   node.props.type = node.props.type === 'password' ? 'text' : 'password';
 };
@@ -71,7 +70,6 @@ async function handleLogin() {
     router.push({ name: 'home' });
   }
 }
-
 </script>
 
 <template>
@@ -124,12 +122,14 @@ async function handleLogin() {
           />
         </div>
       </div>
-      <div class="flex justify-center">  
-        <button 
+      <div class="flex justify-center">
+        <button
           @click="handleLogin"
-          type='submit'
-          class='hover:animate-pulse bg-greenBackRow h-8 w-20 m-4 rounded-md text-whiteBackRow'
-          >Sign up</button>
+          type="submit"
+          class="hover:animate-pulse bg-greenBackrow h-8 w-20 m-4 rounded-md text-whiteBackRow"
+        >
+          Sign up
+        </button>
       </div>
     </form>
   </div>
