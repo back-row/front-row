@@ -46,14 +46,11 @@ async function editUser() {
               <input class="w-36" v-model="data.email" type="text" placeholder="New email"/>
             </div>
           </div>
-          <div class="flex">
-            <div class="flex flex-col w-1/2">
-              <div v-for="avatar in avatars" :key="avatar.src">
-                <input type="radio" class='accent-greenBackRow' :value="avatar.src" v-model="data.avatar" />
-                <label class="text-whiteBackRow">{{ avatar.name }}</label>
-              </div>
+          <div class="flex flex-col w-1/2 ml-4">
+            <div v-for="avatar in avatars" :key="avatar.src">
+              <input type="radio" class='accent-greenBackRow' :value="avatar.src" v-model="userStore.user.avatar" />
+              <label class="text-whiteBackRow">{{ avatar.name }}</label>
             </div>
-            <img class="w-20 h-20 m-2" :src="'src/assets/avatars/' + data.avatar + '.png'" alt="Picked avatar" />
           </div>
         </div>
         <div class="flex justify-center">
