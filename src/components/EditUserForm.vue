@@ -1,16 +1,11 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue';
+import { ref } from 'vue';
 import type { Ref } from 'vue';
 import { useUserStore } from '@/stores/user';
 
 const userStore = useUserStore();
 type avatar = { name: string; src: string};
-
-const data = reactive({
-    username: '',
-    email:'',
-    avatar: userStore.user.avatar
-});
+const emit = defineEmits(['save'])
 
 const avatars: Ref<avatar[]> = ref([
     {name: 'Boy1', src: 'boy1'},
@@ -21,32 +16,28 @@ const avatars: Ref<avatar[]> = ref([
     ])
 
 async function editUser() {
-  if(data.username != '')
-    userStore.user.name = data.username;
-  if(data.email != '')
-    userStore.user.email = data.email;
-  if(data.avatar != '')
-    userStore.user.avatar = data.avatar;
   userStore.updateUser();
+  emit('save')
+  
 }
 
 </script>
 
 <template>
-  <div class="flex bg-blackBackRow text-greenBackRow h-40 w-96 p-6">
+  <div class="flex justify-center bg-blackBackRow text-greenBackRow h-40 w-96 p-6">
       <form @submit.prevent="editUser">
         <div class="flex">
-          <div class="flex flex-col w-1/2">
-            <div>
+          <div class="flex flex-col w-2/3">
+            <div class="flex flex-col">
               <label class="text-whiteBackRow">Username</label>
-              <input class="w-36" v-model="data.username" type="text" placeholder="New username"/>
+              <input class="w-40" v-model="userStore.user.name" type="text" placeholder="New username" required/>
             </div>
-            <div class="pt-4">
+            <div class="flex flex-col pt-4">
               <label class="text-whiteBackRow">Email</label>
-              <input class="w-36" v-model="data.email" type="text" placeholder="New email"/>
+              <input class="w-40" v-model="userStore.user.email" type="text" placeholder="New email" required/>
             </div>
           </div>
-          <div class="flex flex-col w-1/2 ml-4">
+          <div class="flex flex-col ml-2 w-28">
             <div v-for="avatar in avatars" :key="avatar.src">
               <input type="radio" class='accent-greenBackRow' :value="avatar.src" v-model="userStore.user.avatar" />
               <label class="text-whiteBackRow">{{ avatar.name }}</label>
@@ -55,7 +46,7 @@ async function editUser() {
         </div>
         <div class="flex justify-center">
           <button type="submit" class="hover:animate-pulse bg-greenBackRow h-8 w-20 m-4 rounded-md text-whiteBackRow"
-            >Submit</button>
+            >Save</button>
         </div>    
       </form>
     </div>

@@ -52,7 +52,7 @@ function logout() {
         Logout
       </button>
     </div>
-    <EditUserForm v-if="showEditForm" />
+    <EditUserForm v-if="showEditForm" @save="showEditForm = false"/>
   </div>
 </template>
 
