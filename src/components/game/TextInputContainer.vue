@@ -29,32 +29,6 @@ onMounted(() => {
   getAnswers(mapStore.map.quizId).then((obj) => [(question.value = obj.question)]);
 });
 
-/*
-loop(2){
-hero.down()
-}
-
-loop(2){ 
-hero.down()
-hero.right()
-}
-
-loop(2){ hero.right() }
-loop(2){ hero.down() }
-loop(2){ hero.down() hero.right() }
-loop(2){ hero.down() hero.down() hero.right() hero.right() hero.up() hero.up() hero.right() hero.right()}
-
-loop(2){ 
-hero.down() 
-hero.down() 
-hero.right() 
-hero.right() 
-hero.up() 
-hero.up() 
-hero.right() 
-hero.right()
-}
-*/
 
 const parseUserInput = async (stringArray: string) => {
   for (const s of stringArray) {
