@@ -114,17 +114,14 @@ const processLoop = async (action: string, argument: integer, playerStore) => {
     case 'hero.down()':
       await playerStore.movePlayer(Direction.Down);
   
-
       break;
     case 'hero.up()':
       await playerStore.movePlayer(Direction.Up);
      
-
       break;
     case 'hero.left()':
       await playerStore.movePlayer(Direction.Left);
      
-
       break;
     default:
       console.log('Invalid action:', action);
