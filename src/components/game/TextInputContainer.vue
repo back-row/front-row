@@ -27,18 +27,52 @@ onMounted(() => {
   getAnswers(mapStore.map.quizId).then((obj) => [(question.value = obj.question)]);
 });
 
+/*
+loop(2){
+hero.right()
+}
+loop(2){ hero.right() }
+*/
+
 const parseUserInput = async (stringArray: string[]) => {
   for (const s of stringArray) {
+        const concatenatedInput = stringArray.join('\n');
 
+        const regex2 = /^loop\((\d+)\){\s*([^{}]+)\s*}$/;
+        const match = concatenatedInput.trim().match(regex2);
 
-    let regex = /^loop\(\d\)$/;
-    let argument = 0;
+        let argument = 0;
+        let action = '';
 
-    if (s.match(regex)) {
-      argument = parseInt(s.substring(s.length -2 , s.length -1))
-      console.log('TTTT' +argument)
-    }
+        
+      //   if (match) {
+      //   const argument = parseInt(match[1]);
+      //   const action = match[2].trim();
 
+      //   console.log('Argument:', argument);
+      //   console.log('Action:', action);
+      // } else {
+      //   console.log('Invalid loop format');
+      // }
+        // if (s.match(regex)) {
+        //   const startIndex = s.indexOf('(') + 1;
+        //   const endIndex = s.indexOf(')');
+        //   argument = parseInt(s.substring(startIndex , endIndex))
+        //   console.log('argument ' + argument);
+        // }
+
+        if (match) {
+          const startIndex = s.indexOf('(') + 1;
+          const endIndex = s.indexOf(')');
+          const startIndexAction = s.indexOf('{') + 1;
+          const endIndexAction = s.indexOf('}');
+
+          argument = parseInt(s.substring(startIndex , endIndex))
+          action = s.substring(startIndexAction , endIndexAction);
+
+          console.log('ARGUMENT ' + argument);
+          console.log('ACTION ' + action);
+        }
 
     switch (s) {
       case 'hero.up()':
@@ -71,7 +105,7 @@ const parseUserInput = async (stringArray: string[]) => {
         }
         break;
       default:
-        console.log('You fail', s);
+        // console.log('You fail', s);
         break;
     }
   }
