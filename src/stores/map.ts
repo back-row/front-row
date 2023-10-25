@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import { useUserStore } from '@/stores/user';
 
+const backendUrl = import.meta.env.BACKEND_HOST || 'localhost:8000';
 const userStore = useUserStore();
 
 type DbMap = {
@@ -38,7 +39,7 @@ export const useMapStore = defineStore('map', () => {
 
   async function getMapFromDb(id: number) {
     try {
-      const response = await fetch('http://localhost:8000/map/' + id);
+      const response = await fetch(`http://${backendUrl}/map/` + id);
       setMap(await response.json());
     } catch (error) {
       console.log(error);
@@ -60,7 +61,7 @@ export const useMapStore = defineStore('map', () => {
 
   async function updateMapScore(score: number, mapid: number) {
     try {
-      await fetch('http://localhost:8000/score', {
+      await fetch(`http://${backendUrl}/score`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

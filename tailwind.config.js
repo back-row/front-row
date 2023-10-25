@@ -5,7 +5,7 @@ export const content = [
   './index.html',
   './src/components/**/*.{vue,js,ts,jsx,tsx}',
   './src/views/*.{vue,js,ts,jsx,tsx',
-  './tailwind-formkit.js'
+  './tailwind-formkit.ts'
 ];
 export const theme = {
   extend: {
@@ -13,9 +13,11 @@ export const theme = {
       sans: ['Fredoka', 'sans-serif']
     },
     colors: {
-      greenBackrow: '#408080',
-      blackBackrow: '#0A0F14',
-      whiteBackRow: '#E5E5E5'
+      greenBackRow: '#408080',
+      blackBackRow: '#0A0F14',
+      whiteBackRow: '#E5E5E5',
+      grayDarkBackRow: '#18222B',
+      grayLightBackRow: '#2C3540'
     },
     width: {
       128: '32rem'

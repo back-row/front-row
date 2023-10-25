@@ -1,4 +1,4 @@
-<script setup lang='ts'>
+<script setup lang="ts">
 import { RouterView } from 'vue-router';
 import NavBar from './components/NavBar.vue';
 import FootBar from './components/FootBar.vue';
@@ -8,11 +8,11 @@ import SignUpModal from '@/components/SignUpModal.vue';
 import { onMounted, ref } from 'vue';
 import { useUserStore } from '@/stores/user';
 
+const backendUrl = import.meta.env.BACKEND_HOST || 'localhost:8000';
 const userStore = useUserStore();
 const loginVisible = ref(false);
 const userModalVisible = ref(false);
 const signUpVisible = ref(false);
-
 
 const toggleLogin = () => {
   loginVisible.value = !loginVisible.value;
@@ -29,7 +29,7 @@ const toggleUser = () => {
 
 onMounted(async () => {
   if (localStorage.getItem('Authorization')) {
-    const response = await fetch('http://localhost:8000/users/', {
+    const response = await fetch(`http://${backendUrl}/users/`, {
       method: 'GET',
       headers: {
         Authorization: localStorage.getItem('Authorization')!
@@ -42,12 +42,20 @@ onMounted(async () => {
 </script>
 
 <template>
-  <NavBar @toggleLogin="toggleLogin" @toggleUserModal="toggleUser" @toggleSignUp='toggleSignUp' />
+  <NavBar @toggleLogin="toggleLogin" @toggleUserModal="toggleUser" @toggleSignUp="toggleSignUp" />
   <RouterView />
   <FootBar />
-  <LoginModal v-show="loginVisible" @close="toggleLogin" @close-outside="loginVisible=false" />
-  <UserModal v-show="userModalVisible"  @closeOutside="userModalVisible=false" @close="toggleUser" />
-  <SignUpModal v-show="signUpVisible" @close="toggleSignUp" @close-outside="signUpVisible=false"/>
+  <LoginModal v-show="loginVisible" @close="toggleLogin" @close-outside="loginVisible = false" />
+  <UserModal
+    v-show="userModalVisible"
+    @closeOutside="userModalVisible = false"
+    @close="toggleUser"
+  />
+  <SignUpModal
+    v-show="signUpVisible"
+    @close="toggleSignUp"
+    @close-outside="signUpVisible = false"
+  />
 </template>
 
 <style scoped></style>

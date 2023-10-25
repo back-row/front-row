@@ -52,11 +52,11 @@ export default class Map4 extends Phaser.Physics.Arcade.Sprite {
     coinsBottom.playAnimation('rotate');
 
     coinsTop.children.iterate((coin) => {
-      return coin.setCircle(8);
+      return (coin as any).setCircle(8);
     });
 
     coinsBottom.children.iterate((coin) => {
-      return coin.setCircle(8);
+      return (coin as any).setCircle(8);
     });
 
     this.scene.physics.add.overlap(player, coinsTop, collectCoin, undefined, this);
@@ -75,7 +75,7 @@ export default class Map4 extends Phaser.Physics.Arcade.Sprite {
     }
   }
 }
-function collectCoin(player, coin) {
+function collectCoin(player: any, coin: any) {
   mapStore.map.touchCoin = true;
   if (mapStore.map.collectCoin) {
     coins += 1;

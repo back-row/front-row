@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import { reactive } from 'vue';
 import { useUserStore } from '@/stores/user';
 import router from '@/router';
-import { onClickOutside } from '@vueuse/core'
+import { onClickOutside } from '@vueuse/core';
 import { login } from '@/stores/auth';
 
 const userStore = useUserStore();
@@ -19,13 +19,13 @@ onClickOutside(closingTarget, (event: MouseEvent) => {
   emit('closeOutside');
 });
 
-async function handleLogin() {
-  const userData = await login(data.username, data.password);
-
-const handleIconClick = (node, e) => {
+const handleIconClick = (node: { props: { suffixIcon: string; type: string } }, _e: any) => {
   node.props.suffixIcon = node.props.suffixIcon === 'eye' ? 'eyeClosed' : 'eye';
   node.props.type = node.props.type === 'password' ? 'text' : 'password';
 };
+
+async function handleLogin() {
+  const userData = await login(data.username, data.password);
 
   if (userData) {
     userStore.setUser(userData);
@@ -33,13 +33,12 @@ const handleIconClick = (node, e) => {
     router.push({ name: 'home' });
   }
 }
-
 </script>
 
 <template>
   <div
     ref="closingTarget"
-    class="opacity-90 absolute right-0 top-9 ease-in-out duration-200 rounded-md flex justify-center bg-blackBackrow text-greenBackrow w-96 p-6"
+    class="opacity-90 absolute right-0 top-9 ease-in-out duration-200 rounded-md flex justify-center bg-blackBackRow text-greenBackRow w-96 p-6"
   >
     <form class="flex flex-col items-center justify-center" @submit.prevent="handleLogin">
       <div class="flex flex-col w-full">
@@ -67,7 +66,7 @@ const handleIconClick = (node, e) => {
       </div>
       <button
         type="submit"
-        class="hover:animate-pulse bg-greenBackrow h-8 w-20 m-4 rounded-md text-whiteBackRow"
+        class="hover:animate-pulse bg-greenBackRow h-8 w-20 m-4 rounded-md text-whiteBackRow"
       >
         Login
       </button>
