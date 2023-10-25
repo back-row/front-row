@@ -29,18 +29,33 @@ onMounted(() => {
 
 const parseUserInput = async (stringArray: string[]) => {
   for (const s of stringArray) {
+    let regex = /^hero\.(\w+)\(\d+\)$/;
+    let argument = 1;
+
+    if (s.match(regex)) {
+      argument = parseInt(s.substring(s.length - 2, s.length - 1));
+    }
+
     switch (s) {
-      case 'hero.up()':
-        await playerStore.movePlayer(Direction.Up);
+      case 'hero.up(' + argument + ')': case 'hero.up()':
+        for (let i = 0; i < argument; i++) {
+          await playerStore.movePlayer(Direction.Up);
+        }
         break;
-      case 'hero.down()':
-        await playerStore.movePlayer(Direction.Down);
+      case 'hero.down(' + argument + ')': case 'hero.down()':
+        for (let i = 0; i < argument; i++) {
+          await playerStore.movePlayer(Direction.Down);
+        }
         break;
-      case 'hero.left()':
-        await playerStore.movePlayer(Direction.Left);
+      case 'hero.left(' + argument + ')': case 'hero.left()':
+        for (let i = 0; i < argument; i++) {
+          await playerStore.movePlayer(Direction.Left);
+        }
         break;
-      case 'hero.right()':
-        await playerStore.movePlayer(Direction.Right);
+      case 'hero.right(' + argument + ')': case 'hero.right()':
+        for (let i = 0; i < argument; i++) {
+          await playerStore.movePlayer(Direction.Right);
+        }
         break;
       case 'hide(spikes)':
         await playerStore.hideSpikes();
