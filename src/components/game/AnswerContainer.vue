@@ -90,7 +90,19 @@ const onSubmit = async () => {
   <div
     class="relative shadow-lg shadow-gray-700 border-2 dark:border-none dark:shadow-none dark:bg-grayLightBackRow mx-1 sm:mx-0 h-80 sm:w-128 p-2 pt-4 rounded-sm"
   >
-    <div class="dark:bg-whiteBackRow h-4/5 w-full">
+    <div v-if="language.match('se')" class="dark:bg-whiteBackRow h-4/5 w-full">
+      <div class="question">{{ language.match('se') ? questionSe : question }}</div>
+      <div v-for="answer in answersSe" :key="answer.choice" class="flex items-center ml-4">
+        <input
+          type="radio"
+          class="border-blackBackRow border-2 w-4 h-4 accent-greenBackRow"
+          v-model="selectedAnswer"
+          :value="answer.answer"
+        />
+        <label class="ml-2">{{ answer.choice }}</label>
+      </div>
+    </div>
+    <div v-else class="dark:bg-whiteBackRow h-4/5 w-full">
       <div class="question">{{ language.match('se') ? questionSe : question }}</div>
       <div v-for="answer in answers" :key="answer.choice" class="flex items-center ml-4">
         <input
