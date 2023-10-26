@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import type { Ref } from 'vue';
-import { getAnswers } from '@/utility/utility';
+import { getAnswers, getAnswersSe } from '@/utility/utility';
 import { usePlayerStore } from '@/stores/player';
 import { useMapStore } from '@/stores/map';
 
@@ -11,9 +11,12 @@ const mapStore = useMapStore();
 type answer = { choice: string; answer: string[] };
 const selectedAnswer = ref([]);
 const answers: Ref<answer[]> = ref([]);
+const answersSe: Ref<answer[]> = ref([]);
 const question = ref('');
+const questionSe = ref('');
 const easyMode = ref(false);
 const emit = defineEmits(['easyMode']);
+const language = 'se';
 
 enum Direction {
   Up = 'up',
@@ -31,6 +34,16 @@ onMounted(() => {
     ),
 
     (question.value = obj.question)
+  ]);
+
+  getAnswersSe(mapStore.map.quizId).then((obj) => [
+    answersSe.value.push(
+      { choice: obj.choice1, answer: obj.answer1 },
+      { choice: obj.choice2, answer: obj.answer2 },
+      { choice: obj.choice3, answer: obj.answer3 }
+    ),
+
+    (questionSe.value = obj.question)
   ]);
 });
 
@@ -78,7 +91,7 @@ const onSubmit = async () => {
     class="relative shadow-lg shadow-gray-700 border-2 dark:border-none dark:shadow-none dark:bg-grayLightBackRow mx-1 sm:mx-0 h-80 sm:w-128 p-2 pt-4 rounded-sm"
   >
     <div class="dark:bg-whiteBackRow h-4/5 w-full">
-      <div class="question">{{ question }}</div>
+      <div class="question">{{ language.match('se') ? questionSe : question }}</div>
       <div v-for="answer in answers" :key="answer.choice" class="flex items-center ml-4">
         <input
           type="radio"
