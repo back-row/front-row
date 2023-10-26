@@ -48,12 +48,12 @@ function logout() {
 async function saveName() {
   saveUser();
   editNameVisible.value = false;
-}
+};
 
 async function saveEmail() {
   saveUser();
   editEmailVisible.value = false;
-}
+};
 
 </script>
 
