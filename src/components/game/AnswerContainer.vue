@@ -4,9 +4,11 @@ import type { Ref } from 'vue';
 import { getAnswers, getAnswersSe } from '@/utility/utility';
 import { usePlayerStore } from '@/stores/player';
 import { useMapStore } from '@/stores/map';
+import { useUserStore } from '@/stores/user';
 
 const playerStore = usePlayerStore();
 const mapStore = useMapStore();
+const userStore = useUserStore();
 
 type answer = { choice: string; answer: string[] };
 const selectedAnswer = ref([]);
@@ -16,7 +18,7 @@ const question = ref('');
 const questionSe = ref('');
 const easyMode = ref(false);
 const emit = defineEmits(['easyMode']);
-const language = 'se';
+const language = userStore.language.language;
 
 enum Direction {
   Up = 'up',

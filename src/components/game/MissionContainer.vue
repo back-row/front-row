@@ -1,15 +1,18 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import { useMapStore } from '@/stores/map';
+import { useUserStore } from '@/stores/user';
+
 
 const backendUrl = import.meta.env.BACKEND_HOST || 'localhost:8000';
 const mapStore = useMapStore();
+const userStore = useUserStore();
 const isShowingHint = ref(false);
 const showJson = () => {
   isShowingHint.value = !isShowingHint.value;
 };
 
-const language = 'se';
+const language = userStore.language.language;
 
 type tutorial = {
   tutorialid: number;

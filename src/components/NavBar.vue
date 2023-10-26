@@ -115,6 +115,7 @@ const toggle = (event: any) => {
       >
         {{ userStore.user.name }}
       </p>
+      <div class="language">{{ userStore.language.language }}</div>
     </div>
     <DarkmodeButton />
   </nav>

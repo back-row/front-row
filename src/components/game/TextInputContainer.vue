@@ -3,15 +3,18 @@ import { onMounted, ref } from 'vue';
 import { getAnswers, getAnswersSe } from '@/utility/utility';
 import { usePlayerStore } from '@/stores/player';
 import { useMapStore } from '@/stores/map';
+import { useUserStore } from '@/stores/user';
+
 
 const mapStore = useMapStore();
 const playerStore = usePlayerStore();
+const userStore = useUserStore();
 const userInput = ref('');
 const question = ref('');
 const questionSe = ref('');
 const easyMode = ref(false);
 const emit = defineEmits(['easyMode']);
-const language = 'se';
+const language = userStore.language.language;
 
 const resetButton = () => {
   userInput.value = '';
