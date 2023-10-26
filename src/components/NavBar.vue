@@ -40,7 +40,7 @@ const toggle = (event: any) => {
 
 <template>
   <nav
-    class="flex items-center border-black border-2 dark:border-none dark:bg-blackBackRow dark:text-greenBackRow text-center h-10"
+    class="flex items-center dark:border-none dark:bg-blackBackRow dark:text-greenBackRow shadow-gray-700 shadow-md text-center h-10"
   >
     <button
       class="ml-3 w-1/3 md:hidden"

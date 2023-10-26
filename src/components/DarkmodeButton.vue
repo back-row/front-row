@@ -19,7 +19,7 @@ const toggleDark = useToggle(isDark);
       />
       <label
         for="toggle"
-        class="toggle-label block overflow-hidden h-6 rounded-full bg-white border shadow-md shadow-cyan-600 cursor-pointer dark:border-none dark:shadow-none"
+        class="toggle-label block overflow-hidden h-6 rounded-full bg-white border shadow-md shadow-gray-700 cursor-pointer dark:border-none dark:shadow-none"
       ></label>
     </div>
   </div>
