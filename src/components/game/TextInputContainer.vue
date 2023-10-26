@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import { getAnswers } from '@/utility/utility';
+import { getAnswers, getAnswersSe } from '@/utility/utility';
 import { usePlayerStore } from '@/stores/player';
 import { useMapStore } from '@/stores/map';
 
@@ -8,8 +8,10 @@ const mapStore = useMapStore();
 const playerStore = usePlayerStore();
 const userInput = ref('');
 const question = ref('');
+const questionSe = ref('');
 const easyMode = ref(false);
 const emit = defineEmits(['easyMode']);
+const language = 'se';
 
 const resetButton = () => {
   userInput.value = '';
@@ -25,6 +27,7 @@ enum Direction {
 
 onMounted(() => {
   getAnswers(mapStore.map.quizId).then((obj) => [(question.value = obj.question)]);
+  getAnswersSe(mapStore.map.quizId).then((obj) => [(questionSe.value = obj.question)]);
 });
 
 const parseUserInput = async (stringArray: string[]) => {
@@ -97,7 +100,7 @@ const onSubmit = async () => {
     class="relative shadow-lg shadow-gray-700 border-2 dark:shadow-none dark:border-none dark:bg-grayLightBackRow mx-1 sm:mx-0 h-80 sm:w-128 p-2 pt-4 rounded-sm"
   >
     <div class="dark:bg-whiteBackRow h-4/5 w-full">
-      <div class="question m-1">{{ question }}</div>
+      <div class="question m-1">{{ language.match('se') ? questionSe : question }}</div>
       <div class="flex items-start justify-center">
         <textarea
           v-model="userInput"
