@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useDark, useToggle } from '@vueuse/core';
-import darkModeBg from '@assets/darkmode.png';
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
 </script>

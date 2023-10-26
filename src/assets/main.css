@@ -4,7 +4,6 @@
 
 body {
   @apply dark:bg-grayDarkBackRow;
-  /* background-color: #18222b; */
 }
 canvas {
   @apply rounded-lg shadow-lg shadow-gray-700;
