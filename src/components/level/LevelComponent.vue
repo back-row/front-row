@@ -39,7 +39,7 @@ const selectProgress = (value: number) => {
 <template>
   <div class="flex justify-center">
     <table
-      class="table-auto bg-whiteBackRow w-2/3 sm:w-1/2 max-h-[400px] mt-32 rounded-lg pt-10 text-blackBackRow"
+      class="table-auto bg-whiteBackRow w-2/3 sm:w-1/2 max-h-[400px] mt-32 rounded-lg pt-10 text-blackBackRow shadow-lg shadow-gray-700 dark:shadow-none"
     >
       <thead>
         <tr>
@@ -57,7 +57,7 @@ const selectProgress = (value: number) => {
             <router-link to="/game">
               <button
                 v-if="userLevel >= index + 1"
-                class="w-16 h-6 rounded-lg text-whiteBackRow bg-greenBackRow hover:animate-pulse"
+                class="w-16 h-6 rounded-lg text-whiteBackRow bg-greenBackRow shadow-lg shadow-black hover:animate-pulse"
                 @click="startGame(index + 1)"
               >
                 Play
