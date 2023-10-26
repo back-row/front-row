@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { useDark, useToggle } from '@vueuse/core';
+import darkModeBg from '@assets/darkmode.png';
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
 </script>
 <template>
-  <div class="absolute top-2 right-60">
-    <label for="toggle" class="text-xs dark:text-white pr-2">Toggle Darkmode.</label>
+  <div class="md:block absolute top-2 right-52">
     <div
-      class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in"
+      class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in"
     >
       <input
         @input="toggleDark()"
@@ -19,7 +19,7 @@ const toggleDark = useToggle(isDark);
       />
       <label
         for="toggle"
-        class="toggle-label block overflow-hidden h-6 rounded-full bg-white border shadow-md shadow-gray-700 cursor-pointer dark:border-none dark:shadow-none"
+        class="toggle-label icon block overflow-hidden h-6 rounded-full border shadow-md shadow-gray-700 cursor-pointer dark:border-none dark:shadow-none"
       ></label>
     </div>
   </div>
@@ -31,6 +31,12 @@ const toggleDark = useToggle(isDark);
 }
 
 .toggle-checkbox:checked + .toggle-label {
+  border-color: #ffb300;
+}
+.icon {
+  background: url('../assets/darkmode.png');
+  background-size: cover;
   background-color: #ffb300;
+  background-position: center;
 }
 </style>
