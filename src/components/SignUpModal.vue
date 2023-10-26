@@ -75,7 +75,7 @@ async function handleLogin() {
 <template>
   <div
     ref="closingTarget"
-    class="opacity-90 absolute right-0 top-9 ease-in-out duration-200 rounded-md flex justify-center bg-blackBackRow text-greenBackRow p-6"
+    class="dark:opacity-90 absolute right-0 top-9 ease-in-out duration-200 rounded-md flex justify-center shadow-lg shadow-gray-700 bg-whiteBackRow dark:shadow-none dark:bg-blackBackRow p-6"
   >
     <form @submit.prevent="signUp">
       <div class="flex">
@@ -111,8 +111,13 @@ async function handleLogin() {
         <div class="flex items-center">
           <div class="flex flex-col w-20 ml-2 mt-4">
             <div v-for="avatar in avatars" :key="avatar.src">
-              <input type="radio" class='accent-greenBackRow' :value="avatar.src" v-model="data.avatar" />
-              <label class="text-whiteBackRow">{{ avatar.name }}</label>
+              <input
+                type="radio"
+                class="accent-greenBackRow"
+                :value="avatar.src"
+                v-model="data.avatar"
+              />
+              <label class="dark:text-whiteBackRow">{{ avatar.name }}</label>
             </div>
           </div>
           <img
@@ -126,7 +131,7 @@ async function handleLogin() {
         <button
           @click="handleLogin"
           type="submit"
-          class="hover:animate-pulse bg-greenBackrow h-8 w-20 m-4 rounded-md text-whiteBackRow"
+          class="hover:animate-pulse bg-greenBackRow h-8 w-20 m-4 rounded-md text-whiteBackRow shadow-lg shadow-black"
         >
           Sign up
         </button>
