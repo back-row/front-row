@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
 import Menu from 'primevue/menu';
+import DarkmodeButton from '@/components/DarkmodeButton.vue';
 import { ref } from 'vue';
 import { useUserStore } from '@/stores/user';
 import { usePlayerStore } from '@/stores/player';
@@ -113,6 +114,7 @@ const toggle = (event: any) => {
         {{ userStore.user.name }}
       </p>
     </div>
+    <DarkmodeButton />
   </nav>
 </template>
 
