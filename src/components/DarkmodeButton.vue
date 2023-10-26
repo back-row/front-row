@@ -5,7 +5,7 @@ const isDark = useDark();
 const toggleDark = useToggle(isDark);
 </script>
 <template>
-  <div class="md:block absolute top-2 right-52">
+  <div>
     <div
       class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in"
     >
