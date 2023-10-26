@@ -19,7 +19,7 @@ export const useUserStore = defineStore('user', () => {
     email: '',
     score: 0,
     level: 0,
-    avatar: ''
+    avatar: 'boy1'
   });
 
   const userDTO = ref({
