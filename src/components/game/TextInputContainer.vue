@@ -101,7 +101,7 @@ const onSubmit = async () => {
       <div class="flex items-start justify-center">
         <textarea
           v-model="userInput"
-          class="mt-4 bg-whiteBackRow dark:text-blackBackRow"
+          class="mt-4 bg-whiteBackRow dark:bg-white dark:text-blackBackRow"
           id=""
           cols="45"
           rows="5"
