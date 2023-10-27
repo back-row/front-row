@@ -9,7 +9,7 @@ export default {
     inner:
       'formkit-disabled:bg-gray-200 formkit-disabled:cursor-not-allowed formkit-disabled:pointer-events-none bg-white',
     input: 'appearance-none bg-transparent focus:outline-none focus:ring-0 focus:shadow-none',
-    label: 'block mb-1 font-bold text-sm text-whiteBackRow',
+    label: 'block mb-1 font-bold text-sm dark:text-whiteBackRow',
     legend: 'font-bold text-sm',
     loaderIcon: 'inline-flex items-center w-4 text-gray-600 animate-spin',
     message: 'text-red-500 mb-1 text-xs',

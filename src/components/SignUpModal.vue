@@ -75,7 +75,7 @@ async function tryLogin(username: string, password: string) {
 <template>
   <div
     ref="closingTarget"
-    class="opacity-90 absolute right-0 top-9 ease-in-out duration-200 rounded-md flex justify-center bg-blackBackRow text-greenBackRow p-6"
+    class="dark:opacity-90 absolute right-0 top-9 ease-in-out duration-200 rounded-md flex justify-center shadow-lg shadow-gray-700 bg-whiteBackRow dark:shadow-none dark:bg-blackBackRow p-6"
   >
     <form @submit.prevent="signUp">
       <div class="flex">
@@ -117,7 +117,7 @@ async function tryLogin(username: string, password: string) {
                 :value="avatar.src"
                 v-model="data.avatar"
               />
-              <label class="text-whiteBackRow">{{ avatar.name }}</label>
+              <label class="dark:text-whiteBackRow">{{ avatar.name }}</label>
             </div>
           </div>
           <img
@@ -130,7 +130,7 @@ async function tryLogin(username: string, password: string) {
       <div class="flex justify-center">
         <button
           type="submit"
-          class="hover:animate-pulse bg-greenBackrow h-8 w-20 m-4 rounded-md text-whiteBackRow"
+          class="hover:animate-pulse bg-greenBackRow h-8 w-20 m-4 rounded-md text-whiteBackRow shadow-lg shadow-black"
         >
           Sign up
         </button>

@@ -17,23 +17,21 @@ onMounted(async () => {
 
 <template>
   <div class="flex flex-col items-center">
-    <div class="bg-whiteBackRow md:w-1/2 mt-20 rounded-lg text-blackBackRow">
+    <div class="bg-whiteBackRow md:w-1/2 mt-20 rounded-lg text-blackBackRow shadow-black shadow-lg">
       <h1 class="text-center sm:text-3xl mt-12 mb-6">HIGH SCORE</h1>
 
       <tbody>
         <tr v-for="(score, index) in highScore" :key="score.usersname" class="odd:bg-gray-300">
-          
-          <td class="text-right  w-128 p-2">{{ index + 1 + '.' }} </td>
+          <td class="text-right w-128 p-2">{{ index + 1 + '.' }}</td>
           <td class="text-left w-1/2">{{ score.usersname }}</td>
           <td class="text-left w-1/4">{{ score.userstotalscore }}</td>
-          
         </tr>
       </tbody>
     </div>
     <router-link to="/level" v-show="userStore.user.id !== 0">
       <button
         @click="mapStore.getMapFromDb(userStore.user.level)"
-        class="w-64 h-16 m-4 rounded-lg text-2xl text-whiteBackRow bg-greenBackRow hover:animate-pulse"
+        class="w-64 h-16 m-4 rounded-lg text-2xl text-whiteBackRow bg-greenBackRow shadow-lg shadow-black hover:animate-pulse"
       >
         Play
       </button>
