@@ -50,7 +50,7 @@ async function signUp() {
       alert('Sign up failed! Please try again.');
       throw new Error('Sign up failed!');
     }
-    alert('Sign up successful!');
+    await tryLogin(data.username, data.password);
   } catch (error) {
     console.error('An error occurred:', error);
   }
@@ -61,8 +61,8 @@ const handleIconClick = (node: { props: { suffixIcon: string; type: string } }, 
   node.props.type = node.props.type === 'password' ? 'text' : 'password';
 };
 
-async function handleLogin() {
-  const userData = await login(data.username, data.password);
+async function tryLogin(username: string, password: string) {
+  const userData = await login(username, password);
 
   if (userData) {
     userStore.setUser(userData);
@@ -111,7 +111,12 @@ async function handleLogin() {
         <div class="flex items-center">
           <div class="flex flex-col w-20 ml-2 mt-4">
             <div v-for="avatar in avatars" :key="avatar.src">
-              <input type="radio" class='accent-greenBackRow' :value="avatar.src" v-model="data.avatar" />
+              <input
+                type="radio"
+                class="accent-greenBackRow"
+                :value="avatar.src"
+                v-model="data.avatar"
+              />
               <label class="text-whiteBackRow">{{ avatar.name }}</label>
             </div>
           </div>
@@ -124,7 +129,6 @@ async function handleLogin() {
       </div>
       <div class="flex justify-center">
         <button
-          @click="handleLogin"
           type="submit"
           class="hover:animate-pulse bg-greenBackrow h-8 w-20 m-4 rounded-md text-whiteBackRow"
         >
