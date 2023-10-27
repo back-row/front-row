@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
 import Menu from 'primevue/menu';
+import DarkmodeButton from '@/components/DarkmodeButton.vue';
 import { ref } from 'vue';
 import { useUserStore } from '@/stores/user';
 import { usePlayerStore } from '@/stores/player';
@@ -38,9 +39,11 @@ const toggle = (event: any) => {
 </script>
 
 <template>
-  <nav class="flex items-center bg-blackBackRow text-greenBackRow text-center h-10">
+  <nav
+    class="flex items-center dark:border-none dark:bg-blackBackRow dark:text-greenBackRow shadow-gray-700 shadow-md text-center h-10"
+  >
     <button
-      class="ml-3 w-1/3 md:hidden"
+      class="ml-3 w-10 md:hidden"
       type="button"
       label="Toggle"
       @click="toggle"
@@ -70,12 +73,12 @@ const toggle = (event: any) => {
         v-show="userStore.user.id !== 0"
         >Play</router-link
       >
-      <router-link class="flex flex-shrink-0" :to="'/highscore'">High Score</router-link>
+      <router-link class="flex flex-shrink-0" :to="'/highscore'">HighScore</router-link>
       <router-link :to="'/about'">About</router-link>
     </div>
 
     <Menu
-      class="flex flex-col items-center justify-center bg-blackBackrow h-52 w-32 rounded-md"
+      class="flex flex-col items-center justify-center bg-whiteBackRow border-2 border-black shadow-lg shadow-black dark:bg-blackBackrow h-52 w-32 rounded-md"
       ref="menu"
       id="overlay_menu"
       :model="items"
@@ -89,7 +92,7 @@ const toggle = (event: any) => {
         </router-link>
       </template>
     </Menu>
-    <router-link to="/" class="m-0 w-1/3 text-white"> <h2>Back Row</h2></router-link>
+    <router-link to="/" class="m-0 w-1/3 dark:text-white"> <h2>Back Row</h2></router-link>
     <div class="loginUser flex flex-row justify-end w-1/3 mr-2">
       <p
         v-show="userStore.user.id === 0"
@@ -113,6 +116,7 @@ const toggle = (event: any) => {
         {{ userStore.user.name }}
       </p>
     </div>
+    <DarkmodeButton />
   </nav>
 </template>
 

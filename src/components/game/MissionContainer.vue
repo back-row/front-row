@@ -40,7 +40,9 @@ async function getTutorial(id: number) {
 </script>
 
 <template>
-  <div class="flex relative bg-grayLightBackRow sm:w-128 mb-3 p-2 pt-10 rounded-sm">
+  <div
+    class="flex relative border-2 shadow-lg shadow-gray-700 dark:shadow-lg dark:border-none dark:bg-grayLightBackRow sm:w-128 mb-3 p-2 pt-10 rounded-sm"
+  >
     <button class="hover:animate-pulse" @click="showJson">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -48,7 +50,7 @@ async function getTutorial(id: number) {
         viewBox="0 0 24 24"
         stroke-width="2"
         stroke="currentColor"
-        class="stroke-greenBackRow w-8 h-8 m-2 absolute top-0 right-0"
+        class="dark:stroke-greenBackRow w-8 h-8 m-2 absolute top-0 right-0"
       >
         <path
           stroke-linecap="round"
@@ -67,7 +69,7 @@ async function getTutorial(id: number) {
         </p>
       </div>
     </div>
-    <div class="flex flex-col bg-whiteBackRow mt-1">
+    <div class="flex flex-col dark:bg-whiteBackRow mt-1">
       <p v-for="(line, key) in tutorialDescription" class="text-blackBackRow m-1" :key="key">
         {{ line }}
       </p>

@@ -3,5 +3,8 @@
 @tailwind utilities;
 
 body {
-  background-color: #18222b;
+  @apply dark:bg-grayDarkBackRow;
+}
+canvas {
+  @apply rounded-lg shadow-lg shadow-gray-700;
 }
