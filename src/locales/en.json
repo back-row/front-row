@@ -1,5 +1,8 @@
 {
   "hello": "hello",
   "about": "In Back Row, we've turned learning to code into a thrilling adventure! Here we've transformed learning to code into an exhilarating adventure! Whether you're a beginner or an aspiring coder, get ready to delve into the world of programming. You'll lead your character on an epic quest brimming with excitement and discovery. This game is thoughtfully designed to make programming enjoyable and accessible for beginners of all ages, ensuring that you have a great time while learning.",
-  "test": "english"
+  "test": "english",
+  "knowledge": "Game your knowledge",
+  "playNow": "Play now",
+  "highScore": "HighScore"
 }
