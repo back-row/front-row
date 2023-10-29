@@ -4,5 +4,10 @@
   "test": "svenska",
   "knowledge": "Spela dig till kunskap",
   "playNow": "Spela nu",
-  "highScore": "Topplista"
+  "highScore": "Topplista",
+  "play": "Spela",
+  "level": "Nivå",
+  "status": "Status",
+  "score": "Poäng",
+  "stars": "Stjärnor"
 }

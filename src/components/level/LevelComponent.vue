@@ -43,11 +43,11 @@ const selectProgress = (value: number) => {
     >
       <thead>
         <tr>
-          <th class="py-4 p-2 text-lg">Level</th>
+          <th class="py-4 p-2 text-lg">{{$t('level')}}</th>
           <th></th>
-          <th class="text-lg">Status</th>
-          <th class="text-lg p-2">Score</th>
-          <th class="text-lg p-2">Stars</th>
+          <th class="text-lg">{{$t('status')}}</th>
+          <th class="text-lg p-2">{{$t('score')}}</th>
+          <th class="text-lg p-2">{{$t('stars')}}</th>
         </tr>
       </thead>
       <tbody>
@@ -60,7 +60,7 @@ const selectProgress = (value: number) => {
                 class="w-16 h-6 rounded-lg text-whiteBackRow bg-greenBackRow shadow-lg shadow-black hover:animate-pulse"
                 @click="startGame(index + 1)"
               >
-                Play
+                {{$t('play')}}
               </button>
             </router-link>
           </td>

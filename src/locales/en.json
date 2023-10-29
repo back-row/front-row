@@ -4,5 +4,10 @@
   "test": "english",
   "knowledge": "Game your knowledge",
   "playNow": "Play now",
-  "highScore": "HighScore"
+  "highScore": "HighScore",
+  "play": "Play",
+  "level": "Level",
+  "status": "Status",
+  "score": "Score",
+  "stars": "Stars"
 }
