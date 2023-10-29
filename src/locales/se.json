@@ -10,5 +10,9 @@
   "status": "Status",
   "score": "Poäng",
   "stars": "Stjärnor",
-  "HIGHSCORE": "TOPPLISTA"
+  "HIGHSCORE": "TOPPLISTA",
+  "textInput": "Text input",
+  "reset": "Återställ",
+  "run": "Kör",
+  "quizMode": "Flervalsläge"
 }

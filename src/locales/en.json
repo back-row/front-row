@@ -10,5 +10,9 @@
   "status": "Status",
   "score": "Score",
   "stars": "Stars",
-  "HIGHSCORE": "HIGH SCORE"
+  "HIGHSCORE": "HIGH SCORE",
+  "textInput": "Text input",
+  "reset": "Reset",
+  "run": "Run",
+  "quizMode": "Quiz mode"
 }
