@@ -14,7 +14,7 @@ import se from './locales/se.json';
 import en from './locales/en.json';
 
 const i18n = createI18n({
-  locale: 'se',
+  locale: 'en',
   messages: {
     en: en,
     se: se
