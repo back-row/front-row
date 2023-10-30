@@ -16,11 +16,11 @@ const changeDifficulty = () => {
 </script>
 
 <template>
-  <section class="gamePage m-6 grid grid-cols-1 sm:flex sm:flex-row justify-center">
+  <section class="gamePage flex flex-col sm:flex-row justify-center">
     <div class="gameArea">
       <GameContainer />
     </div>
-    <div class="sideArea mx-6">
+    <div class="sideArea">
       <MissionContainer />
       <TextInputContainer @easy-mode="changeDifficulty" v-if="!easyMode" />
       <AnswerContainer @easy-mode="changeDifficulty" v-else-if="easyMode" />
