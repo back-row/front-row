@@ -14,5 +14,10 @@
   "textInput": "Text input",
   "reset": "Reset",
   "run": "Run",
-  "quizMode": "Quiz mode"
+  "quizMode": "Quiz mode",
+  "home": "Home",
+  "aboutNav": "About",
+  "nextLevel": "Next level",
+  "username": "Username",
+  "password": "Password"
 }

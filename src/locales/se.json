@@ -14,5 +14,10 @@
   "textInput": "Text input",
   "reset": "Återställ",
   "run": "Kör",
-  "quizMode": "Flervalsläge"
+  "quizMode": "Flervalsläge",
+  "home": "Hem",
+  "aboutNav": "Om",
+  "nextLevel": "Nästa nivå",
+  "username": "Användarnamn",
+  "password": "Lösenord"
 }
