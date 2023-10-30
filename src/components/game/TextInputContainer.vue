@@ -4,6 +4,8 @@ import { getAnswers } from '@/utility/utility';
 import { usePlayerStore } from '@/stores/player';
 import { useMapStore } from '@/stores/map';
 
+
+
 const mapStore = useMapStore();
 const playerStore = usePlayerStore();
 const userInput = ref('');
@@ -29,11 +31,26 @@ onMounted(() => {
 
 const parseUserInput = async (stringArray: string[]) => {
   for (const s of stringArray) {
+    const regexForLoop = /^loop\((\d+)\){\s*([^{}]+)\s*}$/;
+    const match = s.match(regexForLoop);
     let regex = /^hero\.(\w+)\(\d+\)$/;
     let argument = 1;
+    
 
-    if (s.match(regex)) {
-      argument = parseInt(s.substring(s.length - 2, s.length - 1));
+    if (match) {
+      const argument = parseInt(match[1]);
+      const actions = match[2].trim().split(/\s+/);
+      for (let i = 0; i < argument; i++) {
+        for (const action of actions) {
+          await processLoop(action, argument, playerStore);
+        }
+      }
+
+    } else {
+        if (s.match(regex)) {
+            argument = parseInt(s.substring(s.length - 2, s.length - 1));
+          }
+
     }
 
     switch (s) {
@@ -80,13 +97,47 @@ const parseUserInput = async (stringArray: string[]) => {
   }
 };
 
+const processLoop = async (action: string, argument: integer, playerStore) => {
+  switch (action) {
+    case 'hero.right()':
+      await playerStore.movePlayer(Direction.Right);
+    
+      break;
+    case 'hero.down()':
+      await playerStore.movePlayer(Direction.Down);
+  
+      break;
+    case 'hero.up()':
+      await playerStore.movePlayer(Direction.Up);
+     
+      break;
+    case 'hero.left()':
+      await playerStore.movePlayer(Direction.Left);
+     
+      break;
+    default:
+      console.log('Invalid action:', action);
+  }
+};
+
 const setDifficulty = () => {
   easyMode.value = !easyMode.value;
   emit('easyMode', easyMode.value);
 };
 
 const onSubmit = async () => {
-  let commands = userInput.value.split(/[\n;]/).map((s) => s.trim());
+  let commands = [];
+  const userInputValue = userInput.value;
+  const loopRegex = /loop\(\d+\)\{[^{}]*\}/;
+
+
+  if (loopRegex.test(userInputValue)) {
+    commands = userInput.value.split(/[]/).map((s) => s.trim());
+    console.log('commands', commands);
+  } else {
+    commands = userInput.value.split(/[\n;]/).map((s) => s.trim());
+  }
+
   mapStore.map.score = mapStore.map.score - commands.length * 2;
   await parseUserInput(commands);
 };
