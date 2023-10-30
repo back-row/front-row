@@ -4,7 +4,10 @@ import { getAnswers } from '@/utility/utility';
 import { usePlayerStore } from '@/stores/player';
 import { useMapStore } from '@/stores/map';
 import { match } from 'assert';
+<<<<<<< HEAD
 import { handleError } from 'vue';
+=======
+>>>>>>> 453cc14 (now is working)
 
 const mapStore = useMapStore();
 const playerStore = usePlayerStore();
@@ -28,8 +31,6 @@ enum Direction {
 onMounted(() => {
   getAnswers(mapStore.map.quizId).then((obj) => [(question.value = obj.question)]);
 });
-
-
 
 const parseUserInput = async (stringArray: string) => {
 
