@@ -66,15 +66,15 @@ const toggle = (event: any) => {
       </svg>
     </button>
     <div class="hidden md:flex ml-4 flex-row gap-3 items-center w-1/3">
-      <router-link :to="'/'">Home</router-link>
+      <router-link :to="'/'">{{$t('home')}}</router-link>
       <router-link
         @click="playerStore.playerPosition.atEnd = false"
         :to="'/level'"
         v-show="userStore.user.id !== 0"
-        >Play</router-link
+        >{{$t('play')}}</router-link
       >
-      <router-link class="flex flex-shrink-0" :to="'/highscore'">HighScore</router-link>
-      <router-link :to="'/about'">About</router-link>
+      <router-link class="flex flex-shrink-0" :to="'/highscore'">{{$t('highScore')}}</router-link>
+      <router-link :to="'/about'">{{$t('aboutNav')}}</router-link>
     </div>
 
     <Menu

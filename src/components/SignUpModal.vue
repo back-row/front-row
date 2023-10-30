@@ -130,9 +130,9 @@ async function tryLogin(username: string, password: string) {
       <div class="flex justify-center">
         <button
           type="submit"
-          class="hover:animate-pulse bg-greenBackRow h-8 w-20 m-4 rounded-md text-whiteBackRow shadow-lg shadow-black"
+          class="hover:animate-pulse bg-greenBackRow h-fit w-20 m-4 rounded-md text-whiteBackRow shadow-lg shadow-black"
         >
-          Sign up
+          {{$t('signUp')}}
         </button>
       </div>
     </form>

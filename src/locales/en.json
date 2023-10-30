@@ -19,5 +19,8 @@
   "aboutNav": "About",
   "nextLevel": "Next level",
   "username": "Username",
-  "password": "Password"
+  "password": "Password",
+  "signUp": "Sign up",
+  "login": "Login",
+  "logout": "Logout"
 }

@@ -68,7 +68,7 @@ async function handleLogin() {
         type="submit"
         class="hover:animate-pulse bg-greenBackRow h-8 w-20 m-4 rounded-md text-whiteBackRow shadow-lg shadow-black"
       >
-        Login
+        {{$t('login')}}
       </button>
     </form>
   </div>

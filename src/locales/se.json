@@ -19,5 +19,8 @@
   "aboutNav": "Om",
   "nextLevel": "Nästa nivå",
   "username": "Användarnamn",
-  "password": "Lösenord"
+  "password": "Lösenord",
+  "signUp": "Skapa konto",
+  "login": "Logga in",
+  "logout": "Logga ut"
 }
