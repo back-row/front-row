@@ -97,7 +97,8 @@ const parseUserInput = async (stringArray: string[]) => {
   }
 };
 
-const processLoop = async (action: string, argument: integer, playerStore) => {
+
+const processLoop = async (action: string, argument: integer, playerStore: PlayerStore ) => {
   switch (action) {
     case 'hero.right()':
       await playerStore.movePlayer(Direction.Right);
@@ -119,6 +120,13 @@ const processLoop = async (action: string, argument: integer, playerStore) => {
       console.log('Invalid action:', action);
   }
 };
+
+//docker build conflict fix
+interface PlayerStore {
+  movePlayer(direction: Direction): Promise<void>;
+  
+}
+
 
 const setDifficulty = () => {
   easyMode.value = !easyMode.value;
