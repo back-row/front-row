@@ -30,8 +30,11 @@ onMounted(() => {
 });
 
 
+
 const parseUserInput = async (stringArray: string) => {
+
   for (const s of stringArray) {
+        const concatenatedInput = stringArray.join('\n');
 
    const regexForLoop = /^loop\((\d+)\){\s*([^{}]+)\s*}$/;
     const match = s.match(regexForLoop);
@@ -56,6 +59,7 @@ const parseUserInput = async (stringArray: string) => {
       argument = parseInt(s.substring(s.length - 2, s.length - 1));
     }
     
+
     switch (s) {
       case 'hero.up(' + argument + ')': case 'hero.up()':
         for (let i = 0; i < argument; i++) {
@@ -90,7 +94,7 @@ const parseUserInput = async (stringArray: string) => {
         if (mapStore.map.touchGuard) mapStore.map.bribeGuard = true;
         break;
       default:
-        console.log('You fail', s);
+        // console.log('You fail', s);
         break;
 
       }
