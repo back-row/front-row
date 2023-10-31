@@ -33,8 +33,7 @@ async function getTutorial(id: number) {
     const response = await fetch(`http://${backendUrl}/tutorial/` + id);
     return await response.json();
   } catch (error) {
-    console.log(error);
-    console.log('Could not get tutorial');
+    console.error('Could not get tutorial: ' + error);
   }
 }
 </script>

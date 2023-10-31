@@ -42,8 +42,7 @@ export const useMapStore = defineStore('map', () => {
       const response = await fetch(`http://${backendUrl}/map/` + id);
       setMap(await response.json());
     } catch (error) {
-      console.log(error);
-      console.log('Could not get map from db');
+      console.error('Could not get map from db: ', error);
     }
   }
 
@@ -70,8 +69,7 @@ export const useMapStore = defineStore('map', () => {
         body: JSON.stringify({ map: mapid, score: score })
       });
     } catch (error) {
-      console.log(error);
-      console.log('Could not update score');
+      console.error('Could not update score: ', error);
     }
 
     await userStore.updateUser();
