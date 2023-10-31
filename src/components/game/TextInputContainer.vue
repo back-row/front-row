@@ -94,7 +94,7 @@ const onSubmit = async () => {
 
 <template>
   <div
-    class="relative shadow-lg shadow-gray-700 border-2 dark:shadow-none dark:border-none dark:bg-grayLightBackRow h-80 sm:w-128 p-2 pt-4 rounded-sm"
+    class="relative shadow-lg shadow-gray-700 border-2 dark:shadow-none dark:border-none dark:bg-grayLightBackRow mx-1 sm:mx-0 h-80 sm:w-128 p-2 pt-4 rounded-sm"
   >
     <div class="dark:bg-whiteBackRow h-4/5 w-full">
       <div class="question m-1">{{ question }}</div>
