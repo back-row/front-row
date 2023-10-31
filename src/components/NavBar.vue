@@ -10,6 +10,30 @@ const userStore = useUserStore();
 const playerStore = usePlayerStore();
 
 const menu = ref();
+
+const items2 =  ref([
+  {
+    items: [
+      {
+        label: 'Hem',
+        route: '/'
+      },
+      {
+        label: 'Spela',
+        route: '/level'
+      },
+      {
+        label: 'Topplista',
+        route: '/highscore'
+      },
+      {
+        label: 'Om',
+        route: '/about'
+      }
+    ]
+  }
+]);
+
 const items = ref([
   {
     items: [
@@ -81,7 +105,7 @@ const toggle = (event: any) => {
       class="flex flex-col items-center justify-center bg-whiteBackRow border-2 border-black shadow-lg shadow-black dark:bg-blackBackrow h-52 w-32 rounded-md"
       ref="menu"
       id="overlay_menu"
-      :model="items"
+      :model="$i18n.locale.match('se') ? items2 : items"
       :popup="true"
     >
       <template #item="{ label, item, props }">
