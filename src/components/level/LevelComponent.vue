@@ -3,6 +3,7 @@ import { RouterLink } from 'vue-router';
 import { getMapScores, getNumberOfMaps, type MapScore } from '@/utility/utility';
 import { useMapStore } from '@/stores/map';
 import { useUserStore } from '@/stores/user';
+import {useI18n} from 'vue-i18n';
 
 import { onMounted, ref, type Ref } from 'vue';
 
@@ -11,6 +12,7 @@ const userStore = useUserStore();
 const userLevel = ref(0);
 const numberOfMaps = ref(0);
 const mapScores: Ref<MapScore[]> = ref([]);
+const i18n = useI18n();
 
 onMounted(async () => {
   getNumberOfMaps().then((obj) => (numberOfMaps.value = parseInt(obj)));
@@ -29,9 +31,9 @@ const startGame = async (map: number) => {
 const selectProgress = (value: number) => {
   let progress = '';
 
-  if (userLevel.value > value) progress = 'Completed';
-  else if (userLevel.value === value) progress = 'In progress';
-  else progress = 'Not started';
+  if (userLevel.value > value) progress = i18n.locale.value.match('se') ? 'Klar' : 'Completed';
+  else if (userLevel.value === value) progress = i18n.locale.value.match('se') ? 'Pågående' : 'In progress';
+  else progress = i18n.locale.value.match('se') ? 'Ej upplåst' : 'Not started';
   return progress;
 };
 </script>
