@@ -17,7 +17,7 @@ onMounted(async () => {
 
 <template>
   <div class="flex flex-col items-center">
-    <div class="bg-whiteBackRow md:w-1/2 mt-20 rounded-lg text-blackBackRow shadow-black shadow-lg">
+    <div class="bg-whiteBackRow w-4/5 sm:w-1/2 mt-20 rounded-lg text-blackBackRow shadow-black shadow-lg">
       <h1 class="text-center sm:text-3xl mt-12 mb-6">HIGH SCORE</h1>
 
       <tbody>
