@@ -4,11 +4,9 @@ import type { Ref } from 'vue';
 import { getAnswers, getAnswersSe } from '@/utility/utility';
 import { usePlayerStore } from '@/stores/player';
 import { useMapStore } from '@/stores/map';
-import { useUserStore } from '@/stores/user';
 
 const playerStore = usePlayerStore();
 const mapStore = useMapStore();
-const userStore = useUserStore();
 
 type answer = { choice: string; answer: string[] };
 const selectedAnswer = ref([]);
@@ -18,7 +16,6 @@ const question = ref('');
 const questionSe = ref('');
 const easyMode = ref(false);
 const emit = defineEmits(['easyMode']);
-const language = userStore.language.language;
 
 enum Direction {
   Up = 'up',
@@ -92,8 +89,8 @@ const onSubmit = async () => {
   <div
     class="relative shadow-lg shadow-gray-700 border-2 dark:border-none dark:shadow-none dark:bg-grayLightBackRow mx-1 sm:mx-0 h-80 sm:w-128 p-2 pt-4 rounded-sm"
   >
-    <div v-if="language.match('se')" class="dark:bg-whiteBackRow h-4/5 w-full">
-      <div class="question">{{ language.match('se') ? questionSe : question }}</div>
+    <div v-if="$i18n.locale.match('se')" class="dark:bg-whiteBackRow h-4/5 w-full">
+      <div class="question">{{ $i18n.locale.match('se') ? questionSe : question }}</div>
       <div v-for="answer in answersSe" :key="answer.choice" class="flex items-center ml-4">
         <input
           type="radio"
@@ -105,7 +102,7 @@ const onSubmit = async () => {
       </div>
     </div>
     <div v-else class="dark:bg-whiteBackRow h-4/5 w-full">
-      <div class="question">{{ language.match('se') ? questionSe : question }}</div>
+      <div class="question">{{ $i18n.locale.match('se') ? questionSe : question }}</div>
       <div v-for="answer in answers" :key="answer.choice" class="flex items-center ml-4">
         <input
           type="radio"

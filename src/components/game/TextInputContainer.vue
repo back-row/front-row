@@ -3,18 +3,15 @@ import { onMounted, ref } from 'vue';
 import { getAnswers, getAnswersSe } from '@/utility/utility';
 import { usePlayerStore } from '@/stores/player';
 import { useMapStore } from '@/stores/map';
-import { useUserStore } from '@/stores/user';
 
 
 const mapStore = useMapStore();
 const playerStore = usePlayerStore();
-const userStore = useUserStore();
 const userInput = ref('');
 const question = ref('');
 const questionSe = ref('');
 const easyMode = ref(false);
 const emit = defineEmits(['easyMode']);
-const language = userStore.language.language;
 
 const resetButton = () => {
   userInput.value = '';
@@ -103,7 +100,7 @@ const onSubmit = async () => {
     class="relative shadow-lg shadow-gray-700 border-2 dark:shadow-none dark:border-none dark:bg-grayLightBackRow mx-1 sm:mx-0 h-80 sm:w-128 p-2 pt-4 rounded-sm"
   >
     <div class="dark:bg-whiteBackRow h-4/5 w-full">
-      <div class="question m-1">{{ language.match('se') ? questionSe : question }}</div>
+      <div class="question m-1">{{ $i18n.locale.match('se') ? questionSe : question }}</div>
       <div class="flex items-start justify-center">
         <textarea
           v-model="userInput"

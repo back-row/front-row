@@ -1,18 +1,15 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import { useMapStore } from '@/stores/map';
-import { useUserStore } from '@/stores/user';
 
 
 const backendUrl = import.meta.env.BACKEND_HOST || 'localhost:8000';
 const mapStore = useMapStore();
-const userStore = useUserStore();
 const isShowingHint = ref(false);
 const showJson = () => {
   isShowingHint.value = !isShowingHint.value;
 };
 
-const language = userStore.language.language;
 
 type tutorial = {
   tutorialid: number;
@@ -75,11 +72,11 @@ async function getTutorial(id: number) {
         class="bg-blackBackRow rounded-lg flex items-center -mt-20 mr-5 -ml-7 overflow-x-hidden overflow-y-auto"
       >
         <p class="text-greenBackRow p-5 text-xl">
-          {{ language.match('se') ? currentMap.tutorialhintse : currentMap.tutorialhint }}
+          {{ $i18n.locale.match('se') ? currentMap.tutorialhintse : currentMap.tutorialhint }}
         </p>
       </div>
     </div>
-    <div v-if="language.match('se')" class="flex flex-col dark:bg-whiteBackRow mt-1">
+    <div v-if="$i18n.locale.match('se')" class="flex flex-col dark:bg-whiteBackRow mt-1">
       <p v-for="(line, key) in tutorialDescriptionSe" class="text-blackBackRow m-1" :key="key">
         {{ line }}
       </p>
