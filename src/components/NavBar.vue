@@ -115,7 +115,11 @@ const toggle = (event: any) => {
       >
         {{ userStore.user.name }}
       </p>
-      <div class="language">{{ userStore.language.language }}</div>
+      <div class="locale-changer">
+    <select v-model="$i18n.locale">
+      <option v-for="locale in $i18n.availableLocales" :key="`locale-${locale}`" :value="locale">{{ locale }}</option>
+    </select>
+  </div>
     </div>
     <DarkmodeButton />
   </nav>

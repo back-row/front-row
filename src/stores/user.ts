@@ -71,7 +71,7 @@ export const useUserStore = defineStore('user', () => {
   }
 
     const language = ref({
-      language: 'se'
+      language: 'en'
     });
 
     return { user, setUser, logout, updateUser, language };
