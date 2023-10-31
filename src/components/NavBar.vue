@@ -96,27 +96,27 @@ const toggle = (event: any) => {
     <div class="loginUser flex flex-row justify-end w-1/3 mr-2">
       <p
         v-show="userStore.user.id === 0"
-        class="w-20 cursor-pointer hover:text-2xl underline underline-offset-2"
+        class="w-fit px-2 cursor-pointer hover:text-2xl underline underline-offset-2"
         @click="$emit('toggleLogin')"
       >
-        Login
+        {{$t('login')}}
       </p>
       <p
         v-show="userStore.user.id === 0"
-        class="w-24 mr-3 cursor-pointer hover:text-2xl underline underline-offset-2"
+        class="w-fit mr-3 cursor-pointer hover:text-2xl underline underline-offset-2"
         @click="$emit('toggleSignUp')"
       >
-        Sign up
+        {{$t('signUp')}}
       </p>
       <p
         v-show="userStore.user.id !== 0"
-        class="w-20 cursor-pointer mr-3 hover:text-2xl underline underline-offset-2"
+        class="w-fit cursor-pointer mr-3 hover:text-2xl underline underline-offset-2"
         @click="$emit('toggleUserModal')"
       >
         {{ userStore.user.name }}
       </p>
-      <div class="locale-changer">
-    <select v-model="$i18n.locale">
+        <div class="locale-changer">
+    <select v-model="$i18n.locale" class="dark:bg-grayDarkBackRow">
       <option v-for="locale in $i18n.availableLocales" :key="`locale-${locale}`" :value="locale">{{ locale }}</option>
     </select>
   </div>
