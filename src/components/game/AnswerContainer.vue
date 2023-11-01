@@ -77,6 +77,12 @@ const onSubmit = async () => {
       case 'right':
         await playerStore.movePlayer(Direction.Right);
         break;
+      case 'coin += 1':
+        if (mapStore.map.touchCoin) mapStore.map.collectCoin = true;
+        break;
+      case 'bribe()':
+        if (mapStore.map.touchGuard) mapStore.map.bribeGuard = true;
+        break;
       default:
         console.log('You fail', element);
         break;
