@@ -17,5 +17,5 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div :id="containerId" />
+  <div :id="containerId" class="flex justify-center my-2 sm:mt-6" />
 </template>

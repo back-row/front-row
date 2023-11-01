@@ -40,7 +40,7 @@ async function getTutorial(id: number) {
 
 <template>
   <div
-    class="flex relative border-2 shadow-lg shadow-gray-700 dark:shadow-lg dark:border-none dark:bg-grayLightBackRow sm:w-128 mb-3 p-2 pt-10 rounded-sm"
+    class="flex relative border-2 shadow-lg shadow-gray-700 dark:shadow-lg dark:border-none dark:bg-grayLightBackRow mx-1 sm:mx-0 sm:w-128 sm:mt-6 mb-3 p-2 pt-10 rounded-sm"
   >
     <button class="hover:animate-pulse" @click="showJson">
       <svg
