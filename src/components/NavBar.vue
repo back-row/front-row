@@ -102,7 +102,7 @@ const toggle = (event: any) => {
     </div>
 
     <Menu
-      class="flex flex-col items-center justify-center bg-whiteBackRow border-2 border-black shadow-lg shadow-black dark:bg-blackBackrow h-52 w-32 rounded-md"
+      class="flex flex-col items-center justify-center bg-whiteBackRow border-2 border-black shadow-lg shadow-black dark:bg-blackBackRow h-52 w-32 rounded-md"
       ref="menu"
       id="overlay_menu"
       :model="$i18n.locale.match('se') ? items2 : items"
@@ -111,7 +111,7 @@ const toggle = (event: any) => {
       <template #item="{ label, item, props }">
         <router-link v-if="item.route" v-slot="routerProps" :to="item.route" custom>
           <a :href="routerProps.href" v-bind="props.action">
-            <span class="p-2 text-greenBackrow text-lg" v-bind="props.label">{{ label }}</span>
+            <span class="p-2 text-greenBackRow text-lg" v-bind="props.label">{{ label }}</span>
           </a>
         </router-link>
       </template>
