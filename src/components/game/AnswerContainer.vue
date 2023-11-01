@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import type { Ref } from 'vue';
-import { getAnswers } from '@/utility/utility';
+import { getAnswers, getAnswersSe } from '@/utility/utility';
 import { usePlayerStore } from '@/stores/player';
 import { useMapStore } from '@/stores/map';
 
@@ -11,7 +11,9 @@ const mapStore = useMapStore();
 type answer = { choice: string; answer: string[] };
 const selectedAnswer = ref([]);
 const answers: Ref<answer[]> = ref([]);
+const answersSe: Ref<answer[]> = ref([]);
 const question = ref('');
+const questionSe = ref('');
 const easyMode = ref(false);
 const emit = defineEmits(['easyMode']);
 
@@ -31,6 +33,16 @@ onMounted(() => {
     ),
 
     (question.value = obj.question)
+  ]);
+
+  getAnswersSe(mapStore.map.quizId).then((obj) => [
+    answersSe.value.push(
+      { choice: obj.choice1, answer: obj.answer1 },
+      { choice: obj.choice2, answer: obj.answer2 },
+      { choice: obj.choice3, answer: obj.answer3 }
+    ),
+
+    (questionSe.value = obj.question)
   ]);
 });
 
@@ -77,8 +89,20 @@ const onSubmit = async () => {
   <div
     class="relative shadow-lg shadow-gray-700 border-2 dark:border-none dark:shadow-none dark:bg-grayLightBackRow mx-1 sm:mx-0 h-80 sm:w-128 p-2 pt-4 rounded-sm"
   >
-    <div class="dark:bg-whiteBackRow h-4/5 w-full">
-      <div class="question">{{ question }}</div>
+    <div v-if="$i18n.locale.match('se')" class="dark:bg-whiteBackRow h-4/5 w-full">
+      <div class="question">{{ $i18n.locale.match('se') ? questionSe : question }}</div>
+      <div v-for="answer in answersSe" :key="answer.choice" class="flex items-center ml-4">
+        <input
+          type="radio"
+          class="border-blackBackRow border-2 w-4 h-4 accent-greenBackRow"
+          v-model="selectedAnswer"
+          :value="answer.answer"
+        />
+        <label class="ml-2">{{ answer.choice }}</label>
+      </div>
+    </div>
+    <div v-else class="dark:bg-whiteBackRow h-4/5 w-full">
+      <div class="question">{{ $i18n.locale.match('se') ? questionSe : question }}</div>
       <div v-for="answer in answers" :key="answer.choice" class="flex items-center ml-4">
         <input
           type="radio"
@@ -93,13 +117,13 @@ const onSubmit = async () => {
       @click.prevent="setDifficulty"
       class="hover:animate-pulse shadow-lg shadow-black bg-greenBackRow h-10 w-20 m-2 rounded-md flex items-center justify-center absolute bottom-0 left-0 text-whiteBackRow"
     >
-      Text input
+      {{$t('textInput')}}
     </button>
     <button
       @click="resetButton"
       class="hover:animate-pulse shadow-lg shadow-black bg-greenBackRow h-10 w-20 m-2 rounded-md flex items-center justify-center absolute bottom-0 right-28 text-whiteBackRow"
     >
-      Reset
+      {{$t('reset')}}
     </button>
     <button
       type="submit"
@@ -120,7 +144,7 @@ const onSubmit = async () => {
           d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z"
         />
       </svg>
-      Run
+      {{$t('run')}}
     </button>
   </div>
 </template>

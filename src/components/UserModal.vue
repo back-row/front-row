@@ -131,7 +131,7 @@ async function saveEmail() {
         @click="logout"
         class="bg-greenBackRow shadow-black shadow-lg text-whiteBackRow rounded-md p-2 mb-4"
       >
-        Logout
+        {{$t('logout')}}
       </button>
     </div>
   </div>

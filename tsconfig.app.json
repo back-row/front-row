@@ -11,7 +11,8 @@
     "src/game/*.ts",
     "src/game/sprites/*.ts",
     "src/game/assets/characters/*.json",
-    "src/game/assets/map/props/*.json"
+    "src/game/assets/map/props/*.json",
+    "src/locales/*.json"
   ],
   "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {

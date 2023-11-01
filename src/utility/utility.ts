@@ -12,6 +12,16 @@ export async function getAnswers(id: number) {
 
   return quizQuestion;
 }
+
+export async function getAnswersSe(id: number) {
+  const response = await fetch(`http://${backendUrl}/quiz/` + id);
+  const data = await response.json();
+
+  const quizQuestion = JSON.parse(data.quizquestionse);
+
+  return quizQuestion;
+}
+
 export async function getNumberOfMaps() {
   const response = await fetch(`http://${backendUrl}/map/count`);
   const data = await response.text();

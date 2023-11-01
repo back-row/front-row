@@ -16,7 +16,7 @@ const userStore = useUserStore();
       <h2
         class="rounded-full ml-12 -rotate-12 h-24 w-96 shadow-lg shadow-gray-700 border-2 dark:bg-grayLightBackRow flex items-center justify-center text-3xl dark:shadow-none dark:border-none dark:text-whiteBackRow"
       >
-        Spela dig till kunskap
+        {{$t('knowledge')}}
       </h2>
     </div>
     <div
@@ -47,13 +47,13 @@ const userStore = useUserStore();
         to="/level"
         class="hover:animate-pulse ease-in-out duration-300 hover:scale-110 bg-greenBackRow h-36 w-7/12 m-2 rounded-xl flex items-center justify-center text-whiteBackRow text-4xl sm:text-5xl lg:text-7xl shadow-lg shadow-black"
         @click="playerStore.playerPosition.atEnd = false"
-        >Play now</router-link
+        >{{$t('playNow')}}</router-link
       >
       <router-link
         v-show="userStore.user.id === 0"
         to="/highscore"
         class="hover:animate-pulse ease-in-out duration-300 hover:scale-110 bg-greenBackRow h-36 w-7/12 m-2 rounded-xl flex items-center justify-center text-whiteBackRow text-4xl sm:text-5xl lg:text-7xl shadow-lg shadow-black"
-        >Highscore</router-link
+        >{{ $t('highScore') }}</router-link
       >
     </div>
   </div>

@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import { getAnswers } from '@/utility/utility';
+import { getAnswers, getAnswersSe } from '@/utility/utility';
 import { usePlayerStore } from '@/stores/player';
 import { useMapStore } from '@/stores/map';
+
 
 const mapStore = useMapStore();
 const playerStore = usePlayerStore();
 const userInput = ref('');
 const question = ref('');
+const questionSe = ref('');
 const easyMode = ref(false);
 const emit = defineEmits(['easyMode']);
 
@@ -25,6 +27,7 @@ enum Direction {
 
 onMounted(() => {
   getAnswers(mapStore.map.quizId).then((obj) => [(question.value = obj.question)]);
+  getAnswersSe(mapStore.map.quizId).then((obj) => [(questionSe.value = obj.question)]);
 });
 
 const parseUserInput = async (stringArray: string[]) => {
@@ -97,7 +100,7 @@ const onSubmit = async () => {
     class="relative shadow-lg shadow-gray-700 border-2 dark:shadow-none dark:border-none dark:bg-grayLightBackRow mx-1 sm:mx-0 h-80 sm:w-128 p-2 pt-4 rounded-sm"
   >
     <div class="dark:bg-whiteBackRow h-4/5 w-full">
-      <div class="question m-1">{{ question }}</div>
+      <div class="question m-1">{{ $i18n.locale.match('se') ? questionSe : question }}</div>
       <div class="flex items-start justify-center">
         <textarea
           v-model="userInput"
@@ -111,15 +114,15 @@ const onSubmit = async () => {
     </div>
     <button
       @click.prevent="setDifficulty"
-      class="hover:animate-pulse shadow-lg shadow-black bg-greenBackRow h-10 w-20 m-2 rounded-md flex items-center justify-center absolute bottom-0 left-0 text-whiteBackRow"
+      class="hover:animate-pulse shadow-lg shadow-black bg-greenBackRow h-10 w-fit px-2 m-2 rounded-md flex items-center justify-center absolute bottom-0 left-0 text-whiteBackRow"
     >
-      Quiz mode
+      {{$t('quizMode')}}
     </button>
     <button
       @click="resetButton"
       class="hover:animate-pulse shadow-lg shadow-black bg-greenBackRow h-10 w-20 m-2 rounded-md flex items-center justify-center absolute bottom-0 right-28 text-whiteBackRow"
     >
-      Reset
+      {{$t('reset')}}
     </button>
     <button
       type="submit"
@@ -140,7 +143,7 @@ const onSubmit = async () => {
           d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z"
         />
       </svg>
-      Run
+      {{$t('run')}}
     </button>
   </div>
 </template>

@@ -23,7 +23,7 @@ const showModal = ref(true);
     <button
         class="w-32 h-8 sm:w-48 sm:h-16 flex items-center justify-center relative sm:absolute sm:top-28 sm:right-36 rounded-lg text-2xl text-whiteBackRow bg-greenBackRow"
         >
-          Next level
+          {{$t('nextLevel')}}
     </button>
     </router-link>
     </div>

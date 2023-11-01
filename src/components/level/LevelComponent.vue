@@ -3,6 +3,7 @@ import { RouterLink } from 'vue-router';
 import { getMapScores, getNumberOfMaps, type MapScore } from '@/utility/utility';
 import { useMapStore } from '@/stores/map';
 import { useUserStore } from '@/stores/user';
+import {useI18n} from 'vue-i18n';
 
 import { onMounted, ref, type Ref } from 'vue';
 
@@ -11,6 +12,7 @@ const userStore = useUserStore();
 const userLevel = ref(0);
 const numberOfMaps = ref(0);
 const mapScores: Ref<MapScore[]> = ref([]);
+const i18n = useI18n();
 
 onMounted(async () => {
   getNumberOfMaps().then((obj) => (numberOfMaps.value = parseInt(obj)));
@@ -29,9 +31,9 @@ const startGame = async (map: number) => {
 const selectProgress = (value: number) => {
   let progress = '';
 
-  if (userLevel.value > value) progress = 'Completed';
-  else if (userLevel.value === value) progress = 'In progress';
-  else progress = 'Not started';
+  if (userLevel.value > value) progress = i18n.locale.value.match('se') ? 'Klar' : 'Completed';
+  else if (userLevel.value === value) progress = i18n.locale.value.match('se') ? 'Pågående' : 'In progress';
+  else progress = i18n.locale.value.match('se') ? 'Ej upplåst' : 'Not started';
   return progress;
 };
 </script>
@@ -43,11 +45,11 @@ const selectProgress = (value: number) => {
     >
       <thead>
         <tr>
-          <th class="py-4 p-2 text-lg">Level</th>
+          <th class="py-4 p-2 text-lg">{{$t('level')}}</th>
           <th></th>
-          <th class="text-lg">Status</th>
-          <th class="text-lg p-2">Score</th>
-          <th class="text-lg p-2">Stars</th>
+          <th class="text-lg">{{$t('status')}}</th>
+          <th class="text-lg p-2">{{$t('score')}}</th>
+          <th class="text-lg p-2">{{$t('stars')}}</th>
         </tr>
       </thead>
       <tbody>
@@ -60,7 +62,7 @@ const selectProgress = (value: number) => {
                 class="w-16 h-6 rounded-lg text-whiteBackRow bg-greenBackRow shadow-lg shadow-black hover:animate-pulse"
                 @click="startGame(index + 1)"
               >
-                Play
+                {{$t('play')}}
               </button>
             </router-link>
           </td>
