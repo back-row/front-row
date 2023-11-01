@@ -22,5 +22,7 @@
   "password": "Password",
   "signUp": "Sign up",
   "login": "Login",
-  "logout": "Logout"
+  "logout": "Logout",
+  "mission": "Mission",
+  "answer": "Answer"
 }

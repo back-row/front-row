@@ -22,5 +22,7 @@
   "password": "Lösenord",
   "signUp": "Skapa konto",
   "login": "Logga in",
-  "logout": "Logga ut"
+  "logout": "Logga ut",
+  "mission": "Uppdrag",
+  "answer": "Svar"
 }
