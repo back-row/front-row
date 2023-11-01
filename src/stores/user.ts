@@ -66,9 +66,9 @@ export const useUserStore = defineStore('user', () => {
         body: JSON.stringify(userDTO.value)
       });
     } catch (error) {
-      console.log('Failed to update user: ' + error);
+      console.error('Failed to update user: ' + error);
     }
   }
 
-  return { user, setUser, logout, updateUser };
+    return { user, setUser, logout, updateUser };
 });

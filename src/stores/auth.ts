@@ -24,8 +24,7 @@ export async function login(username: string, password: string) {
           Authorization: localStorage.getItem('Authorization')!
         }
       });
-      const data = await response.json();
-      return data;
+      return await response.json();
     } else {
       console.error('Login failed');
       return null;

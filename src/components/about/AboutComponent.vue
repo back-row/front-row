@@ -5,12 +5,7 @@
     <header class="text-3xl text-center md:text-7xl dark:text-whiteBackRow m-8">About Us</header>
     <div class="flex container bg-whiteBackRow shadow-lg shadow-black w-4/5 rounded-2xl">
       <p class="p-4 text-center md:text-xl md:p-24 md:py-10">
-        In Back Row, we've turned learning to code into a thrilling adventure! Here we've
-        transformed learning to code into an exhilarating adventure! Whether you're a beginner or an
-        aspiring coder, get ready to delve into the world of programming. You'll lead your character
-        on an epic quest brimming with excitement and discovery. This game is thoughtfully designed
-        to make programming enjoyable and accessible for beginners of all ages, ensuring that you
-        have a great time while learning.
+        {{ $t('about') }}
       </p>
     </div>
     <div class="flex flex-wrap justify-evenly m-10 w-4/5">
