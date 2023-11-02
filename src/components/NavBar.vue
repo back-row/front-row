@@ -116,7 +116,7 @@ const toggle = (event: any) => {
         </router-link>
       </template>
     </Menu>
-    <router-link to="/" class="m-0 w-1/3 dark:text-white"> <h2>Back Row</h2></router-link>
+    <router-link to="/" class="m-0 w-1/3 dark:text-whiteBackRow"> <h2>Back Row</h2></router-link>
     <div class="loginUser flex flex-row justify-end w-1/3 mr-2">
       <p
         v-show="userStore.user.id === 0"
