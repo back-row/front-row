@@ -28,5 +28,7 @@
   "enterUsername": "Skriv användarnamn",
   "enterPassword": "Skriv lösenord",
   "enterEmail": "Skriv epostadress",
-  "email": "Email"
+  "email": "Email",
+  "newUsername": "Nytt användarnamn",
+  "newEmail": "Ny epostadress"
 }

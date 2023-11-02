@@ -28,5 +28,7 @@
   "enterUsername": "Enter Username",
   "enterPassword": "Enter Password",
   "enterEmail": "Enter Email",
-  "email": "Email"
+  "email": "Email",
+  "newUsername": "New username",
+  "newEmail": "New email"
 }
