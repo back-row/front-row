@@ -41,7 +41,7 @@ onMounted(async () => {
         <tr v-show="!userVisible" class="odd:bg-gray-300">
           <td class="text-right w-128 p-2">   </td>
           <td class="text-left w-1/2">{{ userStore.user.name }}</td>
-          <td class="text-left w-1/4">{{ userStore.user.score }}</td>
+          <td class="text-left w-1/4">{{ userStore.user.name === '' ? '' : userStore.user.score }}</td>
         </tr>
       </tbody>
     </div>
