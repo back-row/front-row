@@ -30,5 +30,12 @@
   "enterEmail": "Enter Email",
   "email": "Email",
   "newUsername": "New username",
-  "newEmail": "New email"
+  "newEmail": "New email",
+  "validation": {
+    "required": "{word} is required",
+    "alpha": "Please enter only alphabetic characters",
+    "length": "Length must be at least {length} character",
+    "matches": "Please include at least one symbol",
+    "email": "Please enter a valid email address"
+  }
 }

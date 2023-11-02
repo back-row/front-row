@@ -28,7 +28,14 @@
   "enterUsername": "Skriv användarnamn",
   "enterPassword": "Skriv lösenord",
   "enterEmail": "Skriv epostadress",
-  "email": "Email",
+  "email": "Epost",
   "newUsername": "Nytt användarnamn",
-  "newEmail": "Ny epostadress"
+  "newEmail": "Ny epostadress",
+  "validation": {
+    "required": "{word} är obligatoriskt",
+    "alpha": "Endast bokstäver tillåtna",
+    "length": "Minst {length} tecken",
+    "matches": "Minst en symbol",
+    "email": "Ej giltig epostadress"
+  }
 }

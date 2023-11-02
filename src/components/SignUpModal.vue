@@ -84,6 +84,11 @@ async function tryLogin(username: string, password: string) {
             v-bind:label="$t('username')"
             type="text"
             validation="required|alpha|length:1"
+            :validation-messages="{
+              length: $t('validation.length', {length: 1}),
+              alpha: $t('validation.alpha'),
+              required: $t('validation.required', {word: $t('username')})
+            }"
             v-bind:placeholder="$t('enterUsername')"
             v-model="data.username"
           />
@@ -91,6 +96,10 @@ async function tryLogin(username: string, password: string) {
             v-bind:label="$t('email')"
             type="text"
             validation="required|email"
+            :validation-messages="{
+              email: $t('validation.email'),
+              required: $t('validation.required', {word: $t('email')})
+            }"
             v-bind:placeholder="$t('enterEmail')"
             v-model="data.email"
           />
@@ -100,7 +109,9 @@ async function tryLogin(username: string, password: string) {
             type="password"
             validation="required|length:6|matches:/[^a-zA-Z]/"
             :validation-messages="{
-              matches: 'Please include at least one symbol'
+              matches: $t('validation.matches'),
+              length: $t('validation.length', {length: 6}),
+              required: $t('validation.required', {word: $t('password')})
             }"
             v-bind:placeholder="$t('enterPassword')"
             v-model="data.password"
