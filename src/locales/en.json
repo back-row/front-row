@@ -24,5 +24,9 @@
   "login": "Login",
   "logout": "Logout",
   "mission": "Mission",
-  "answer": "Answer"
+  "answer": "Answer",
+  "enterUsername": "Enter Username",
+  "enterPassword": "Enter Password",
+  "enterEmail": "Enter Email",
+  "email": "Email"
 }
