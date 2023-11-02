@@ -9,10 +9,20 @@ type scores = { usersname: string; userstotalscore: number };
 const userStore = useUserStore();
 const mapStore = useMapStore();
 const highScore: Ref<scores[]> = ref([]);
+const userVisible = ref(false);
 
 onMounted(async () => {
   highScore.value = await getHighScore();
+  
+  highScore.value.find((score) => {
+    if(userStore.user.name === score.usersname){
+      return userVisible.value = true;
+    }else {
+      return userVisible.value = false;
+    }
+  });
 });
+
 </script>
 
 <template>
@@ -27,6 +37,11 @@ onMounted(async () => {
           <td class="text-right w-128 p-2">{{ index + 1 + '.' }}</td>
           <td class="text-left w-1/2">{{ score.usersname }}</td>
           <td class="text-left w-1/4">{{ score.userstotalscore }}</td>
+        </tr>
+        <tr v-show="!userVisible" class="odd:bg-gray-300">
+          <td class="text-right w-128 p-2">   </td>
+          <td class="text-left w-1/2">{{ userStore.user.name }}</td>
+          <td class="text-left w-1/4">{{ userStore.user.score }}</td>
         </tr>
       </tbody>
     </div>
