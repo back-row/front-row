@@ -72,7 +72,7 @@ async function saveEmail() {
             class="w-40 h-6 mt-4 rounded-sm shadow-md"
             v-model="userStore.user.name"
             type="text"
-            placeholder="New username"
+            v-bind:placeholder="$t('newUsername')"
             @keydown.enter="saveName"
             required
           />
@@ -91,7 +91,7 @@ async function saveEmail() {
             class="w-40 h-5 rounded-sm shadow-md"
             v-model="userStore.user.email"
             type="text"
-            placeholder="New username"
+            v-bind:placeholder="$t('newEmail')"
             @keydown.enter="saveEmail"
             required
           />
@@ -101,9 +101,9 @@ async function saveEmail() {
             @click="toggleEditEmail"
           />
         </div>
-        <h2 class="dark:text-whiteBackRow text-xl mt-8">Level</h2>
+        <h2 class="dark:text-whiteBackRow text-xl mt-8">{{$t('level')}}</h2>
         <p class="dark:text-whiteBackRow text-2xl">{{ userStore.user.level }}</p>
-        <h2 class="dark:text-whiteBackRow text-xl">Points</h2>
+        <h2 class="dark:text-whiteBackRow text-xl">{{$t('score')}}</h2>
         <p class="dark:text-whiteBackRow text-2xl">{{ userStore.user.score }}</p>
       </div>
       <div class="flex flex-col">

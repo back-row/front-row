@@ -44,21 +44,21 @@ async function handleLogin() {
       <div class="flex flex-col w-full">
         <FormKit
           v-model="data.username"
-          label="Username"
+          v-bind:label="$t('username')"
           type="text"
-          placeholder="Enter Username"
+          v-bind:placeholder="$t('enterUsername')"
           validation="required|alpha|length:1"
         />
       </div>
       <div class="flex flex-col">
         <FormKit
-          label="Password"
+          v-bind:label="$t('password')"
           type="password"
           validation="required|length:6|matches:/[^a-zA-Z]/"
           :validation-messages="{
             matches: 'Please include at least one symbol'
           }"
-          placeholder="Enter Password"
+          v-bind:placeholder="$t('enterPassword')"
           v-model="data.password"
           suffix-icon="eyeClosed"
           @suffix-icon-click="handleIconClick"

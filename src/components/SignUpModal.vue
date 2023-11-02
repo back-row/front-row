@@ -81,28 +81,28 @@ async function tryLogin(username: string, password: string) {
       <div class="flex">
         <div class="flex flex-col w-1/2">
           <FormKit
-            label="Username"
+            v-bind:label="$t('username')"
             type="text"
             validation="required|alpha|length:1"
-            placeholder="Enter Username"
+            v-bind:placeholder="$t('enterUsername')"
             v-model="data.username"
           />
           <FormKit
-            label="Email"
+            v-bind:label="$t('email')"
             type="text"
             validation="required|email"
-            placeholder="Enter Email"
+            v-bind:placeholder="$t('enterEmail')"
             v-model="data.email"
           />
           <FormKit
             id="password"
-            label="Password"
+            v-bind:label="$t('password')"
             type="password"
             validation="required|length:6|matches:/[^a-zA-Z]/"
             :validation-messages="{
               matches: 'Please include at least one symbol'
             }"
-            placeholder="Enter Password"
+            v-bind:placeholder="$t('enterPassword')"
             v-model="data.password"
             suffix-icon="eyeClosed"
             @suffix-icon-click="handleIconClick"

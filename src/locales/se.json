@@ -24,5 +24,11 @@
   "login": "Logga in",
   "logout": "Logga ut",
   "mission": "Uppdrag",
-  "answer": "Svar"
+  "answer": "Svar",
+  "enterUsername": "Skriv användarnamn",
+  "enterPassword": "Skriv lösenord",
+  "enterEmail": "Skriv epostadress",
+  "email": "Email",
+  "newUsername": "Nytt användarnamn",
+  "newEmail": "Ny epostadress"
 }
