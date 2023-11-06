@@ -4,8 +4,16 @@ import SideContainer from '@/components/game/SideContainer.vue';
 import WinModal from '@/components/game/WinModal.vue';
 import NextMap from '@/components/game/NextMap.vue';
 import { usePlayerStore } from '@/stores/player';
-
+import { useMapStore } from '@/stores/map';
+import { getNumberOfMaps } from '@/utility/utility';
+const mapStore = useMapStore();
 const playerStore = usePlayerStore();
+
+async function showWinModal() {
+  return (
+    playerStore.playerPosition.atEnd && mapStore.map.id + 1 === parseInt(await getNumberOfMaps())
+  );
+}
 </script>
 
 <template>
@@ -16,8 +24,11 @@ const playerStore = usePlayerStore();
     <div class="sideArea">
       <SideContainer />
     </div>
-    <div v-show="playerStore.playerPosition.atEnd">
+    <div v-if="!showWinModal()">
       <NextMap />
+    </div>
+    <div v-else>
+      <WinModal />
     </div>
   </section>
 </template>
