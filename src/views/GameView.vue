@@ -17,10 +17,10 @@ const playerStore = usePlayerStore();
     <div class="sideArea">
       <SideContainer />
     </div>
-    <div v-show="playerStore.playerPosition.atEnd && userStore.user.level !== 6">
+    <div v-show="playerStore.playerPosition.atEnd && userStore.user.level <= 5">
       <NextMap />
     </div>
-    <div v-show="playerStore.playerPosition.atEnd && userStore.user.level === 6">
+    <div v-show="playerStore.playerPosition.atEnd && userStore.user.level >= 6">
       <WinModal />
     </div>
   </section>
