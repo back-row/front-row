@@ -4,7 +4,6 @@ import { getAnswers, getAnswersSe } from '@/utility/utility';
 import { usePlayerStore } from '@/stores/player';
 import { useMapStore } from '@/stores/map';
 
-
 const mapStore = useMapStore();
 const playerStore = usePlayerStore();
 const userInput = ref('');
@@ -25,9 +24,9 @@ enum Direction {
   Right = 'right'
 }
 
-onMounted(() => {
-  getAnswers(mapStore.map.quizId).then((obj) => [(question.value = obj.question)]);
-  getAnswersSe(mapStore.map.quizId).then((obj) => [(questionSe.value = obj.question)]);
+onMounted(async () => {
+  await getAnswers(mapStore.map.quizId).then((obj) => [(question.value = obj.question)]);
+  await getAnswersSe(mapStore.map.quizId).then((obj) => [(questionSe.value = obj.question)]);
 });
 
 const parseUserInput = async (stringArray: string[]) => {
@@ -36,7 +35,6 @@ const parseUserInput = async (stringArray: string[]) => {
     const match = s.match(regexForLoop);
     let regex = /^hero\.(\w+)\(\d+\)$/;
     let argument = 1;
-    
 
     if (match) {
       const argument = parseInt(match[1]);
@@ -46,12 +44,10 @@ const parseUserInput = async (stringArray: string[]) => {
           await processLoop(action, argument, playerStore);
         }
       }
-
     } else {
-        if (s.match(regex)) {
-            argument = parseInt(s.substring(s.length - 2, s.length - 1));
-          }
-
+      if (s.match(regex)) {
+        argument = parseInt(s.substring(s.length - 2, s.length - 1));
+      }
     }
 
     switch (s) {
@@ -98,24 +94,23 @@ const parseUserInput = async (stringArray: string[]) => {
   }
 };
 
-
-const processLoop = async (action: string, argument: integer, playerStore: PlayerStore ) => {
+const processLoop = async (action: string, argument: integer, playerStore: PlayerStore) => {
   switch (action) {
     case 'hero.right()':
       await playerStore.movePlayer(Direction.Right);
-    
+
       break;
     case 'hero.down()':
       await playerStore.movePlayer(Direction.Down);
-  
+
       break;
     case 'hero.up()':
       await playerStore.movePlayer(Direction.Up);
-     
+
       break;
     case 'hero.left()':
       await playerStore.movePlayer(Direction.Left);
-     
+
       break;
     default:
       console.log('Invalid action:', action);
@@ -125,9 +120,7 @@ const processLoop = async (action: string, argument: integer, playerStore: Playe
 //docker build conflict fix
 interface PlayerStore {
   movePlayer(direction: Direction): Promise<void>;
-  
 }
-
 
 const setDifficulty = () => {
   easyMode.value = !easyMode.value;
@@ -138,7 +131,6 @@ const onSubmit = async () => {
   let commands = [];
   const userInputValue = userInput.value;
   const loopRegex = /loop\(\d+\)\{[^{}]*\}/;
-
 
   if (loopRegex.test(userInputValue)) {
     commands = userInput.value.split(/[]/).map((s) => s.trim());
@@ -157,7 +149,13 @@ const onSubmit = async () => {
     class="relative shadow-lg shadow-gray-700 border-2 dark:shadow-none dark:border-none dark:bg-grayLightBackRow mx-1 sm:mx-0 h-80 sm:w-128 p-2 pt-4 rounded-sm"
   >
     <div class="dark:bg-whiteBackRow h-4/5 w-full">
-      <div class="question m-1">{{ $i18n.locale.match('se') ? 'Vilka kommandon får spelaren att gå till prinsessan?' : 'Which combination of commands makes the player move to the princess?' }}</div>
+      <div class="question m-1">
+        {{
+          $i18n.locale.match('se')
+            ? 'Vilka kommandon får spelaren att gå till prinsessan?'
+            : 'Which combination of commands makes the player move to the princess?'
+        }}
+      </div>
       <div class="flex items-start justify-center">
         <textarea
           v-model="userInput"
@@ -173,13 +171,13 @@ const onSubmit = async () => {
       @click.prevent="setDifficulty"
       class="hover:animate-pulse shadow-lg shadow-black bg-greenBackRow h-10 w-fit px-2 m-2 rounded-md flex items-center justify-center absolute bottom-0 left-0 text-whiteBackRow"
     >
-      {{$t('quizMode')}}
+      {{ $t('quizMode') }}
     </button>
     <button
       @click="resetButton"
       class="hover:animate-pulse shadow-lg shadow-black bg-greenBackRow h-10 w-20 m-2 rounded-md flex items-center justify-center absolute bottom-0 right-28 text-whiteBackRow"
     >
-      {{$t('reset')}}
+      {{ $t('reset') }}
     </button>
     <button
       type="submit"
@@ -200,7 +198,7 @@ const onSubmit = async () => {
           d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z"
         />
       </svg>
-      {{$t('run')}}
+      {{ $t('run') }}
     </button>
   </div>
 </template>

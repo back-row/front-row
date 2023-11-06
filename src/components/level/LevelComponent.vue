@@ -3,9 +3,10 @@ import { RouterLink } from 'vue-router';
 import { getMapScores, getNumberOfMaps, type MapScore } from '@/utility/utility';
 import { useMapStore } from '@/stores/map';
 import { useUserStore } from '@/stores/user';
-import {useI18n} from 'vue-i18n';
+import { useI18n } from 'vue-i18n';
 
 import { onMounted, ref, type Ref } from 'vue';
+import router from '@/router';
 
 const mapStore = useMapStore();
 const userStore = useUserStore();
@@ -26,13 +27,15 @@ onMounted(async () => {
 
 const startGame = async (map: number) => {
   await mapStore.getMapFromDb(map);
+  router.push('/game');
 };
 
 const selectProgress = (value: number) => {
   let progress = '';
 
   if (userLevel.value > value) progress = i18n.locale.value.match('se') ? 'Klar' : 'Completed';
-  else if (userLevel.value === value) progress = i18n.locale.value.match('se') ? 'Pågående' : 'In progress';
+  else if (userLevel.value === value)
+    progress = i18n.locale.value.match('se') ? 'Pågående' : 'In progress';
   else progress = i18n.locale.value.match('se') ? 'Ej upplåst' : 'Not started';
   return progress;
 };
@@ -45,26 +48,24 @@ const selectProgress = (value: number) => {
     >
       <thead>
         <tr>
-          <th class="py-4 p-2 text-lg">{{$t('level')}}</th>
+          <th class="py-4 p-2 text-lg">{{ $t('level') }}</th>
           <th></th>
-          <th class="text-lg">{{$t('status')}}</th>
-          <th class="text-lg p-2">{{$t('score')}}</th>
-          <th class="text-lg p-2">{{$t('stars')}}</th>
+          <th class="text-lg">{{ $t('status') }}</th>
+          <th class="text-lg p-2">{{ $t('score') }}</th>
+          <th class="text-lg p-2">{{ $t('stars') }}</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(number, index) in numberOfMaps" :key="number" class="odd:bg-gray-300">
           <td class="text-center p-2">{{ index + 1 + '.' }}</td>
           <td class="text-center p-2">
-            <router-link to="/game">
-              <button
-                v-if="userLevel >= index + 1"
-                class="w-16 h-6 rounded-lg text-whiteBackRow bg-greenBackRow shadow-lg shadow-black hover:animate-pulse"
-                @click="startGame(index + 1)"
-              >
-                {{$t('play')}}
-              </button>
-            </router-link>
+            <button
+              v-if="userLevel >= index + 1"
+              class="w-16 h-6 rounded-lg text-whiteBackRow bg-greenBackRow shadow-lg shadow-black hover:animate-pulse"
+              @click="startGame(index + 1)"
+            >
+              {{ $t('play') }}
+            </button>
           </td>
           <td class="text-center">{{ selectProgress(index + 1) }}</td>
           <td class="text-center">

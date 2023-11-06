@@ -24,8 +24,8 @@ enum Direction {
   Right = 'right'
 }
 
-onMounted(() => {
-  getAnswers(mapStore.map.quizId).then((obj) => [
+onMounted(async () => {
+  await getAnswers(mapStore.map.quizId).then((obj) => [
     answers.value.push(
       { choice: obj.choice1, answer: obj.answer1 },
       { choice: obj.choice2, answer: obj.answer2 },
@@ -35,7 +35,7 @@ onMounted(() => {
     (question.value = obj.question)
   ]);
 
-  getAnswersSe(mapStore.map.quizId).then((obj) => [
+  await getAnswersSe(mapStore.map.quizId).then((obj) => [
     answersSe.value.push(
       { choice: obj.choice1, answer: obj.answer1 },
       { choice: obj.choice2, answer: obj.answer2 },
@@ -123,13 +123,13 @@ const onSubmit = async () => {
       @click.prevent="setDifficulty"
       class="hover:animate-pulse shadow-lg shadow-black bg-greenBackRow h-10 w-20 m-2 rounded-md flex items-center justify-center absolute bottom-0 left-0 text-whiteBackRow"
     >
-      {{$t('textInput')}}
+      {{ $t('textInput') }}
     </button>
     <button
       @click="resetButton"
       class="hover:animate-pulse shadow-lg shadow-black bg-greenBackRow h-10 w-20 m-2 rounded-md flex items-center justify-center absolute bottom-0 right-28 text-whiteBackRow"
     >
-      {{$t('reset')}}
+      {{ $t('reset') }}
     </button>
     <button
       type="submit"
@@ -150,7 +150,7 @@ const onSubmit = async () => {
           d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z"
         />
       </svg>
-      {{$t('run')}}
+      {{ $t('run') }}
     </button>
   </div>
 </template>
