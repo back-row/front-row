@@ -16,7 +16,7 @@ const mapScores: Ref<MapScore[]> = ref([]);
 const i18n = useI18n();
 
 onMounted(async () => {
-  getNumberOfMaps().then((obj) => (numberOfMaps.value = parseInt(obj)));
+  await getNumberOfMaps().then((obj) => (numberOfMaps.value = parseInt(obj)));
   userLevel.value = userStore.user.level;
 
   mapScores.value = await getMapScores();
