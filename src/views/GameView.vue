@@ -4,7 +4,8 @@ import SideContainer from '@/components/game/SideContainer.vue';
 import WinModal from '@/components/game/WinModal.vue';
 import NextMap from '@/components/game/NextMap.vue';
 import { usePlayerStore } from '@/stores/player';
-
+import { useUserStore } from '@/stores/user';
+const userStore = useUserStore();
 const playerStore = usePlayerStore();
 </script>
 
@@ -16,8 +17,11 @@ const playerStore = usePlayerStore();
     <div class="sideArea">
       <SideContainer />
     </div>
-    <div v-show="playerStore.playerPosition.atEnd">
+    <div v-show="playerStore.playerPosition.atEnd && userStore.user.level !== 6">
       <NextMap />
+    </div>
+    <div v-show="playerStore.playerPosition.atEnd && userStore.user.level === 6">
+      <WinModal />
     </div>
   </section>
 </template>
